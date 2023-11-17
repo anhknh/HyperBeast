@@ -40,7 +40,7 @@ public class themMSJDialog extends javax.swing.JDialog {
     }
     
     void statusPage() {
-        listms = spmodel.getMauSac();
+        listms = spmodel.getMaMS();
         pageNumber = (int) Math.ceil((listms.size()/5.0));
         pageLbl.setText(page + "/" + pageNumber);
     }

@@ -38,7 +38,7 @@ public class kichThuocJDialog extends javax.swing.JDialog {
     }
 
     void statusPage() {
-        listkt = spmodel.getKichThuoc();
+        listkt = spmodel.getMaKT();
         pageNumber = (int) Math.ceil((listkt.size()/5.0));
         pageLbl.setText(page + "/" + pageNumber);
     }

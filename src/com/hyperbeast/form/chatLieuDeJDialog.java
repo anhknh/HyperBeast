@@ -44,7 +44,7 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
      */
     
     void statusPage() {
-        listCLD = spmodel.getChatLieuDe();
+        listCLD = spmodel.getMaCLD();
         pageNumber = (int) Math.ceil((listCLD.size()/5.0));
         pageLbl.setText(page + "/" + pageNumber);
     }

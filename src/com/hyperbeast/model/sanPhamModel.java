@@ -20,6 +20,92 @@ import java.util.ArrayList;
  */
 public class sanPhamModel {
     
+    public ArrayList getMaMS () {
+        ArrayList listMSP = new ArrayList<>();
+        String query = "select * from MAU_SAC";
+        try {
+            Connection conn = DBconnect.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {                
+                int maSP = rs.getInt("MaMS");
+                listMSP.add(maSP);
+            }
+            return listMSP;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ArrayList getMaKT () {
+        ArrayList listMSP = new ArrayList<>();
+        String query = "select * from SIZE";
+        try {
+            Connection conn = DBconnect.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {                
+                int maSP = rs.getInt("MaSIZE");
+                listMSP.add(maSP);
+            }
+            return listMSP;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ArrayList getMaDM () {
+        ArrayList listMSP = new ArrayList<>();
+        String query = "select * from DANH_MUC";
+        try {
+            Connection conn = DBconnect.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {                
+                int maSP = rs.getInt("MaDM");
+                listMSP.add(maSP);
+            }
+            return listMSP;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ArrayList getMaCL () {
+        ArrayList listMSP = new ArrayList<>();
+        String query = "select * from CHAT_LIEU";
+        try {
+            Connection conn = DBconnect.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {                
+                int maSP = rs.getInt("MaCL");
+                listMSP.add(maSP);
+            }
+            return listMSP;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ArrayList getMaCLD () {
+        ArrayList listMSP = new ArrayList<>();
+        String query = "select * from CHAT_LIEU_DE_GIAY";
+        try {
+            Connection conn = DBconnect.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {                
+                int maSP = rs.getInt("MaCLDe");
+                listMSP.add(maSP);
+            }
+            return listMSP;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
     public ArrayList getMaSP () {
         ArrayList listMSP = new ArrayList<>();
         String query = "select * from SAN_PHAM";
@@ -74,6 +160,31 @@ public class sanPhamModel {
         }
     }
     
+    public ArrayList<SanPham> getSanPham2 () {
+        ArrayList<SanPham> listSP = new ArrayList<>();
+        String query = "select SAN_PHAM.MaSP, TenSP, NgayNhap, SAN_PHAM.TrangThai, NgayCapNhat, TenDanhMuc from SAN_PHAM " +
+                "join DANH_MUC on DANH_MUC.MaDM = SAN_PHAM.MaDM\n";
+        try {
+            Connection conn = DBconnect.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {                
+                SanPham sp = new SanPham();
+                sp.setMaSP(rs.getInt("MaSP"));
+                sp.setTenSP(rs.getString("TenSP"));
+                sp.setNgayNhap(rs.getString("NgayNhap"));
+                sp.setNgayCN(rs.getString("NgayCapNhat"));
+                sp.setTrangThai(rs.getString("TrangThai"));
+                sp.setTenDanhMuc(rs.getString("TenDanhMuc"));
+                listSP.add(sp);
+            }
+            return listSP;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
     public ArrayList<SanPham> getSanPham (int pageSelect) {
         ArrayList<SanPham> listSP = new ArrayList<>();
         String query = "select SAN_PHAM.MaSP, TenSP, NgayNhap, SAN_PHAM.TrangThai, NgayCapNhat, TenDanhMuc from SAN_PHAM " +
@@ -102,6 +213,40 @@ public class sanPhamModel {
             return null;
         }
     }
+    
+    public ArrayList<SanPhamChiTiet> getSanPhamCT2 () {
+        ArrayList<SanPhamChiTiet> listSPCT = new ArrayList<>();
+        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
+"				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
+"                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
+"				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
+"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n";
+        try {
+            Connection conn = DBconnect.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {                
+                SanPhamChiTiet spct = new SanPhamChiTiet();
+                spct.setMaSP(rs.getInt("MaSP"));
+                spct.setTenSP(rs.getString("TenSP"));
+                spct.setSoLuong(rs.getInt("SoLuong"));
+                spct.setDonGia(rs.getFloat("DonGia"));
+                spct.setTenMau(rs.getString("TenMau"));
+                spct.setKichThuoc(rs.getInt("KichThuoc"));
+                spct.setTenChatLieu(rs.getString("TenChatLieu"));
+                spct.setTenChatLieuDe(rs.getString("TenChatLieuDe"));
+                spct.setMaBarCode(rs.getString("MaBarCode"));
+                spct.setTenAnh(rs.getString("TenAnh"));
+                spct.setMoTa(rs.getString("MoTa"));
+                listSPCT.add(spct);
+            }
+            return listSPCT;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
     public ArrayList<SanPhamChiTiet> getSanPhamCT (int pageSelect) {
         ArrayList<SanPhamChiTiet> listSPCT = new ArrayList<>();
         String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +

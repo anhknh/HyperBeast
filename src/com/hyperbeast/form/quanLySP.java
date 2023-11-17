@@ -268,6 +268,7 @@ public class quanLySP extends javax.swing.JPanel  {
     
     void searchSanPham() {
         String timkiem = timKiemTxt.getText();
+        ArrayList<SanPham> listSP2 = spModel.getSanPham2();
         ArrayList listTimKiem = spModel.searchSanPham(timkiem);
         if(listTimKiem.size() == 0) {
             JOptionPane.showMessageDialog(main, "Không tìm thấy sản phẩm");
@@ -276,11 +277,11 @@ public class quanLySP extends javax.swing.JPanel  {
         DefaultTableModel model = (DefaultTableModel) sanPhamTbl.getModel();
         model.setRowCount(0);
         for (Object maSP : listTimKiem) {
-            for (int i = 0; i < listSP.size(); i++) {
-                 if(listSP.get(i).getMaSP() == (int) maSP) {
+            for (int i = 0; i < listSP2.size(); i++) {
+                 if(listSP2.get(i).getMaSP() == (int) maSP) {
                      Object[] data = {
-                         listSP.get(i).getMaSP(), listSP.get(i).getTenSP(), listSP.get(i).getNgayNhap(), listSP.get(i).getNgayCN(),
-                         listSP.get(i).getTenDanhMuc(), listSP.get(i).getTrangThai()
+                         listSP2.get(i).getMaSP(), listSP2.get(i).getTenSP(), listSP2.get(i).getNgayNhap(), listSP2.get(i).getNgayCN(),
+                         listSP2.get(i).getTenDanhMuc(), listSP2.get(i).getTrangThai()
                      };
                      model.addRow(data);
                  }
@@ -313,6 +314,7 @@ public class quanLySP extends javax.swing.JPanel  {
     void searchSanPhamCT() {
         String timkiem = timKiemCTSPTxt.getText();
         ArrayList listTimKiem = spModel.searchSanPham(timkiem);
+        ArrayList<SanPhamChiTiet> listCTSP2 = spModel.getSanPhamCT2();
         if(listTimKiem.size() == 0) {
             JOptionPane.showMessageDialog(main, "Không tìm thấy sản phẩm");
             return;
@@ -320,12 +322,12 @@ public class quanLySP extends javax.swing.JPanel  {
         DefaultTableModel model = (DefaultTableModel) sanPhamCTTbl.getModel();
         model.setRowCount(0);
         for (Object maSP : listTimKiem) {
-            for (int i = 0; i < listCTSP.size(); i++) {
-                 if(listCTSP.get(i).getMaSP() == (int) maSP) {
+            for (int i = 0; i < listCTSP2.size(); i++) {
+                 if(listCTSP2.get(i).getMaSP() == (int) maSP) {
                      Object[] data = {
-                         listCTSP.get(i).getTenSP(), listCTSP.get(i).getSoLuong(), listCTSP.get(i).getDonGia(), listCTSP.get(i).getTenMau(),
-                         listCTSP.get(i).getKichThuoc(), listCTSP.get(i).getTenChatLieu(), listCTSP.get(i).getTenChatLieuDe(), listCTSP.get(i).getMaBarCode(),
-                         listCTSP.get(i).getTenAnh()
+                         listCTSP2.get(i).getTenSP(), listCTSP2.get(i).getSoLuong(), listCTSP2.get(i).getDonGia(), listCTSP2.get(i).getTenMau(),
+                         listCTSP2.get(i).getKichThuoc(), listCTSP2.get(i).getTenChatLieu(), listCTSP2.get(i).getTenChatLieuDe(), listCTSP2.get(i).getMaBarCode(),
+                         listCTSP2.get(i).getMoTa(),listCTSP2.get(i).getTenAnh()
                      };
                      model.addRow(data);
                  }
