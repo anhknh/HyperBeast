@@ -452,9 +452,10 @@ public class quanLySP extends javax.swing.JPanel  {
     
     void getDataSPCTSelected (int rowSelected) {
         listSP = spModel.getSanPham(pageSelectSP);
-        listCTSP = spModel.getSanPhamCT(pageNumberSPCT);
+        ArrayList<SanPhamChiTiet> listCTSP2 = spModel.getSanPhamCT2();
         String tenSP = null;
-        for (SanPhamChiTiet spct : listCTSP) {
+        System.out.println(sanPhamCTTbl.getValueAt(rowSelected, 0));
+        for (SanPhamChiTiet spct : listCTSP2) {
             if(sanPhamCTTbl.getValueAt(rowSelected, 0).equals(spct.getTenSP())) {
                 tenSP = spct.getMaSP() + " - " + spct.getTenSP();
             }
