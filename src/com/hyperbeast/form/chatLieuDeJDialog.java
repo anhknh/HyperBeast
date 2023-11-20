@@ -84,7 +84,7 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(tenChatLieuTxt.getText().isEmpty()) {
+        if(tenChatLieuTxt.getText().isEmpty()||  tenChatLieuTxt.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
             return;
         } 

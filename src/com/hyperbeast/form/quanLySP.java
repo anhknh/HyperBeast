@@ -419,7 +419,7 @@ public class quanLySP extends javax.swing.JPanel  {
         if(locSize == null) {
             return;
         }
-        ArrayList listTimKiem = spModel.locKT("size" + locSize);
+        ArrayList listTimKiem = spModel.locKT(locSize);
         ArrayList<SanPhamChiTiet> listCTSP2 = spModel.getSanPhamCT2();
         if(listTimKiem.size() == 0) {
             JOptionPane.showMessageDialog(main, "Không tìm thấy sản phẩm");
@@ -1540,14 +1540,16 @@ public class quanLySP extends javax.swing.JPanel  {
     private void themCTSPBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themCTSPBtnActionPerformed
         // TODO add your handling code here:
         int rowSelected = sanPhamTbl.getSelectedRow();
-        
         if (rowSelected == -1) {
             JOptionPane.showMessageDialog(this,"Chưa chọn sản phẩm");
             return;
         }
-        
         String tenSP = sanPhamTbl.getValueAt(rowSelected, 0) +" - " + sanPhamTbl.getValueAt(rowSelected, 1);
         tenSPLbl.setText(tenSP);
+        if(!tenSP.equals("")) {
+            themCTBtn.setEnabled(true);
+            
+        }
         //JDialog d = new JDialog();
         d.setSize(1140, 740);
         final Toolkit toolkit = Toolkit.getDefaultToolkit();

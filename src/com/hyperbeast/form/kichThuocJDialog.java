@@ -78,10 +78,10 @@ public class kichThuocJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(kichThuocTxt.getText().isEmpty()) {
+        if(kichThuocTxt.getText().isEmpty() ||  kichThuocTxt.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
             return;
-        } 
+        }
         if(trangThaiCB.getSelectedIndex() < 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn trạng thái");
             return;

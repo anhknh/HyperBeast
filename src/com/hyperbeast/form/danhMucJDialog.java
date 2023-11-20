@@ -84,7 +84,7 @@ public class danhMucJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(tenDanhMucTxt.getText().isEmpty()) {
+        if(tenDanhMucTxt.getText().isEmpty() ||  tenDanhMucTxt.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
             return;
         } 

@@ -80,7 +80,7 @@ public class themMSJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(tenMauTxt.getText().isEmpty()) {
+        if(tenMauTxt.getText().isEmpty() ||  tenMauTxt.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
             return;
         } 
