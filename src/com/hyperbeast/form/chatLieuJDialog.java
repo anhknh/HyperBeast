@@ -32,6 +32,7 @@ public class chatLieuJDialog extends javax.swing.JDialog {
     public chatLieuJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        trangThaiCB.setSelectedIndex(0);
         getPage();
         statusPage();
         loadData(pageSelect);
@@ -84,12 +85,12 @@ public class chatLieuJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(tenChatLieuTxt.getText().isEmpty()||  tenChatLieuTxt.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
+        String tenChatLieu = tenChatLieuTxt.getText();
+         if (tenChatLieu.isEmpty() || tenChatLieu.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên chất liệu hoặc chỉ chứa dấu cách");
             return;
-        } 
-        if(trangThaiCB.getSelectedIndex() < 0) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn trạng thái");
+        } else if (!tenChatLieu.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Tên chất liệu chỉ được chứa chữ cái");
             return;
         }
         
@@ -224,7 +225,6 @@ public class chatLieuJDialog extends javax.swing.JDialog {
         tenChatLieuTxt.setLabelText("Tên chất liệu");
 
         trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hoạt động", "Không hoạt động" }));
-        trangThaiCB.setSelectedIndex(-1);
         trangThaiCB.setLabeText("Trạng thái");
 
         jButton3.setBackground(new java.awt.Color(0, 102, 255));

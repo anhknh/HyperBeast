@@ -32,6 +32,7 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
     public chatLieuDeJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        trangThaiCB.setSelectedIndex(0);
         getPage();
         statusPage();
         loadData(pageSelect);
@@ -84,12 +85,12 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(tenChatLieuTxt.getText().isEmpty()||  tenChatLieuTxt.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
+        String tenChatLieuDe = tenChatLieuTxt.getText();
+         if (tenChatLieuDe.isEmpty() || tenChatLieuDe.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập chất liệu đế hoặc chỉ chứa dấu cách");
             return;
-        } 
-        if(trangThaiCB.getSelectedIndex() < 0) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn trạng thái");
+        } else if (!tenChatLieuDe.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Tên chất liệu đế chỉ được chứa chữ cái");
             return;
         }
         
@@ -221,10 +222,9 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(chatLieuDeTbl);
 
-        tenChatLieuTxt.setLabelText("Tên chất liệu");
+        tenChatLieuTxt.setLabelText("Tên chất liệu đế");
 
         trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hoạt động", "Không hoạt động" }));
-        trangThaiCB.setSelectedIndex(-1);
         trangThaiCB.setLabeText("Trạng thái");
 
         jButton3.setBackground(new java.awt.Color(0, 102, 255));

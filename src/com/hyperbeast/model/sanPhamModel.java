@@ -390,142 +390,46 @@ public class sanPhamModel {
     }
     
     
-    public ArrayList locSanPham (String timKiem) {
-        ArrayList listTimKiem = new ArrayList();
-        String query = "select * from SAN_PHAM where TrangThai like ?";
-        try {
-            Connection conn = DBconnect.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+ timKiem +"%");
-            ResultSet  rs = pstmt.executeQuery();
-            while (rs.next()) {                
-                int maSP = rs.getInt("MaSP");
-                listTimKiem.add(maSP);
-            }
-            return listTimKiem;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        }
-    } 
-    public ArrayList locSanPhamDM (String timKiem) {
-        ArrayList listTimKiem = new ArrayList();
-        String query = "select * from SAN_PHAM join DANH_MUC on DANH_MUC.MaDM = SAN_PHAM.MaDM  where DANH_MUC.TenDanhMuc like ?";
-        try {
-            Connection conn = DBconnect.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+ timKiem +"%");
-            ResultSet  rs = pstmt.executeQuery();
-            while (rs.next()) {                
-                int maSP = rs.getInt("MaSP");
-                listTimKiem.add(maSP);
-            }
-            return listTimKiem;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        }
-    } 
-    public ArrayList locMS (String timKiem) {
-        ArrayList listTimKiem = new ArrayList();
-        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
-"				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
-"                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
-"				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
-"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n"+
-                                "Where TenMau like ?";
-        try {
-            Connection conn = DBconnect.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+ timKiem +"%");
-            ResultSet  rs = pstmt.executeQuery();
-            while (rs.next()) {                
-                int maSP = rs.getInt("MaSP");
-                listTimKiem.add(maSP);
-            }
-            return listTimKiem;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        }
-    } 
-    public ArrayList locKT (String timKiem) {
-        ArrayList listTimKiem = new ArrayList();
-        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
-"				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
-"                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
-"				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
-"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n"+
-                                "Where KichThuoc = ?";
-        try {
-            Connection conn = DBconnect.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, timKiem);
-            ResultSet  rs = pstmt.executeQuery();
-            while (rs.next()) {                
-                int maSP = rs.getInt("MaSP");
-                listTimKiem.add(maSP);
-            }
-            return listTimKiem;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        }
-    } 
-    public ArrayList locCLC (String timKiem) {
-        ArrayList listTimKiem = new ArrayList();
-        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
-"				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
-"                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
-"				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
-"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n"+
-                                "Where TenChatLieu like ?";
-        try {
-            Connection conn = DBconnect.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+ timKiem +"%");
-            ResultSet  rs = pstmt.executeQuery();
-            while (rs.next()) {                
-                int maSP = rs.getInt("MaSP");
-                listTimKiem.add(maSP);
-            }
-            return listTimKiem;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        }
-    } 
-    public ArrayList locCLD (String timKiem) {
-        ArrayList listTimKiem = new ArrayList();
-        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
-"				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
-"                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
-"				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
-"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n"+
-                                "Where TenChatLieuDe like ?";
-        try {
-            Connection conn = DBconnect.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+ timKiem +"%");
-            ResultSet  rs = pstmt.executeQuery();
-            while (rs.next()) {                
-                int maSP = rs.getInt("MaSP");
-                listTimKiem.add(maSP);
-            }
-            return listTimKiem;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        }
-    } 
     
-    public ArrayList searchSanPham (String timKiem) {
+    
+    public ArrayList searchSanPham (String tenSP, String trangThai, String tenDanhMuc) {
         ArrayList listTimKiem = new ArrayList();
-        String query = "select * from SAN_PHAM where TenSP like ?";
+        String query = "select SAN_PHAM.MaSP, TenSP, NgayNhap, SAN_PHAM.TrangThai,SAN_PHAM.MaDM, TenDanhMuc from SAN_PHAM join CHI_TIET_SAN_PHAM on SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
+"				join DANH_MUC on DANH_MUC.MaDM = SAN_PHAM.MaDM\n" +
+"				where TenSP like ? and SAN_PHAM.TrangThai like ? and TenDanhMuc like ? ";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+ timKiem +"%");
+            pstmt.setString(1, "%"+ tenSP +"%");
+            pstmt.setString(2, "%"+ trangThai +"%");
+            pstmt.setString(3, "%"+ tenDanhMuc +"%");
+            ResultSet  rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                int maSP = rs.getInt("MaSP");
+                listTimKiem.add(maSP);
+            }
+            return listTimKiem;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ArrayList searchSanPhamCT (String tenSP, String tenMau, String kichThuoc, String tenChatLieu, String tenChatLieuDe) {
+        ArrayList listTimKiem = new ArrayList();
+        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
+"				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
+"                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
+"				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
+"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n" +
+"				where tenSP like ? and TenMau like ? and KichThuoc like ? and TenChatLieu like ? and TenChatLieuDe like ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%"+ tenSP +"%");
+            pstmt.setString(2, "%"+ tenMau +"%");
+            pstmt.setString(3, "%"+ kichThuoc +"%");
+            pstmt.setString(4, "%"+ tenChatLieu +"%");
+            pstmt.setString(5, "%"+ tenChatLieuDe +"%");
             ResultSet  rs = pstmt.executeQuery();
             while (rs.next()) {                
                 int maSP = rs.getInt("MaSP");

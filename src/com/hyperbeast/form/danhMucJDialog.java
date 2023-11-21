@@ -32,6 +32,7 @@ public class danhMucJDialog extends javax.swing.JDialog {
     public danhMucJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        trangThaiCB.setSelectedIndex(0);
         getPage();
         statusPage();
         loadData(pageSelect);
@@ -84,12 +85,12 @@ public class danhMucJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(tenDanhMucTxt.getText().isEmpty() ||  tenDanhMucTxt.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
+        String tenDanhMuc = tenDanhMucTxt.getText();
+         if (tenDanhMuc.isEmpty() || tenDanhMuc.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục hoặc chỉ chứa dấu cách");
             return;
-        } 
-        if(trangThaiCB.getSelectedIndex() < 0) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn trạng thái");
+        } else if (!tenDanhMuc.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Tên danh mục chỉ được chứa chữ cái");
             return;
         }
         

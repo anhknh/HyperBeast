@@ -33,6 +33,7 @@ public class themMSJDialog extends javax.swing.JDialog {
     public themMSJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        trangThaiCB.setSelectedIndex(0);
         getPage();
         loadData(pageSelect);
         statusPage();
@@ -80,12 +81,12 @@ public class themMSJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(tenMauTxt.getText().isEmpty() ||  tenMauTxt.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
+        String tenMau = tenMauTxt.getText();
+         if (tenMau.isEmpty() || tenMau.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên màu hoặc chỉ chứa dấu cách");
             return;
-        } 
-        if(trangThaiCB.getSelectedIndex() < 0) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn trạng thái");
+        } else if (!tenMau.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Tên màu chỉ được chứa chữ cái");
             return;
         }
         
@@ -227,7 +228,6 @@ public class themMSJDialog extends javax.swing.JDialog {
         tenMauTxt.setLabelText("Tên màu ");
 
         trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hoạt động", "Không hoạt động" }));
-        trangThaiCB.setSelectedIndex(-1);
         trangThaiCB.setLabeText("Trạng thái");
 
         jButton1.setBackground(new java.awt.Color(0, 102, 255));

@@ -32,6 +32,7 @@ public class kichThuocJDialog extends javax.swing.JDialog {
     public kichThuocJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        trangThaiCB.setSelectedIndex(0);
         getPage();
         statusPage();
         loadData(pageSelect);
@@ -78,13 +79,22 @@ public class kichThuocJDialog extends javax.swing.JDialog {
     }
     
     void validateData( int choice) {
-        if(kichThuocTxt.getText().isEmpty() ||  kichThuocTxt.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục");
+        String kichThuoc = kichThuocTxt.getText();
+        if (kichThuoc.isEmpty() || kichThuoc.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập kích thước hoặc chỉ chứa dấu cách");
             return;
-        }
-        if(trangThaiCB.getSelectedIndex() < 0) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn trạng thái");
-            return;
+        } else {
+            
+            try {
+                int test = Integer.parseInt(kichThuocTxt.getText());
+                if(test <= 0) {
+                    JOptionPane.showMessageDialog(this, "Kích thước phải lớn hơn 0");
+                    return;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Kích thước phải nhập số");
+                return;
+            }
         }
         
         if(choice == 1) {
@@ -92,8 +102,7 @@ public class kichThuocJDialog extends javax.swing.JDialog {
         } 
         if(choice == 2) {
             updateKichThuoc();
-        } 
-        
+        }    
          
     }
     
@@ -218,7 +227,6 @@ public class kichThuocJDialog extends javax.swing.JDialog {
         kichThuocTxt.setLabelText("Kích thước");
 
         trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hoạt động", "Không hoạt động" }));
-        trangThaiCB.setSelectedIndex(-1);
         trangThaiCB.setLabeText("Trạng thái");
 
         jButton3.setBackground(new java.awt.Color(0, 102, 255));
