@@ -10,6 +10,7 @@ package com.hyperbeast.entity;
  */
 public class SanPhamChiTiet {
     int maSP;
+    int maCTSP;
     String tenSP;
     int soLuong;
     float donGia;
@@ -21,8 +22,9 @@ public class SanPhamChiTiet {
     String moTa;
     String tenAnh;
 
-    public SanPhamChiTiet(int maSP, String tenSP, int soLuong, float donGia, String tenMau, int kichThuoc, String tenChatLieu, String tenChatLieuDe, String maBarCode, String moTa, String tenAnh) {
+    public SanPhamChiTiet(int maSP, int maCTSP, String tenSP, int soLuong, float donGia, String tenMau, int kichThuoc, String tenChatLieu, String tenChatLieuDe, String maBarCode, String moTa, String tenAnh) {
         this.maSP = maSP;
+        this.maCTSP = maCTSP;
         this.tenSP = tenSP;
         this.soLuong = soLuong;
         this.donGia = donGia;
@@ -34,6 +36,16 @@ public class SanPhamChiTiet {
         this.moTa = moTa;
         this.tenAnh = tenAnh;
     }
+
+    public int getMaCTSP() {
+        return maCTSP;
+    }
+
+    public void setMaCTSP(int maCTSP) {
+        this.maCTSP = maCTSP;
+    }
+
+    
 
     
 

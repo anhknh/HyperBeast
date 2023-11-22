@@ -57,18 +57,16 @@ public class quanLySP extends javax.swing.JPanel  {
     public quanLySP() {
         initComponents();
         statusPageSP();
-        statusPageSPCT();
         getPageSP();
         getPageSPCT();
         fillSanPhamTbl();
-        fillCTSP();
         fillmau();
         fillKichThuoc();
         fillChatLieu();
         fillChatLieuDe();
         fillDanhMuc();
         clearLocSP();
-        clearLocCTSP();
+        clearLocCTSP(1);
     }
     
     void statusPageSP() {
@@ -81,7 +79,9 @@ public class quanLySP extends javax.swing.JPanel  {
         pageSelectSP = (pageSP - 1) * 5;
     }
     void statusPageSPCT() {
-        listSPCTSize = spModel.getMaCTSP();
+        String tenSanPham = tenSPLbl.getText();
+        String tenSanPham2 = tenSanPham.substring(tenSanPham.lastIndexOf("-") +2,tenSanPham.length());
+        listSPCTSize = spModel.getMaCTSP(tenSanPham2);
         pageNumberSPCT = (int) Math.ceil((listSPCTSize.size()/5.0));
         pageCTSPLbl.setText(pageSPCT + "/" + pageNumberSPCT);
     }
@@ -149,26 +149,30 @@ public class quanLySP extends javax.swing.JPanel  {
     void validateCTSP(int choice) {
         sanPhamModel  model = new sanPhamModel();
         File file;
+        String tenSanPham = tenSPLbl.getText();
+        String tenSanPham2 = tenSanPham.substring(tenSanPham.lastIndexOf("-") +2,tenSanPham.length());
         int rowSelected = sanPhamCTTbl.getSelectedRow();
-        String maSPcheck;
-        if(tenSPLbl.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Chưa chọn sản phẩm");
-            return;
-        } else {
-            maSPcheck = tenSPLbl.getText().substring(0, tenSPLbl.getText().indexOf(" "));
-        }
+        String maSPcheck = tenSPLbl.getText().substring(0, tenSPLbl.getText().indexOf(" "));
+        int maCTSP;
+        
         int maSP = Integer.parseInt(maSPcheck);
         int soLuong = 0;
         float donGia = 0;
-        String moTa;
+        String moTa = "";
         int maMS = mauSacCB.getSelectedIndex() +1;
+        String tenMau = mauSacCB.getSelectedItem().toString();
         int maSIZE = kichThuocCB.getSelectedIndex() +1;
+        int kichThuoc = Integer.parseInt( "" +kichThuocCB.getSelectedItem());
         int maCL = chatLieuCB.getSelectedIndex() +1;
+        String chatLieu = chatLieuCB.getSelectedItem().toString();
         int maCLD = chatLieuDCB.getSelectedIndex() +1;
+        String chatlieuDe = chatLieuDCB.getSelectedItem().toString();
         String maBarCode;
         String iconfilename;
         String tenAnh;
         
+        
+            
         if(soLuongTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,"Chưa nhập số lượng");
             return;
@@ -198,12 +202,6 @@ public class quanLySP extends javax.swing.JPanel  {
                 JOptionPane.showMessageDialog(this, "Sai định dạng đơn giá");
             }
         }
-        if(ghiChuTxt.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Chưa nhập ghi chú");
-            return;
-        } else {
-            moTa = ghiChuTxt.getText();
-        }
         if(maBarCodeTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập mã BarCode");
             return;
@@ -225,6 +223,15 @@ public class quanLySP extends javax.swing.JPanel  {
         }
         
         if(choice == 1) {
+            ArrayList<SanPhamChiTiet> listSPCT2 = spModel.getSanPhamCT2(tenSanPham2);
+            for (SanPhamChiTiet spct : listSPCT2) {
+                if(tenMau.equalsIgnoreCase(spct.getTenMau()) && kichThuoc == spct.getKichThuoc() ) {
+                    if(chatLieu.equals(spct.getTenChatLieu()) && chatlieuDe.equals(spct.getTenChatLieuDe())) {
+                        JOptionPane.showMessageDialog(this, "Thêm thất bại: sản phẩm đã tồn tại");
+                        return;
+                    }
+                }
+            }
             try {
                 tenAnh = file.getName();
                 spModel.insertSanPhamCT(maSP, soLuong, donGia, maMS, maSIZE, maCL, maCLD, maBarCode, tenAnh, moTa);
@@ -237,13 +244,19 @@ public class quanLySP extends javax.swing.JPanel  {
             }
         } 
         if(choice == 2){
+            if(rowSelected < 0) {
+                JOptionPane.showMessageDialog(this,"Chưa chọn sản phẩm");
+                return;
+            } else {
+                maCTSP = (int) sanPhamCTTbl.getValueAt(rowSelected, 0);
+            }
             try {
                 if(rowSelected < 0) {
                     JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm trong bảng");
                     return;
                 }
                 tenAnh = file.getName();
-                model.updateSPCT(maSP, soLuong, donGia, maMS, maSIZE, maCL, maCLD, maBarCode, tenAnh, moTa);
+                model.updateSPCT(maCTSP, soLuong, donGia, maMS, maSIZE, maCL, maCLD, maBarCode, tenAnh, moTa);
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công");
                 statusPageSPCT();
                 fillCTSP();
@@ -263,7 +276,6 @@ public class quanLySP extends javax.swing.JPanel  {
     }
     
     void clearCTSP() {
-        tenSPLbl.setText("");
         soLuongTxt.setText("");
         donGiaTxt.setText("");
         ghiChuTxt.setText("");
@@ -283,13 +295,15 @@ public class quanLySP extends javax.swing.JPanel  {
         fillSanPhamTbl();
     }
     
-    void clearLocCTSP() {
-        timKiemCTSPTxt.setText("");
+    void clearLocCTSP(int choice) {
         locCLCCB.setSelectedIndex(-1);
         locCLDCB.setSelectedIndex(-1);
         locKTCB.setSelectedIndex(-1);
         locMSCB.setSelectedIndex(-1);
-        fillCTSP();
+        if(choice == 2) {
+            statusPageSPCT();
+            fillCTSP();
+        }
     }
     
     void searchSanPham() {
@@ -327,7 +341,8 @@ public class quanLySP extends javax.swing.JPanel  {
     
     
     void searchSanPhamCT() {
-        String tenSP = timKiemCTSPTxt.getText();
+        String tenSanPham = tenSPLbl.getText();
+        String tenSanPham2 = tenSanPham.substring(tenSanPham.lastIndexOf("-") +2,tenSanPham.length());
         String tenMau = (String) locMSCB.getSelectedItem();
         String kichThuoc =  (String) locKTCB.getSelectedItem();
         String tenChatLieu = (String) locCLCCB.getSelectedItem();
@@ -345,26 +360,21 @@ public class quanLySP extends javax.swing.JPanel  {
             tenChatLieuDe = "";
         }
         
-        ArrayList listTimKiem = spModel.searchSanPhamCT(tenSP, tenMau, kichThuoc, tenChatLieu, tenChatLieuDe);
-        ArrayList<SanPhamChiTiet> listCTSP2 = spModel.getSanPhamCT2();
+        ArrayList<SanPhamChiTiet> listTimKiem = spModel.searchSanPhamCT(tenSanPham2, tenMau, kichThuoc, tenChatLieu, tenChatLieuDe);
         if(listTimKiem.size() == 0) {
             JOptionPane.showMessageDialog(main, "Không tìm thấy sản phẩm");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) sanPhamCTTbl.getModel();
         model.setRowCount(0);
-        for (Object maSP : listTimKiem) {
-            for (int i = 0; i < listCTSP2.size(); i++) {
-                 if(listCTSP2.get(i).getMaSP() == (int) maSP) {
-                     Object[] data = {
-                         listCTSP2.get(i).getTenSP(), listCTSP2.get(i).getSoLuong(), listCTSP2.get(i).getDonGia(), listCTSP2.get(i).getTenMau(),
-                         listCTSP2.get(i).getKichThuoc(), listCTSP2.get(i).getTenChatLieu(), listCTSP2.get(i).getTenChatLieuDe(), listCTSP2.get(i).getMaBarCode(),
-                         listCTSP2.get(i).getMoTa(),listCTSP2.get(i).getTenAnh()
+            for (int i = 0; i < listTimKiem.size(); i++) {
+                Object[] data = {
+                         listTimKiem.get(i).getMaCTSP(),listTimKiem.get(i).getTenSP(), listTimKiem.get(i).getSoLuong(), listTimKiem.get(i).getDonGia(), listTimKiem.get(i).getTenMau(),
+                         listTimKiem.get(i).getKichThuoc(), listTimKiem.get(i).getTenChatLieu(), listTimKiem.get(i).getTenChatLieuDe(), listTimKiem.get(i).getMaBarCode(),
+                         listTimKiem.get(i).getMoTa(),listTimKiem.get(i).getTenAnh()
                      };
                      model.addRow(data);
-                 }
             }
-        }
     }
     
     
@@ -446,8 +456,6 @@ public class quanLySP extends javax.swing.JPanel  {
     
     void fillSanPhamTbl() {
         listSP = spModel.getSanPham(pageSelectSP);
-        listCTSP = spModel.getSanPhamCT(pageSelectSPCT);
-        listSP = spModel.getSanPham(pageSelectSP);
         DefaultTableModel model = (DefaultTableModel) sanPhamTbl.getModel();
         model.setRowCount(0);
         for (SanPham sanPham : listSP) {
@@ -460,15 +468,17 @@ public class quanLySP extends javax.swing.JPanel  {
     }
     
     void fillCTSP() {
+        String tenSanPham = tenSPLbl.getText();
+        String tenSanPham2 = tenSanPham.substring(tenSanPham.lastIndexOf("-") +2,tenSanPham.length());
         listSP = spModel.getSanPham(pageSelectSP);
-        listCTSP = spModel.getSanPhamCT(pageSelectSPCT);
+        listCTSP = spModel.getSanPhamCT(pageSelectSPCT, tenSanPham2);
         DefaultTableModel model = (DefaultTableModel) sanPhamCTTbl.getModel();
         model.setRowCount(0);
         //for (int i = 0; i < listSP.size(); i++) {
             for (int j = 0; j < listCTSP.size(); j++) {
                 //if(listSP.get(i).getMaSP() == listCTSP.get(j).getMaSP()){
                     Object[] data = {
-                        listCTSP.get(j).getTenSP(), listCTSP.get(j).getSoLuong(), listCTSP.get(j).getDonGia(),
+                        listCTSP.get(j).getMaCTSP(),listCTSP.get(j).getTenSP(), listCTSP.get(j).getSoLuong(), listCTSP.get(j).getDonGia(),
                         listCTSP.get(j).getTenMau(),listCTSP.get(j).getKichThuoc(), listCTSP.get(j).getTenChatLieu(),
                         listCTSP.get(j).getTenChatLieuDe(), listCTSP.get(j).getMaBarCode(),listCTSP.get(j).getMoTa(), listCTSP.get(j).getTenAnh()
                    };
@@ -488,26 +498,17 @@ public class quanLySP extends javax.swing.JPanel  {
     }
     
     void getDataSPCTSelected (int rowSelected) {
-        listSP = spModel.getSanPham(pageSelectSP);
-        ArrayList<SanPhamChiTiet> listCTSP2 = spModel.getSanPhamCT2();
-        String tenSP = null;
-        for (SanPhamChiTiet spct : listCTSP2) {
-            if(sanPhamCTTbl.getValueAt(rowSelected, 0).equals(spct.getTenSP())) {
-                tenSP = spct.getMaSP() + " - " + spct.getTenSP();
-            }
-        }
-        tenSPLbl.setText(tenSP);
-        soLuongTxt.setText("" +sanPhamCTTbl.getValueAt(rowSelected, 1));
-        donGiaTxt.setText("" + sanPhamCTTbl.getValueAt(rowSelected, 2));
-        mauSacCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 3));
+        soLuongTxt.setText("" +sanPhamCTTbl.getValueAt(rowSelected, 2));
+        donGiaTxt.setText("" + sanPhamCTTbl.getValueAt(rowSelected, 3));
+        mauSacCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 4));
         //kichThuocCB.setSelectedIndex(3);
-        kichThuocCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 4).toString());
-        chatLieuCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 5));
-        chatLieuDCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 6));
-        maBarCodeTxt.setText("" + sanPhamCTTbl.getValueAt(rowSelected, 7));
-        ghiChuTxt.setText("" + sanPhamCTTbl.getValueAt(rowSelected, 8));
+        kichThuocCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 5).toString());
+        chatLieuCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 6));
+        chatLieuDCB.setSelectedItem(sanPhamCTTbl.getValueAt(rowSelected, 7));
+        maBarCodeTxt.setText("" + sanPhamCTTbl.getValueAt(rowSelected, 8));
+        ghiChuTxt.setText("" + sanPhamCTTbl.getValueAt(rowSelected, 9));
         anhSPLbl.setText("");
-        anhSPLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hyperbeast/icon/" + sanPhamCTTbl.getValueAt(rowSelected, 9))));
+        anhSPLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hyperbeast/icon/" + sanPhamCTTbl.getValueAt(rowSelected, 10))));
     } 
     
     /**
@@ -550,13 +551,11 @@ public class quanLySP extends javax.swing.JPanel  {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         pageCTSPLbl = new javax.swing.JLabel();
-        timKiemCTSPTxt = new com.hyperbeast.swing.TextField();
         locKTCB = new com.hyperbeast.swing.Combobox();
         locMSCB = new com.hyperbeast.swing.Combobox();
         locCLCCB = new com.hyperbeast.swing.Combobox();
         locCLDCB = new com.hyperbeast.swing.Combobox();
         jLabel1 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
         panelBorder4 = new com.hyperbeast.swing.PanelBorder();
         tenSPLbl = new javax.swing.JLabel();
         donGiaTxt = new com.hyperbeast.swing.TextField();
@@ -854,7 +853,7 @@ public class quanLySP extends javax.swing.JPanel  {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelBorder2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         panelSPLayout.setVerticalGroup(
             panelSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -881,13 +880,13 @@ public class quanLySP extends javax.swing.JPanel  {
 
         sanPhamCTTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên sản phẩm", "Số lượng", "Đơn giá", "Màu sắc", "Kích thước", "Chất liệu chính", "Chất liệu đế", "Mã barcode", "Ghi chú", "Ảnh"
+                "Mã CTSP", "Tên sản phẩm", "Số lượng", "Đơn giá", "Màu sắc", "Kích thước", "Chất liệu chính", "Chất liệu đế", "Mã barcode", "Ghi chú", "Ảnh"
             }
         ));
         sanPhamCTTbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -928,23 +927,41 @@ public class quanLySP extends javax.swing.JPanel  {
         pageCTSPLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         pageCTSPLbl.setText("Trang");
 
-        timKiemCTSPTxt.setLabelText("Tìm kiếm theo tên");
-
         locKTCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "item1", "item 2" }));
         locKTCB.setSelectedIndex(-1);
         locKTCB.setLabeText("Kích thước");
+        locKTCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locKTCBActionPerformed(evt);
+            }
+        });
 
         locMSCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "item1", "item 2" }));
         locMSCB.setSelectedIndex(-1);
         locMSCB.setLabeText("Màu sắc");
+        locMSCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locMSCBActionPerformed(evt);
+            }
+        });
 
         locCLCCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "item1", "item 2" }));
         locCLCCB.setSelectedIndex(-1);
         locCLCCB.setLabeText("Chất liệu chính");
+        locCLCCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locCLCCBActionPerformed(evt);
+            }
+        });
 
         locCLDCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "item1", "item 2" }));
         locCLDCB.setSelectedIndex(-1);
         locCLDCB.setLabeText("Chất liệu đế");
+        locCLDCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locCLDCBActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hyperbeast/icon/arrow.png"))); // NOI18N
@@ -952,18 +969,6 @@ public class quanLySP extends javax.swing.JPanel  {
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
-            }
-        });
-
-        jButton6.setBackground(new java.awt.Color(0, 102, 255));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Tìm");
-        jButton6.setBorderPainted(false);
-        jButton6.setFocusPainted(false);
-        jButton6.setRequestFocusEnabled(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
             }
         });
 
@@ -975,25 +980,21 @@ public class quanLySP extends javax.swing.JPanel  {
                 .addContainerGap()
                 .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder3Layout.createSequentialGroup()
-                                .addComponent(timKiemCTSPTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBorder3Layout.createSequentialGroup()
+                        .addComponent(locMSCB, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelBorder3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(locKTCB, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(locMSCB, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(locCLCCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(locKTCB, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(locCLCCB, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(locCLDCB, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
+                                .addComponent(locCLDCB, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder3Layout.createSequentialGroup()
+                            .addGroup(panelBorder3Layout.createSequentialGroup()
+                                .addGap(18, 18, Short.MAX_VALUE)
                                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pageCTSPLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1007,13 +1008,11 @@ public class quanLySP extends javax.swing.JPanel  {
                 .addContainerGap()
                 .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(timKiemCTSPTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(locKTCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(locMSCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(locCLCCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(locCLDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1270,7 +1269,7 @@ public class quanLySP extends javax.swing.JPanel  {
                     .addComponent(anhSPLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder5Layout.createSequentialGroup()
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1346,7 +1345,7 @@ public class quanLySP extends javax.swing.JPanel  {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE))
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1425,6 +1424,8 @@ public class quanLySP extends javax.swing.JPanel  {
         d.setResizable(false);
         d.setVisible(true);
         d.add(panelCTSP);
+        statusPageSPCT();
+        fillCTSP();
     }//GEN-LAST:event_themCTSPBtnActionPerformed
 
     private void themBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themBtnActionPerformed
@@ -1540,7 +1541,7 @@ public class quanLySP extends javax.swing.JPanel  {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        clearLocCTSP();
+        clearLocCTSP(2);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -1553,10 +1554,37 @@ public class quanLySP extends javax.swing.JPanel  {
         searchSanPham();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void locMSCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locMSCBActionPerformed
         // TODO add your handling code here:
+        if(tenSPLbl.getText().isEmpty()) {
+            return;
+        }
         searchSanPhamCT();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_locMSCBActionPerformed
+
+    private void locKTCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locKTCBActionPerformed
+        // TODO add your handling code here:
+        if(tenSPLbl.getText().isEmpty()) {
+            return;
+        }
+        searchSanPhamCT();
+    }//GEN-LAST:event_locKTCBActionPerformed
+
+    private void locCLCCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locCLCCBActionPerformed
+        // TODO add your handling code here:
+        if(tenSPLbl.getText().isEmpty()) {
+            return;
+        }
+        searchSanPhamCT();
+    }//GEN-LAST:event_locCLCCBActionPerformed
+
+    private void locCLDCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locCLDCBActionPerformed
+        // TODO add your handling code here:
+        if(tenSPLbl.getText().isEmpty()) {
+            return;
+        }
+        searchSanPhamCT();
+    }//GEN-LAST:event_locCLDCBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1577,7 +1605,6 @@ public class quanLySP extends javax.swing.JPanel  {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1620,7 +1647,6 @@ public class quanLySP extends javax.swing.JPanel  {
     private javax.swing.JButton themBtn;
     private javax.swing.JButton themCTBtn;
     private javax.swing.JButton themCTSPBtn;
-    private com.hyperbeast.swing.TextField timKiemCTSPTxt;
     private com.hyperbeast.swing.TextField timKiemTxt;
     private com.hyperbeast.swing.Combobox trangThaiCB;
     // End of variables declaration//GEN-END:variables

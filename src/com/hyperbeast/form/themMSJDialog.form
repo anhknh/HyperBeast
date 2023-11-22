@@ -161,6 +161,7 @@
             <StringItem index="1" value="Kh&#xf4;ng ho&#x1ea1;t &#x111;&#x1ed9;ng"/>
           </StringArray>
         </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
         <Property name="labeText" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
       </Properties>
     </Component>

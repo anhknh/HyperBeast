@@ -227,6 +227,7 @@ public class kichThuocJDialog extends javax.swing.JDialog {
         kichThuocTxt.setLabelText("Kích thước");
 
         trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hoạt động", "Không hoạt động" }));
+        trangThaiCB.setSelectedIndex(-1);
         trangThaiCB.setLabeText("Trạng thái");
 
         jButton3.setBackground(new java.awt.Color(0, 102, 255));

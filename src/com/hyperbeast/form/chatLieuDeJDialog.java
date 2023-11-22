@@ -89,11 +89,20 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
          if (tenChatLieuDe.isEmpty() || tenChatLieuDe.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập chất liệu đế hoặc chỉ chứa dấu cách");
             return;
-        } else if (!tenChatLieuDe.matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this, "Tên chất liệu đế chỉ được chứa chữ cái");
-            return;
-        }
-        
+        }else {
+             try {
+                 int test = Integer.parseInt(tenChatLieuDe);
+                 JOptionPane.showMessageDialog(this, "chỉ nhập chữ");
+                 return;
+             } catch (Exception e) {
+                 
+             }
+         }
+         
+//         else if (!tenChatLieuDe.matches("[a-zA-Z]+")) {
+//            JOptionPane.showMessageDialog(this, "Tên chất liệu đế chỉ được chứa chữ cái");
+//            return;
+//        }
         if(choice == 1) {
             insertChatLieu();
         } 
@@ -225,6 +234,7 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
         tenChatLieuTxt.setLabelText("Tên chất liệu đế");
 
         trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hoạt động", "Không hoạt động" }));
+        trangThaiCB.setSelectedIndex(-1);
         trangThaiCB.setLabeText("Trạng thái");
 
         jButton3.setBackground(new java.awt.Color(0, 102, 255));

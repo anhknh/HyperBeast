@@ -124,13 +124,14 @@ public class sanPhamModel {
         }
     }
     
-    public ArrayList getMaCTSP () {
+    public ArrayList getMaCTSP (String tenSanPham) {
         ArrayList listMCTSP = new ArrayList<>();
-        String query = "select * from CHI_TIET_SAN_PHAM";
+        String query = "select * from CHI_TIET_SAN_PHAM join SAN_PHAM on SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP WHERE TenSP like ?";
         try {
             Connection conn = DBconnect.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%"+ tenSanPham +"%");
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {                
                 int maCTSP = rs.getInt("MaCTSP");
                 listMCTSP.add(maCTSP);
@@ -214,20 +215,23 @@ public class sanPhamModel {
         }
     }
     
-    public ArrayList<SanPhamChiTiet> getSanPhamCT2 () {
+    public ArrayList<SanPhamChiTiet> getSanPhamCT2 ( String tenSanPham) {
         ArrayList<SanPhamChiTiet> listSPCT = new ArrayList<>();
-        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
+        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP,CHI_TIET_SAN_PHAM.MaCTSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
 "				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
 "                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
 "				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
-"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n";
+"				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n" + 
+                                "Where tenSP like ?";
         try {
             Connection conn = DBconnect.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%"+ tenSanPham +"%");
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {                
                 SanPhamChiTiet spct = new SanPhamChiTiet();
                 spct.setMaSP(rs.getInt("MaSP"));
+                spct.setMaCTSP(rs.getInt("MaCTSP"));
                 spct.setTenSP(rs.getString("TenSP"));
                 spct.setSoLuong(rs.getInt("SoLuong"));
                 spct.setDonGia(rs.getFloat("DonGia"));
@@ -247,24 +251,27 @@ public class sanPhamModel {
         }
     }
     
-    public ArrayList<SanPhamChiTiet> getSanPhamCT (int pageSelect) {
+    public ArrayList<SanPhamChiTiet> getSanPhamCT (int pageSelect, String tenSanPham) {
         ArrayList<SanPhamChiTiet> listSPCT = new ArrayList<>();
-        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
+        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP,CHI_TIET_SAN_PHAM.MaCTSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
 "				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
 "                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
 "				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
 "				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n" +
+"                               Where tenSP like ?\n" +
 "                               order by SAN_PHAM.MaSP\n" +
 "                               offset ? row\n" +
 "                               fetch next 5 ROWS ONLY";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, pageSelect);
+            pstmt.setString(1, "%"+ tenSanPham +"%");
+            pstmt.setInt(2, pageSelect);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {                
                 SanPhamChiTiet spct = new SanPhamChiTiet();
                 spct.setMaSP(rs.getInt("MaSP"));
+                spct.setMaCTSP(rs.getInt("MaCTSP"));
                 spct.setTenSP(rs.getString("TenSP"));
                 spct.setSoLuong(rs.getInt("SoLuong"));
                 spct.setDonGia(rs.getFloat("DonGia"));
@@ -415,8 +422,8 @@ public class sanPhamModel {
         }
     }
     public ArrayList searchSanPhamCT (String tenSP, String tenMau, String kichThuoc, String tenChatLieu, String tenChatLieuDe) {
-        ArrayList listTimKiem = new ArrayList();
-        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
+        ArrayList<SanPhamChiTiet> listTimKiem = new ArrayList();
+        String query = "select SAN_PHAM.MaSP,SAN_PHAM.TenSP,CHI_TIET_SAN_PHAM.MaCTSP, SoLuong, DonGia, TenMau, KichThuoc, TenChatLieu, TenChatLieuDe,MaBarCode, TenAnh, MoTa  from CHI_TIET_SAN_PHAM join MAU_SAC on MAU_SAC.MaMS = CHI_TIET_SAN_PHAM.MaMS\n" +
 "				join SAN_PHAM ON SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
 "                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
 "				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
@@ -432,8 +439,20 @@ public class sanPhamModel {
             pstmt.setString(5, "%"+ tenChatLieuDe +"%");
             ResultSet  rs = pstmt.executeQuery();
             while (rs.next()) {                
-                int maSP = rs.getInt("MaSP");
-                listTimKiem.add(maSP);
+                SanPhamChiTiet spct = new SanPhamChiTiet();
+                spct.setMaSP(rs.getInt("MaSP"));
+                spct.setMaCTSP(rs.getInt("MaCTSP"));
+                spct.setTenSP(rs.getString("TenSP"));
+                spct.setSoLuong(rs.getInt("SoLuong"));
+                spct.setDonGia(rs.getFloat("DonGia"));
+                spct.setTenMau(rs.getString("TenMau"));
+                spct.setKichThuoc(rs.getInt("KichThuoc"));
+                spct.setTenChatLieu(rs.getString("TenChatLieu"));
+                spct.setTenChatLieuDe(rs.getString("TenChatLieuDe"));
+                spct.setMaBarCode(rs.getString("MaBarCode"));
+                spct.setTenAnh(rs.getString("TenAnh"));
+                spct.setMoTa(rs.getString("MoTa"));
+                listTimKiem.add(spct);
             }
             return listTimKiem;
         } catch (SQLException e) {
@@ -518,10 +537,10 @@ public class sanPhamModel {
             return false;
         }
     }
-    public boolean updateSPCT(int maSP, int soLuong, float donGia, int maMS, int maSIZE, int maCL, int maCLD, String maBarCode, String tenAnh, String moTa) {
+    public boolean updateSPCT(int maCTSP, int soLuong, float donGia, int maMS, int maSIZE, int maCL, int maCLD, String maBarCode, String tenAnh, String moTa) {
          String query = "UPDATE CHI_TIET_SAN_PHAM\n" +
                         "SET DonGia = ?, SoLuong = ?, MaCLDe = ?, MaSize = ?,MaMS= ?, MaCL = ?, MaBarCode = ?, TenAnh = ?, MoTa = ?\n" +
-                        "WHERE MaSP = ?;";
+                        "WHERE MaCTSP = ?;";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -534,7 +553,7 @@ public class sanPhamModel {
             pstmt.setString(7, maBarCode);
             pstmt.setString(8, tenAnh);
             pstmt.setString(9, moTa);
-            pstmt.setInt(10, maSP);
+            pstmt.setInt(10, maCTSP);
             pstmt.execute();
             return true;
         } catch (SQLException e) {
