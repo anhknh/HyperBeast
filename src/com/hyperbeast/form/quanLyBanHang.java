@@ -54,6 +54,7 @@ public class quanLyBanHang extends javax.swing.JPanel  {
     final JPanel jPanelCamera = new JPanel();
     public quanLyBanHang() {
         initComponents();
+        hinhThucTTCB.setSelectedIndex(0);
         statusPageSPCT();
         getPageSPCT();
         fillSanPham();
@@ -108,9 +109,17 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         
         int tongTien = tinhTongTien();
         int tienKhachDua;
+        
         try {
             tienKhachDua = Integer.parseInt(tienKhachDuaTxt.getText());
-            tienThuaLbl.setText(tongTien - tienKhachDua + "");
+            int tienThua = tienKhachDua - tongTien;
+            if(tienThua < 0) {
+                return;
+            }
+             String patternTienTe = "###,###,###";
+            DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+            String stringTienTe= formatTienTe.format(tienThua);
+            tienThuaLbl.setText(stringTienTe + "");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,"Chỉ Nhập số");
             tienKhachDuaTxt.setText("");
@@ -229,6 +238,27 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         }
     }
     
+    void updateHoaDon(String trangThai) {
+        LocalDateTime ldt = LocalDateTime.now();
+        String dateNow = (DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH).format(ldt));
+        String ngayCapNhat = dateNow;
+        int rowSelected = hoaDonTbl.getSelectedRow();
+        if(rowSelected < 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn thao tác");
+            return;
+        }
+        int maHD = (int) hoaDonTbl.getValueAt(rowSelected, 0);
+        float tongTien = tinhTongTien();
+        int maTKKH = 2;
+        String hinhThucThanhToan = hinhThucTTCB.getSelectedItem().toString();
+        int choice = JOptionPane.showConfirmDialog(this,"Xác nhận thanh toán hóa đơn", "HyperBeast", JOptionPane.YES_NO_OPTION);
+        if(choice == 0) {
+            hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
+            hDModel.insertThanhToan(maHD, maTKKH, hinhThucThanhToan);
+            fillHoaDon();
+        }
+    }
+    
     void fillHoaDon () {
         ArrayList<HoaDon> listHoaDon = hDModel.getHoaDon();
         DefaultTableModel model = (DefaultTableModel) hoaDonTbl.getModel();
@@ -280,10 +310,10 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         maHoaDonTxt = new com.hyperbeast.swing.TextField();
         ngayTaoTxt = new com.hyperbeast.swing.TextField();
         tenKhachHangTxt = new com.hyperbeast.swing.TextField();
-        hinhThucTTTxt = new com.hyperbeast.swing.Combobox();
+        hinhThucTTCB = new com.hyperbeast.swing.Combobox();
         tienKhachDuaTxt = new com.hyperbeast.swing.TextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        thanhToanBtn = new javax.swing.JButton();
+        huyHoaDonBtn = new javax.swing.JButton();
         tenNhanVienTxt = new com.hyperbeast.swing.TextField();
         testLbl = new javax.swing.JLabel();
         soDienThoaiTxt = new com.hyperbeast.swing.TextField();
@@ -581,11 +611,17 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         ngayTaoTxt.setEnabled(false);
         ngayTaoTxt.setLabelText("Ngày tạo");
 
+        tenKhachHangTxt.setText("Hoàng Anh");
         tenKhachHangTxt.setLabelText("Tên khách hàng");
 
-        hinhThucTTTxt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trực tiếp", "Chuyển khoản" }));
-        hinhThucTTTxt.setSelectedIndex(-1);
-        hinhThucTTTxt.setLabeText("Hình thức thanh toán");
+        hinhThucTTCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trực tiếp", "Chuyển khoản" }));
+        hinhThucTTCB.setSelectedIndex(-1);
+        hinhThucTTCB.setLabeText("Hình thức thanh toán");
+        hinhThucTTCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hinhThucTTCBActionPerformed(evt);
+            }
+        });
 
         tienKhachDuaTxt.setForeground(new java.awt.Color(0, 0, 0));
         tienKhachDuaTxt.setLabelText("Tiền khách đưa");
@@ -595,13 +631,20 @@ public class quanLyBanHang extends javax.swing.JPanel  {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(0, 102, 255));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Thanh toán");
+        thanhToanBtn.setBackground(new java.awt.Color(0, 102, 255));
+        thanhToanBtn.setForeground(new java.awt.Color(255, 255, 255));
+        thanhToanBtn.setText("Thanh toán");
+        thanhToanBtn.setEnabled(false);
+        thanhToanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thanhToanBtnActionPerformed(evt);
+            }
+        });
 
-        jButton7.setBackground(new java.awt.Color(0, 102, 255));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText(" Hủy hóa đơn");
+        huyHoaDonBtn.setBackground(new java.awt.Color(0, 102, 255));
+        huyHoaDonBtn.setForeground(new java.awt.Color(255, 255, 255));
+        huyHoaDonBtn.setText(" Hủy hóa đơn");
+        huyHoaDonBtn.setEnabled(false);
 
         tenNhanVienTxt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         tenNhanVienTxt.setEnabled(false);
@@ -611,6 +654,7 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         testLbl.setForeground(new java.awt.Color(255, 0, 51));
         testLbl.setText("Tổng tiền :");
 
+        soDienThoaiTxt.setText("0328343389");
         soDienThoaiTxt.setLabelText("Số điện thoại");
 
         testLbl2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -620,6 +664,7 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         tongTienLbl2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tongTienLbl2.setForeground(new java.awt.Color(255, 0, 51));
 
+        tienThuaLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tienThuaLbl.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout tongTienLblLayout = new javax.swing.GroupLayout(tongTienLbl);
@@ -633,14 +678,14 @@ public class quanLyBanHang extends javax.swing.JPanel  {
                     .addComponent(maHoaDonTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ngayTaoTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tenKhachHangTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hinhThucTTTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hinhThucTTCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tienKhachDuaTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tenNhanVienTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(soDienThoaiTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tongTienLblLayout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(thanhToanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7))
+                        .addComponent(huyHoaDonBtn))
                     .addGroup(tongTienLblLayout.createSequentialGroup()
                         .addComponent(testLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -671,7 +716,7 @@ public class quanLyBanHang extends javax.swing.JPanel  {
                     .addComponent(tongTienLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(testLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hinhThucTTTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hinhThucTTCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tienKhachDuaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -680,8 +725,8 @@ public class quanLyBanHang extends javax.swing.JPanel  {
                     .addComponent(testLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tongTienLblLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(thanhToanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(huyHoaDonBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
@@ -775,8 +820,17 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         getDataRowHoaDon(rowSelected);
         int maHD = (int) hoaDonTbl.getValueAt(rowSelected, 0);
         String maHoaDon = "" + hoaDonTbl.getValueAt(rowSelected, 0);
+        String trangThai = "" + hoaDonTbl.getValueAt(rowSelected, 3);
+        if(trangThai.equals("Chờ thanh toán")) {
+            thanhToanBtn.setEnabled(true);
+            huyHoaDonBtn.setEnabled(true);
+        } else {
+            thanhToanBtn.setEnabled(false);
+            huyHoaDonBtn.setEnabled(false);
+        }
         tenGioHnagLbl.setText("Giỏ hàng - Hóa đơn " + maHoaDon);
         fillGioHang(maHD);
+        
         int tongTien = tinhTongTien();
         String patternTienTe = "###,###,###";
         DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
@@ -817,6 +871,27 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         
     }//GEN-LAST:event_tienKhachDuaTxtKeyReleased
 
+    private void hinhThucTTCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hinhThucTTCBActionPerformed
+        // TODO add your handling code here:
+        int rowSelected = hoaDonTbl.getSelectedRow();
+        if(rowSelected < 0) {
+            return;
+        }
+        if(hinhThucTTCB.getSelectedIndex() == 1) {
+            int tongTien = tinhTongTien();
+            tienKhachDuaTxt.setEnabled(false);
+            tienKhachDuaTxt.setText(tongTien + "");
+            tinhTienThua();
+        } else {
+            tienKhachDuaTxt.setEnabled(true);
+        }
+    }//GEN-LAST:event_hinhThucTTCBActionPerformed
+
+    private void thanhToanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thanhToanBtnActionPerformed
+        // TODO add your handling code here:
+        updateHoaDon("Đã thanh toán");
+    }//GEN-LAST:event_thanhToanBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -825,15 +900,14 @@ public class quanLyBanHang extends javax.swing.JPanel  {
     private com.hyperbeast.swing.Combobox combobox3;
     private com.hyperbeast.swing.Combobox combobox4;
     private javax.swing.JTable gioHangTbl;
-    private com.hyperbeast.swing.Combobox hinhThucTTTxt;
+    private com.hyperbeast.swing.Combobox hinhThucTTCB;
     private javax.swing.JTable hoaDonTbl;
+    private javax.swing.JButton huyHoaDonBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -861,6 +935,7 @@ public class quanLyBanHang extends javax.swing.JPanel  {
     private javax.swing.JLabel testLbl;
     private javax.swing.JLabel testLbl2;
     private com.hyperbeast.swing.TextField textField1;
+    private javax.swing.JButton thanhToanBtn;
     private com.hyperbeast.swing.TextField tienKhachDuaTxt;
     private javax.swing.JLabel tienThuaLbl;
     private com.hyperbeast.swing.PanelBorder tongTienLbl;

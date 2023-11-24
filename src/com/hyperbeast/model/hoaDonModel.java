@@ -148,6 +148,43 @@ public class hoaDonModel {
         }
     }
     
+    public boolean insertThanhToan(int maHD,int maTKKH, String hinhThucThanhToan) {
+        String query = "insert into THANH_TOAN (HinhThucThanhToan, MaTTKH, MaHD)\n" +
+                        "values(?,?,?)";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, hinhThucThanhToan);
+            pstmt.setInt(2, maTKKH);
+            pstmt.setInt(3, maHD);
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    
+    public boolean updateHoaDon(int maHD, String ngayCapNhat, String trangThai, int maTKKH, float tongTien) {
+        String query = "update HOA_DON\n" +
+                        "set NgayCapNhat = ?, TrangThai = ?, TongTien = ?, MaTTKH = ?\n" +
+                        "where MaHD = ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, ngayCapNhat);
+            pstmt.setString(2, trangThai);
+            pstmt.setFloat(3, tongTien);
+            pstmt.setInt(4, maTKKH);
+            pstmt.setInt(5, maHD);
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    
     public boolean insertHDCT(int maCTSP, int maHD, int soLuong, float thanhTien) {
         String query = "insert into HOA_DON_CHI_TIET(MaCTSP, MaHD, SoLuong, ThanhTien)\n" +
 "                       values(?,?,?,?)";
