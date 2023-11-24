@@ -116,7 +116,7 @@ public class quanLyBanHang extends javax.swing.JPanel  {
             if(tienThua < 0) {
                 return;
             }
-             String patternTienTe = "###,###,###";
+            String patternTienTe = "###,###,###";
             DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
             String stringTienTe= formatTienTe.format(tienThua);
             tienThuaLbl.setText(stringTienTe + "");
@@ -177,22 +177,33 @@ public class quanLyBanHang extends javax.swing.JPanel  {
             return;
         }
         ArrayList<HoaDonChiTiet> listHDCT = hDModel.getHDCT(maHD);
+        thanhTien = soLuongThem * donGia;
         soLuongCuoi = soLuongSP - soLuongThem;
         for (HoaDonChiTiet hdct : listHDCT) {
             if(hdct.getMaCTSP() == maCTSP) {
                 int soLuongTrung = hdct.getSoLuong() + soLuongThem;
-                hDModel.updateHDCT(maHD, maCTSP, soLuongTrung);
+                float thanhTien2 = soLuongTrung * donGia;
+                hDModel.updateHDCT(maHD, maCTSP, thanhTien2, soLuongTrung);
                 fillGioHang(maHD);
                 hDModel.updateCTSP(maCTSP, soLuongCuoi);
                 fillSanPham();
+                int tongTien = tinhTongTien();
+                String patternTienTe = "###,###,###";
+                DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+                String stringTienTe= formatTienTe.format(tongTien);
+                tongTienLbl2.setText(stringTienTe);
                 return;
             }
         }
-        thanhTien = soLuongThem * donGia;
         hDModel.insertHDCT(maCTSP, maHD, soLuongThem, thanhTien);
         fillGioHang(maHD);
         hDModel.updateCTSP(maCTSP, soLuongCuoi);
         fillSanPham();
+        int tongTien = tinhTongTien();
+        String patternTienTe = "###,###,###";
+        DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+        String stringTienTe= formatTienTe.format(tongTien);
+        tongTienLbl2.setText(stringTienTe);
     }
     
     void fillSanPham() {
@@ -291,8 +302,8 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         tenGioHnagLbl = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         gioHangTbl = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        suaBtn = new javax.swing.JButton();
+        xoaBtn = new javax.swing.JButton();
         panelBorder2 = new com.hyperbeast.swing.PanelBorder();
         jScrollPane5 = new javax.swing.JScrollPane();
         sanPhamTbl = new javax.swing.JTable();
@@ -437,16 +448,16 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         ));
         jScrollPane6.setViewportView(gioHangTbl);
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 255));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Sửa");
+        suaBtn.setBackground(new java.awt.Color(0, 102, 255));
+        suaBtn.setForeground(new java.awt.Color(255, 255, 255));
+        suaBtn.setText("Sửa");
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 255));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Xóa");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        xoaBtn.setBackground(new java.awt.Color(0, 102, 255));
+        xoaBtn.setForeground(new java.awt.Color(255, 255, 255));
+        xoaBtn.setText("Xóa");
+        xoaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                xoaBtnActionPerformed(evt);
             }
         });
 
@@ -462,8 +473,8 @@ public class quanLyBanHang extends javax.swing.JPanel  {
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))))
+                            .addComponent(suaBtn)
+                            .addComponent(xoaBtn))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
@@ -475,9 +486,9 @@ public class quanLyBanHang extends javax.swing.JPanel  {
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(suaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(xoaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -824,9 +835,13 @@ public class quanLyBanHang extends javax.swing.JPanel  {
         if(trangThai.equals("Chờ thanh toán")) {
             thanhToanBtn.setEnabled(true);
             huyHoaDonBtn.setEnabled(true);
+            suaBtn.setEnabled(true);
+            xoaBtn.setEnabled(true);
         } else {
             thanhToanBtn.setEnabled(false);
             huyHoaDonBtn.setEnabled(false);
+            suaBtn.setEnabled(false);
+            xoaBtn.setEnabled(false);
         }
         tenGioHnagLbl.setText("Giỏ hàng - Hóa đơn " + maHoaDon);
         fillGioHang(maHD);
@@ -841,11 +856,16 @@ public class quanLyBanHang extends javax.swing.JPanel  {
     private void sanPhamTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sanPhamTblMousePressed
         // TODO add your handling code here:
         if(evt.getClickCount() == 2) {
+            int rowSelected = hoaDonTbl.getSelectedRow();
+            String trangThai = "" + hoaDonTbl.getValueAt(rowSelected, 3);
+            if(trangThai.equals("Đã thanh toán")) {
+                return;
+            }
             addGioHang();
         }
     }//GEN-LAST:event_sanPhamTblMousePressed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void xoaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaBtnActionPerformed
         // TODO add your handling code here:
         int rowSelectedHD = hoaDonTbl.getSelectedRow();
         int maHD = (int) hoaDonTbl.getValueAt(rowSelectedHD, 0);
@@ -862,8 +882,13 @@ public class quanLyBanHang extends javax.swing.JPanel  {
             fillGioHang(maHD);
             hDModel.updateCTSP(maCTSP, soLuongCuoi);
             fillSanPham();
+            int tongTien = tinhTongTien();
+            String patternTienTe = "###,###,###";
+            DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+            String stringTienTe= formatTienTe.format(tongTien);
+            tongTienLbl2.setText(stringTienTe);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_xoaBtnActionPerformed
 
     private void tienKhachDuaTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tienKhachDuaTxtKeyReleased
         // TODO add your handling code here:
@@ -904,8 +929,6 @@ public class quanLyBanHang extends javax.swing.JPanel  {
     private javax.swing.JTable hoaDonTbl;
     private javax.swing.JButton huyHoaDonBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -929,6 +952,7 @@ public class quanLyBanHang extends javax.swing.JPanel  {
     private com.hyperbeast.swing.RadioButtonCustom radioButtonCustom4;
     private javax.swing.JTable sanPhamTbl;
     private com.hyperbeast.swing.TextField soDienThoaiTxt;
+    private javax.swing.JButton suaBtn;
     private javax.swing.JLabel tenGioHnagLbl;
     private com.hyperbeast.swing.TextField tenKhachHangTxt;
     private com.hyperbeast.swing.TextField tenNhanVienTxt;
@@ -940,5 +964,6 @@ public class quanLyBanHang extends javax.swing.JPanel  {
     private javax.swing.JLabel tienThuaLbl;
     private com.hyperbeast.swing.PanelBorder tongTienLbl;
     private javax.swing.JLabel tongTienLbl2;
+    private javax.swing.JButton xoaBtn;
     // End of variables declaration//GEN-END:variables
 }

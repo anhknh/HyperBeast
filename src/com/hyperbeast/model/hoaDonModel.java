@@ -218,15 +218,16 @@ public class hoaDonModel {
             return false;
         }
     }
-    public boolean updateHDCT(int maHD,int maCTSP, int soLuong) {
+    public boolean updateHDCT(int maHD,int maCTSP,float thanhTien, int soLuong) {
         String query = "update HOA_DON_CHI_TIET\n" +
-"                       set SoLuong = ? where MaHD = ? and MaCTSP = ? ";
+"                       set SoLuong = ?, ThanhTien = ? where MaHD = ? and MaCTSP = ? ";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, soLuong);
-            pstmt.setInt(2, maHD);
-            pstmt.setInt(3, maCTSP);
+            pstmt.setFloat(2, thanhTien);
+            pstmt.setInt(3, maHD);
+            pstmt.setInt(4, maCTSP);
             pstmt.execute();
             return true;
         } catch (SQLException e) {
