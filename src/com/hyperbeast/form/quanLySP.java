@@ -601,7 +601,15 @@ public class quanLySP extends javax.swing.JPanel  {
             new String [] {
                 "Mã Sản phẩm", "Tên sản phẩm", "Ngày nhập", "Ngày cập nhật", "Danh mục sản phẩm", "Trạng thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         sanPhamTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sanPhamTblMouseClicked(evt);
@@ -888,7 +896,15 @@ public class quanLySP extends javax.swing.JPanel  {
             new String [] {
                 "Mã CTSP", "Tên sản phẩm", "Số lượng", "Đơn giá", "Màu sắc", "Kích thước", "Chất liệu chính", "Chất liệu đế", "Mã barcode", "Ghi chú", "Ảnh"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         sanPhamCTTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sanPhamCTTblMouseClicked(evt);

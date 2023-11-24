@@ -5,6 +5,7 @@
 package com.hyperbeast.model;
 
 import com.hyperbeast.entity.HoaDon;
+import com.hyperbeast.entity.HoaDonChiTiet;
 import com.hyperbeast.entity.SanPhamChiTiet;
 import com.hyperbeast.utils.DBconnect;
 import java.sql.Connection;
@@ -25,7 +26,7 @@ public class hoaDonModel {
 "                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
 "				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
 "				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n" +
-"                               where SAN_PHAM.TrangThai like N'Đang Kinh Doanh'\n" +
+"                               where SAN_PHAM.TrangThai like N'Đang Kinh Doanh' and SoLuong > 0\n" +
 "                               order by SAN_PHAM.MaSP\n" +
 "                               offset ? row\n" +
 "                               fetch next 5 ROWS ONLY";
@@ -99,6 +100,36 @@ public class hoaDonModel {
         }
     }
     
+    public ArrayList getHDCT (int maHD) {
+        ArrayList<HoaDonChiTiet> listHDCT = new ArrayList<>();
+        String query = "select MaHDCT, MaHD, CHI_TIET_SAN_PHAM.MaCTSP, TenSP, HOA_DON_CHI_TIET.SoLuong, DonGia, ThanhTien  from HOA_DON_CHI_TIET\n" +
+"											join CHI_TIET_SAN_PHAM on CHI_TIET_SAN_PHAM.MaCTSP = HOA_DON_CHI_TIET.MaCTSP \n" +
+"											join SAN_PHAM on SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
+"											where MaHD = ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, maHD);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                HoaDonChiTiet hdct = new HoaDonChiTiet();
+                hdct.setMaHDCT(rs.getInt("MaHDCT"));
+                hdct.setMaHD(rs.getInt("MaHD"));
+                hdct.setMaCTSP(rs.getInt("MaCTSP"));
+                hdct.setTenSanPham(rs.getString("TenSP"));
+                hdct.setSoLuong(rs.getInt("SoLuong"));
+                hdct.setDonGia(rs.getFloat("DonGia"));
+                hdct.setThanhTien(rs.getFloat("ThanhTien"));
+                listHDCT.add(hdct);
+            }
+            return listHDCT;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    
     public boolean insertHoaDonCho(String ngayTao, String ngayCapNhat, String trangThai, int maTaiKhoan) {
         String query = "INSERT INTO HOA_DON(NgayTao, NgayCapNhat, TrangThai, MaTK)" +
                         " VALUES (?, ?, ?, ?)";
@@ -116,4 +147,70 @@ public class hoaDonModel {
             return false;
         }
     }
+    
+    public boolean insertHDCT(int maCTSP, int maHD, int soLuong, float thanhTien) {
+        String query = "insert into HOA_DON_CHI_TIET(MaCTSP, MaHD, SoLuong, ThanhTien)\n" +
+"                       values(?,?,?,?)";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, maCTSP);
+            pstmt.setInt(2, maHD);
+            pstmt.setInt(3, soLuong);
+            pstmt.setFloat(4, thanhTien);
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    
+    public boolean updateCTSP(int maCTSP, int soLuong) {
+        String query = "update CHI_TIET_SAN_PHAM\n" +
+"                       set SoLuong = ? WHERE MaCTSP = ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, soLuong);
+            pstmt.setInt(2, maCTSP);
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public boolean updateHDCT(int maHD,int maCTSP, int soLuong) {
+        String query = "update HOA_DON_CHI_TIET\n" +
+"                       set SoLuong = ? where MaHD = ? and MaCTSP = ? ";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, soLuong);
+            pstmt.setInt(2, maHD);
+            pstmt.setInt(3, maCTSP);
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    
+    public boolean deleteHDCT(int maHDCT) {
+        String query = "delete HOA_DON_CHI_TIET\n" +
+"                       where MaHDCT = ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, maHDCT);
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    
 }

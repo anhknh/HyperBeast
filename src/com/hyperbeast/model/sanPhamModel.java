@@ -291,6 +291,24 @@ public class sanPhamModel {
         }
     }
     
+    public int getSoluongCTSP (int maCTSP) {
+        int soLuong = 0;
+        String query = "select SoLuong from CHI_TIET_SAN_PHAM Where MaCTSP = ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, maCTSP);
+            ResultSet rs =  pstmt.executeQuery();
+            while (rs.next()) {                
+                soLuong = rs.getInt("SoLuong");
+            }
+            return soLuong;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        }
+    }
+    
     public ArrayList getDanhMuc () {
         ArrayList listDM = new ArrayList<>();
         String query = "select * from DANH_MUC";
