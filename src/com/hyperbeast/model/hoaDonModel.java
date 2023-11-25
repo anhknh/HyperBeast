@@ -78,12 +78,14 @@ public class hoaDonModel {
         }
     }
     
-    public ArrayList getHoaDon () {
+    public ArrayList getHoaDon (String trangThai) {
         ArrayList<HoaDon> listHoaDon = new ArrayList<>();
-        String query = "select MaHD, HOA_DON.NgayTao,HOA_DON.TrangThai, HoTen from HOA_DON join TAI_KHOAN on TAI_KHOAN.MaTK = HOA_DON. MaTK";
+        String query = "select MaHD, HOA_DON.NgayTao,HOA_DON.TrangThai, HoTen from HOA_DON join TAI_KHOAN on TAI_KHOAN.MaTK = HOA_DON. MaTK\n" +
+                        "Where HOA_DON.TrangThai like ? ";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%"+ trangThai +"%");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {                
                 HoaDon hoaDon = new HoaDon();
@@ -129,6 +131,23 @@ public class hoaDonModel {
         }
     }
     
+    public int getSoLuongCT (int maCTSP) {
+        int soLuong = 0;
+        String query = "select SoLuong from CHI_TIET_SAN_PHAM where MaCTSP = ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, maCTSP);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                soLuong = rs.getInt("SoLuong");
+            }
+            return soLuong;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        }
+    }
     
     public boolean insertHoaDonCho(String ngayTao, String ngayCapNhat, String trangThai, int maTaiKhoan) {
         String query = "INSERT INTO HOA_DON(NgayTao, NgayCapNhat, TrangThai, MaTK)" +

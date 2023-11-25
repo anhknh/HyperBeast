@@ -5,6 +5,8 @@
 package com.hyperbeast.main;
 
 import com.hyperbeast.component.menu;
+import com.hyperbeast.form.chaoJDialog;
+import com.hyperbeast.form.dangNhapJDialog;
 import com.hyperbeast.form.quanLySP;
 import com.hyperbeast.form.quanLyBanHang;
 import java.awt.BorderLayout;
@@ -30,8 +32,18 @@ public class main extends javax.swing.JFrame {
         initMoving(main.this);
         menuPanel.setBackground(new Color(61,103,173));
         focus();
+        startWelcome();
+        login();
+    }
+    
+    void startWelcome() {
+        new chaoJDialog(this, true).setVisible(true);
     }
 
+    void login() {
+        new dangNhapJDialog(this, true).setVisible(true);
+    }
+    
     private int x;
     private int y;
 
