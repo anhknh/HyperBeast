@@ -344,12 +344,14 @@ public class quanLySP extends javax.swing.JPanel  {
         String tenSanPham = tenSPLbl.getText();
         String tenSanPham2 = tenSanPham.substring(tenSanPham.lastIndexOf("-") +2,tenSanPham.length());
         String tenMau = (String) locMSCB.getSelectedItem();
+        System.out.println(tenMau);
         String kichThuoc =  (String) locKTCB.getSelectedItem();
         String tenChatLieu = (String) locCLCCB.getSelectedItem();
         String tenChatLieuDe = (String) locCLDCB.getSelectedItem();
         if(tenMau == null) {
             tenMau = "";
         }
+        System.out.println(tenMau);
         if(kichThuoc == null) {
             kichThuoc = "";
         }
@@ -361,6 +363,7 @@ public class quanLySP extends javax.swing.JPanel  {
         }
         
         ArrayList<SanPhamChiTiet> listTimKiem = spModel.searchSanPhamCT(tenSanPham2, tenMau, kichThuoc, tenChatLieu, tenChatLieuDe);
+        System.out.println(listTimKiem.size());
         if(listTimKiem.size() == 0) {
             JOptionPane.showMessageDialog(main, "Không tìm thấy sản phẩm");
             return;
