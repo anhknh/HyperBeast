@@ -9,6 +9,7 @@ import com.hyperbeast.form.chaoJDialog;
 import com.hyperbeast.form.dangNhapJDialog;
 import com.hyperbeast.form.quanLySP;
 import com.hyperbeast.form.quanLyBanHang;
+import com.hyperbeast.utils.XacThuc;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -42,6 +43,9 @@ public class main extends javax.swing.JFrame {
 
     void login() {
         new dangNhapJDialog(this, true).setVisible(true);
+        if(XacThuc.isLogin()) {
+            System.exit(0);
+        }
     }
     
     private int x;

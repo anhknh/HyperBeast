@@ -5,6 +5,7 @@
 package com.hyperbeast.utils;
 
 import com.hyperbeast.entity.SanPham;
+import com.hyperbeast.model.hoaDonModel;
 import com.hyperbeast.model.sanPhamModel;
 import java.io.File;
 import java.sql.Connection;
@@ -40,8 +41,7 @@ public class DBconnect {
         return null;
     }
     public static void main(String[] args) {
-        int a = 2;
-        System.out.println(getConnection());
+
 //        ArrayList listMCTSP = new ArrayList<>();
 //        String query = "select MaCTSP from CHI_TIET_SAN_PHAM Where MaSP = 11";
 //        try {

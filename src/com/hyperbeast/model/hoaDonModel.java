@@ -78,7 +78,7 @@ public class hoaDonModel {
         }
     }
     
-    public ArrayList getHoaDon (String trangThai) {
+    public ArrayList getHoaDonTrangThai (String trangThai) {
         ArrayList<HoaDon> listHoaDon = new ArrayList<>();
         String query = "select MaHD, HOA_DON.NgayTao,HOA_DON.TrangThai, HoTen from HOA_DON join TAI_KHOAN on TAI_KHOAN.MaTK = HOA_DON. MaTK\n" +
                         "Where HOA_DON.TrangThai like ? ";
@@ -102,9 +102,36 @@ public class hoaDonModel {
         }
     }
     
+    
+    public ArrayList getLichSuHoaDon () {
+        ArrayList<HoaDon> listHoaDon = new ArrayList<>();
+        String query = "select * from HOA_DON join TAI_KHOAN on HOA_DON.MaTK = TAI_KHOAN.MaTK";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.setMaHoaDon(rs.getInt("MaHD"));
+                hoaDon.setNgayTao(rs.getString("NgayTao"));
+                hoaDon.setTenNhanVien(rs.getString("HoTen"));
+                hoaDon.setTrangThai(rs.getString("TrangThai"));
+                hoaDon.setTongTien(rs.getFloat("TongTien"));
+                hoaDon.setMaKhachHang(rs.getInt("MaTTKH"));
+                hoaDon.setGhiChu(rs.getString("GhiChu"));
+                listHoaDon.add(hoaDon);
+            }
+            return listHoaDon;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    
     public ArrayList getHDCT (int maHD) {
         ArrayList<HoaDonChiTiet> listHDCT = new ArrayList<>();
-        String query = "select MaHDCT, MaHD, CHI_TIET_SAN_PHAM.MaCTSP, TenSP, HOA_DON_CHI_TIET.SoLuong, DonGia, ThanhTien  from HOA_DON_CHI_TIET\n" +
+        String query = "select MaHDCT, MaHD, CHI_TIET_SAN_PHAM.MaCTSP, TenSP, HOA_DON_CHI_TIET.SoLuong, HOA_DON_CHI_TIET.DonGia from HOA_DON_CHI_TIET\n" +
 "											join CHI_TIET_SAN_PHAM on CHI_TIET_SAN_PHAM.MaCTSP = HOA_DON_CHI_TIET.MaCTSP \n" +
 "											join SAN_PHAM on SAN_PHAM.MaSP = CHI_TIET_SAN_PHAM.MaSP\n" +
 "											where MaHD = ?";
@@ -121,7 +148,6 @@ public class hoaDonModel {
                 hdct.setTenSanPham(rs.getString("TenSP"));
                 hdct.setSoLuong(rs.getInt("SoLuong"));
                 hdct.setDonGia(rs.getFloat("DonGia"));
-                hdct.setThanhTien(rs.getFloat("ThanhTien"));
                 listHDCT.add(hdct);
             }
             return listHDCT;
@@ -202,10 +228,28 @@ public class hoaDonModel {
             System.out.println(e);
             return false;
         }
+    } 
+    
+    public boolean updateHuyHoaDon(int maHD, String trangThai, String ghiChu) {
+        String query = "update HOA_DON\n" +
+                        "set TrangThai = ?, GhiChu = ?\n" +
+                        "where MaHD = ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, trangThai);
+            pstmt.setString(2, ghiChu);
+            pstmt.setInt(3, maHD);
+            pstmt.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
     }
     
-    public boolean insertHDCT(int maCTSP, int maHD, int soLuong, float thanhTien) {
-        String query = "insert into HOA_DON_CHI_TIET(MaCTSP, MaHD, SoLuong, ThanhTien)\n" +
+    public boolean insertHDCT(int maCTSP, int maHD, int soLuong, float donGia) {
+        String query = "insert into HOA_DON_CHI_TIET(MaCTSP, MaHD, SoLuong, DonGia)\n" +
 "                       values(?,?,?,?)";
         try {
             Connection conn = DBconnect.getConnection();
@@ -213,7 +257,7 @@ public class hoaDonModel {
             pstmt.setInt(1, maCTSP);
             pstmt.setInt(2, maHD);
             pstmt.setInt(3, soLuong);
-            pstmt.setFloat(4, thanhTien);
+            pstmt.setFloat(4, donGia);
             pstmt.execute();
             return true;
         } catch (SQLException e) {
@@ -237,14 +281,14 @@ public class hoaDonModel {
             return false;
         }
     }
-    public boolean updateHDCT(int maHD,int maCTSP,float thanhTien, int soLuong) {
+    public boolean updateHDCT(int maHD,int maCTSP,float donGia, int soLuong) {
         String query = "update HOA_DON_CHI_TIET\n" +
-"                       set SoLuong = ?, ThanhTien = ? where MaHD = ? and MaCTSP = ? ";
+"                       set SoLuong = ?, DonGia = ? where MaHD = ? and MaCTSP = ? ";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, soLuong);
-            pstmt.setFloat(2, thanhTien);
+            pstmt.setFloat(2, donGia);
             pstmt.setInt(3, maHD);
             pstmt.setInt(4, maCTSP);
             pstmt.execute();
