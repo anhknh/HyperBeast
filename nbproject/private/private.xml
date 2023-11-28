@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/form/dangNhapJDialog.java</file>
+            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/model/sanPhamModel.java</file>
+            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/model/khachHangModel.java</file>
             <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/form/quanLyBanHang.java</file>
-            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/entity/nhanVien.java</file>
-            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/utils/XacThuc.java</file>
-            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/model/nhanVienModel.java</file>
-            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/form/chaoJDialog.java</file>
+            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/entity/KhachHang.java</file>
+            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/model/hoaDonModel.java</file>
+            <file>file:/D:/FPT%20Polytechnic/PRO1041-du%20an%201/HyperBeast1/src/com/hyperbeast/form/quanLySP.java</file>
         </group>
     </open-files>
 </project-private>
