@@ -7,6 +7,7 @@ package com.hyperbeast.main;
 import com.hyperbeast.component.menu;
 import com.hyperbeast.form.chaoJDialog;
 import com.hyperbeast.form.dangNhapJDialog;
+import com.hyperbeast.form.khuyenMai;
 import com.hyperbeast.form.quanLySP;
 import com.hyperbeast.form.quanLyBanHang;
 import com.hyperbeast.utils.XacThuc;
@@ -26,6 +27,7 @@ public class main extends javax.swing.JFrame {
 
     JPanel quanlySP = new quanLySP();
     JPanel quanLyBH = new quanLyBanHang();
+    JPanel khuyenMai = new khuyenMai();
     
     public main() {
         initComponents();
@@ -421,6 +423,7 @@ public class main extends javax.swing.JFrame {
         panelSP.setBackground(new Color(224, 224, 224));
         jLabel6.setForeground(Color.blue);
         quanLyBH.setVisible(false);
+        khuyenMai.setVisible(false);
         dashBoardMain.add(quanlySP).setVisible(true);
     }//GEN-LAST:event_panelSPMouseClicked
 
@@ -431,6 +434,7 @@ public class main extends javax.swing.JFrame {
         panelBH.setBackground(new Color(224, 224, 224));
         jLabel7.setForeground(Color.blue);
         quanlySP.setVisible(false);
+        khuyenMai.setVisible(false);
         dashBoardMain.add(quanLyBH).setVisible(true);
     }//GEN-LAST:event_panelBHMouseClicked
 
@@ -440,6 +444,9 @@ public class main extends javax.swing.JFrame {
         panelKM.setOpaque(true);
         panelKM.setBackground(new Color(224, 224, 224));
         jLabel8.setForeground(Color.blue);
+        quanlySP.setVisible(false);
+        quanLyBH.setVisible(false);
+        dashBoardMain.add(khuyenMai).setVisible(true);
     }//GEN-LAST:event_panelKMMouseClicked
 
     private void panelTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelTKMouseClicked
