@@ -464,7 +464,9 @@ public class main extends javax.swing.JFrame {
         panelDX.setOpaque(true);
         panelDX.setBackground(new Color(224, 224, 224));
         jLabel11.setForeground(Color.blue);
-        System.exit(0);
+        this.dispose();
+        XacThuc.user = null;
+        login();
     }//GEN-LAST:event_panelDXMouseClicked
 
     /**

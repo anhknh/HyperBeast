@@ -14,17 +14,19 @@ public class HoaDon {
     private String ngayCapNhat;
     private String trangThai;
     private float tongTien;
-    private int maKhachHang;
+    private String tenKhachHang;
+    private String hinhThucThanhToan;
     private String tenNhanVien;
     String ghiChu;
 
-    public HoaDon(int maHoaDon, String ngayTao, String ngayCapNhat, String trangThai, float tongTien, int maKhachHang, String tenNhanVien, String ghiChu) {
+    public HoaDon(int maHoaDon, String ngayTao, String ngayCapNhat, String trangThai, float tongTien, String tenKhachHang, String hinhThucThanhToan, String tenNhanVien, String ghiChu) {
         this.maHoaDon = maHoaDon;
         this.ngayTao = ngayTao;
         this.ngayCapNhat = ngayCapNhat;
         this.trangThai = trangThai;
         this.tongTien = tongTien;
-        this.maKhachHang = maKhachHang;
+        this.tenKhachHang = tenKhachHang;
+        this.hinhThucThanhToan = hinhThucThanhToan;
         this.tenNhanVien = tenNhanVien;
         this.ghiChu = ghiChu;
     }
@@ -32,17 +34,6 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    
-    
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
-    }
-
-    
     public int getMaHoaDon() {
         return maHoaDon;
     }
@@ -83,12 +74,20 @@ public class HoaDon {
         this.tongTien = tongTien;
     }
 
-    public int getMaKhachHang() {
-        return maKhachHang;
+    public String getTenKhachHang() {
+        return tenKhachHang;
     }
 
-    public void setMaKhachHang(int maKhachHang) {
-        this.maKhachHang = maKhachHang;
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
+    public String getHinhThucThanhToan() {
+        return hinhThucThanhToan;
+    }
+
+    public void setHinhThucThanhToan(String hinhThucThanhToan) {
+        this.hinhThucThanhToan = hinhThucThanhToan;
     }
 
     public String getTenNhanVien() {
@@ -99,5 +98,14 @@ public class HoaDon {
         this.tenNhanVien = tenNhanVien;
     }
 
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
+   
     
 }

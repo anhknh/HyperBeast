@@ -105,7 +105,10 @@ public class hoaDonModel {
     
     public ArrayList getLichSuHoaDon () {
         ArrayList<HoaDon> listHoaDon = new ArrayList<>();
-        String query = "select * from HOA_DON join TAI_KHOAN on HOA_DON.MaTK = TAI_KHOAN.MaTK";
+        String query = "select HOA_DON.MaHD, HOA_DON.NgayTao, TAI_KHOAN.HoTen, HOA_DON.TongTien, HOA_DON.TrangThai, THONG_TIN_KH.TenKH, THANH_TOAN.HinhThucThanhToan, HOA_DON.GhiChu from HOA_DON \n" +
+                        "left join THONG_TIN_KH on HOA_DON.MaTTKH = THONG_TIN_KH.MaTTKH\n" +
+                        "left join TAI_KHOAN on HOA_DON.MaTK = TAI_KHOAN.MaTK\n" +
+                        "left join THANH_TOAN on HOA_DON.MaHD = THANH_TOAN.MaHD";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -117,7 +120,8 @@ public class hoaDonModel {
                 hoaDon.setTenNhanVien(rs.getString("HoTen"));
                 hoaDon.setTrangThai(rs.getString("TrangThai"));
                 hoaDon.setTongTien(rs.getFloat("TongTien"));
-                hoaDon.setMaKhachHang(rs.getInt("MaTTKH"));
+                hoaDon.setTenKhachHang(rs.getString("TenKH"));
+                hoaDon.setHinhThucThanhToan(rs.getString("HinhThucThanhToan"));
                 hoaDon.setGhiChu(rs.getString("GhiChu"));
                 listHoaDon.add(hoaDon);
             }
