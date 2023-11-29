@@ -10,6 +10,7 @@ import com.hyperbeast.form.dangNhapJDialog;
 import com.hyperbeast.form.khuyenMai;
 import com.hyperbeast.form.quanLySP;
 import com.hyperbeast.form.quanLyBanHang;
+import com.hyperbeast.form.quanLyNV;
 import com.hyperbeast.utils.XacThuc;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -28,6 +29,7 @@ public class main extends javax.swing.JFrame {
     JPanel quanlySP = new quanLySP();
     JPanel quanLyBH = new quanLyBanHang();
     JPanel khuyenMai = new khuyenMai();
+    JPanel nhanVien = new quanLyNV();
     
     public main() {
         initComponents();
@@ -424,6 +426,7 @@ public class main extends javax.swing.JFrame {
         jLabel6.setForeground(Color.blue);
         quanLyBH.setVisible(false);
         khuyenMai.setVisible(false);
+        nhanVien.setVisible(false);
         dashBoardMain.add(quanlySP).setVisible(true);
     }//GEN-LAST:event_panelSPMouseClicked
 
@@ -435,6 +438,7 @@ public class main extends javax.swing.JFrame {
         jLabel7.setForeground(Color.blue);
         quanlySP.setVisible(false);
         khuyenMai.setVisible(false);
+        nhanVien.setVisible(false);
         dashBoardMain.add(quanLyBH).setVisible(true);
     }//GEN-LAST:event_panelBHMouseClicked
 
@@ -446,6 +450,7 @@ public class main extends javax.swing.JFrame {
         jLabel8.setForeground(Color.blue);
         quanlySP.setVisible(false);
         quanLyBH.setVisible(false);
+        nhanVien.setVisible(false);
         dashBoardMain.add(khuyenMai).setVisible(true);
     }//GEN-LAST:event_panelKMMouseClicked
 
@@ -463,6 +468,10 @@ public class main extends javax.swing.JFrame {
         panelNV.setOpaque(true);
         panelNV.setBackground(new Color(224, 224, 224));
         jLabel10.setForeground(Color.blue);
+        quanlySP.setVisible(false);
+        quanLyBH.setVisible(false);
+        khuyenMai.setVisible(false);
+        dashBoardMain.add(nhanVien).setVisible(true);
     }//GEN-LAST:event_panelNVMouseClicked
 
     private void panelDXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDXMouseClicked
