@@ -1671,8 +1671,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
-        new kichThuocJDialog(main, true).setVisible(true);
-        fillKichThuoc();
+        new khachHangJDialog(main, true).setVisible(true);
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void soDienThoaiTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_soDienThoaiTxtKeyReleased
