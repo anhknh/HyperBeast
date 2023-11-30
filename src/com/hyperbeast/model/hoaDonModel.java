@@ -105,10 +105,13 @@ public class hoaDonModel {
     
     public ArrayList getLichSuHoaDon () {
         ArrayList<HoaDon> listHoaDon = new ArrayList<>();
-        String query = "select HOA_DON.MaHD, HOA_DON.NgayTao, TAI_KHOAN.HoTen, HOA_DON.TongTien, HOA_DON.TrangThai, THONG_TIN_KH.TenKH, THANH_TOAN.HinhThucThanhToan, HOA_DON.GhiChu from HOA_DON \n" +
+        String query = "select HOA_DON.MaHD, HOA_DON.NgayTao, TAI_KHOAN.HoTen, HOA_DON.TongTien, HOA_DON.TrangThai, THONG_TIN_KH.TenKH, THANH_TOAN.HinhThucThanhToan, HOA_DON.GhiChu,\n" +
+                        "HOA_DON_KHUYEN_MAI.SoTienConlai, KHUYEN_MAI.TenKhuyenMai, KHUYEN_MAI.MucGiam, KHUYEN_MAI.DonVi from HOA_DON \n" +
                         "left join THONG_TIN_KH on HOA_DON.MaTTKH = THONG_TIN_KH.MaTTKH\n" +
                         "left join TAI_KHOAN on HOA_DON.MaTK = TAI_KHOAN.MaTK\n" +
-                        "left join THANH_TOAN on HOA_DON.MaHD = THANH_TOAN.MaHD";
+                        "left join THANH_TOAN on HOA_DON.MaHD = THANH_TOAN.MaHD\n" +
+                        "left join HOA_DON_KHUYEN_MAI on HOA_DON.MaHD = HOA_DON_KHUYEN_MAI.MaHD\n" +
+                        "left join KHUYEN_MAI on HOA_DON_KHUYEN_MAI.MaKM = KHUYEN_MAI.MaKM";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -122,6 +125,14 @@ public class hoaDonModel {
                 hoaDon.setTongTien(rs.getFloat("TongTien"));
                 hoaDon.setTenKhachHang(rs.getString("TenKH"));
                 hoaDon.setHinhThucThanhToan(rs.getString("HinhThucThanhToan"));
+                hoaDon.setTenKhuyenMai(rs.getString("TenKhuyenMai"));
+                hoaDon.setMucKhuyenMai(rs.getFloat("MucGiam"));
+                if(rs.getInt("DonVi") == 0) {
+                    hoaDon.setDonViKhuyenMai("VNĐ");
+                } else {
+                    hoaDon.setDonViKhuyenMai("%");
+                }
+                hoaDon.setSoTienSauKM(rs.getFloat("SoTienConlai"));
                 hoaDon.setGhiChu(rs.getString("GhiChu"));
                 listHoaDon.add(hoaDon);
             }

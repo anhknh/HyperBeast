@@ -4,6 +4,16 @@
  */
 package com.hyperbeast.form;
 
+import com.hyperbeast.entity.KhachHang;
+import com.hyperbeast.model.khachHangModel;
+import com.hyperbeast.utils.DBconnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -13,9 +23,19 @@ public class khachHangJDialog extends javax.swing.JDialog {
     /**
      * Creates new form khachHangJDialog
      */
+    int pageNumber;
+    int page = 1;
+    int pageSelect;
+    khachHangModel kHModel = new khachHangModel();
+    ArrayList<KhachHang> listKH;
     public khachHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        trangThaiCB.setSelectedIndex(0);
+        listKH = kHModel.getKhachHang();
+        getPage();
+        statusPage();
+        loadData(pageSelect);
     }
 
     /**
@@ -29,14 +49,17 @@ public class khachHangJDialog extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        textField1 = new com.hyperbeast.swing.TextField();
-        textField2 = new com.hyperbeast.swing.TextField();
-        textField3 = new com.hyperbeast.swing.TextField();
-        combobox1 = new com.hyperbeast.swing.Combobox();
+        khachHangTbl = new javax.swing.JTable();
+        tenKHTxt = new com.hyperbeast.swing.TextField();
+        sdtKHTxt = new com.hyperbeast.swing.TextField();
+        ngayTaoTxt = new com.hyperbeast.swing.TextField();
+        trangThaiCB = new com.hyperbeast.swing.Combobox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        pageLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,7 +68,7 @@ public class khachHangJDialog extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Khách Hàng");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        khachHangTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -56,23 +79,51 @@ public class khachHangJDialog extends javax.swing.JDialog {
                 "Mã Khách hàng", "Tên khách hàng", "Số điện thoại", "Ngày Tạo", "Ngày cập nhật", "Trạng thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(khachHangTbl);
 
-        textField1.setLabelText("Tên Khách Hàng");
+        tenKHTxt.setLabelText("Tên Khách Hàng");
 
-        textField2.setLabelText("Số điện thoại");
+        sdtKHTxt.setLabelText("Số điện thoại");
 
-        textField3.setLabelText("Ngày tạo");
+        ngayTaoTxt.setEnabled(false);
+        ngayTaoTxt.setLabelText("Ngày tạo");
 
-        combobox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang hoạt động", "Ngừng hoạt động" }));
-        combobox1.setSelectedIndex(-1);
-        combobox1.setLabeText("Trạng thái");
+        trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang hoạt động", "Ngừng hoạt động" }));
+        trangThaiCB.setSelectedIndex(-1);
+        trangThaiCB.setLabeText("Trạng thái");
 
+        jButton1.setBackground(new java.awt.Color(0, 102, 255));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Mới");
 
+        jButton2.setBackground(new java.awt.Color(0, 102, 255));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Thêm");
+        jButton2.setEnabled(false);
 
+        jButton3.setBackground(new java.awt.Color(0, 102, 255));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Sửa");
+
+        jButton4.setBackground(new java.awt.Color(0, 102, 255));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("<<");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(0, 102, 255));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText(">>");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        pageLbl.setText("Trang");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,50 +134,128 @@ public class khachHangJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addComponent(jButton5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(combobox1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                                .addComponent(tenKHTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sdtKHTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ngayTaoTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(trangThaiCB, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2)
                                 .addGap(26, 26, 26)
                                 .addComponent(jButton3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tenKHTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sdtKHTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ngayTaoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(trangThaiCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pageLbl))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if(page <= pageNumber) {
+            if(page == 1) {
+                return;
+            }
+            page--;
+            getPage();
+            statusPage();
+            loadData(pageSelect);
+
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if(page >= 1 && page < pageNumber) {
+            page++;
+            getPage();
+            statusPage();
+            loadData(pageSelect);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    void statusPage() {
+        listKH = kHModel.getKhachHang();
+        pageNumber = (int) Math.ceil((listKH.size()/5.0));
+        pageLbl.setText(page + "/" + pageNumber);
+    }
+    
+    void getPage() {
+        pageSelect = (page - 1) * 5;
+    }
+    
+    void loadData(int pageSelect) {
+        DefaultTableModel model = (DefaultTableModel) khachHangTbl.getModel();
+        model.setRowCount(0);
+        String trangThai = null;
+        String query = "select * from THONG_TIN_KH\n" +
+                        "order by MaTTKH\n" +
+                        "offset ? row\n" +
+                        "fetch next 5 ROWS ONLY";;
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, pageSelect);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {  
+                if(rs.getInt("TrangThai") == 1) {
+                    trangThai = "Hoạt động";
+                } else {
+                    trangThai = "Không hoạt động";
+                }
+                Object[] data = {
+                  rs.getInt("MaTTKH"),
+                  rs.getString("tenKH"), 
+                  rs.getString("SDT"), 
+                  rs.getDate("NgayTao"), 
+                  trangThai
+                };
+                model.addRow(data);
+            }
+        } catch (SQLException e) {
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -170,15 +299,18 @@ public class khachHangJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.hyperbeast.swing.Combobox combobox1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private com.hyperbeast.swing.TextField textField1;
-    private com.hyperbeast.swing.TextField textField2;
-    private com.hyperbeast.swing.TextField textField3;
+    private javax.swing.JTable khachHangTbl;
+    private com.hyperbeast.swing.TextField ngayTaoTxt;
+    private javax.swing.JLabel pageLbl;
+    private com.hyperbeast.swing.TextField sdtKHTxt;
+    private com.hyperbeast.swing.TextField tenKHTxt;
+    private com.hyperbeast.swing.Combobox trangThaiCB;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,9 +17,13 @@ public class HoaDon {
     private String tenKhachHang;
     private String hinhThucThanhToan;
     private String tenNhanVien;
-    String ghiChu;
+    private String tenKhuyenMai;
+    private String donViKhuyenMai;
+    private float mucKhuyenMai;
+    private float soTienSauKM;
+    private String ghiChu;
 
-    public HoaDon(int maHoaDon, String ngayTao, String ngayCapNhat, String trangThai, float tongTien, String tenKhachHang, String hinhThucThanhToan, String tenNhanVien, String ghiChu) {
+    public HoaDon(int maHoaDon, String ngayTao, String ngayCapNhat, String trangThai, float tongTien, String tenKhachHang, String hinhThucThanhToan, String tenNhanVien, String tenKhuyenMai, String donViKhuyenMai, float mucKhuyenMai, float soTienSauKM, String ghiChu) {
         this.maHoaDon = maHoaDon;
         this.ngayTao = ngayTao;
         this.ngayCapNhat = ngayCapNhat;
@@ -28,11 +32,25 @@ public class HoaDon {
         this.tenKhachHang = tenKhachHang;
         this.hinhThucThanhToan = hinhThucThanhToan;
         this.tenNhanVien = tenNhanVien;
+        this.tenKhuyenMai = tenKhuyenMai;
+        this.donViKhuyenMai = donViKhuyenMai;
+        this.mucKhuyenMai = mucKhuyenMai;
+        this.soTienSauKM = soTienSauKM;
         this.ghiChu = ghiChu;
     }
 
     public HoaDon() {
     }
+
+    public float getSoTienSauKM() {
+        return soTienSauKM;
+    }
+
+    public void setSoTienSauKM(float soTienSauKM) {
+        this.soTienSauKM = soTienSauKM;
+    }
+
+    
 
     public int getMaHoaDon() {
         return maHoaDon;
@@ -98,6 +116,30 @@ public class HoaDon {
         this.tenNhanVien = tenNhanVien;
     }
 
+    public String getTenKhuyenMai() {
+        return tenKhuyenMai;
+    }
+
+    public void setTenKhuyenMai(String tenKhuyenMai) {
+        this.tenKhuyenMai = tenKhuyenMai;
+    }
+
+    public String getDonViKhuyenMai() {
+        return donViKhuyenMai;
+    }
+
+    public void setDonViKhuyenMai(String donViKhuyenMai) {
+        this.donViKhuyenMai = donViKhuyenMai;
+    }
+
+    public float getMucKhuyenMai() {
+        return mucKhuyenMai;
+    }
+
+    public void setMucKhuyenMai(float mucKhuyenMai) {
+        this.mucKhuyenMai = mucKhuyenMai;
+    }
+
     public String getGhiChu() {
         return ghiChu;
     }
@@ -105,6 +147,8 @@ public class HoaDon {
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
+
+    
 
    
     

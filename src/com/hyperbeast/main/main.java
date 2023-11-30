@@ -7,7 +7,7 @@ package com.hyperbeast.main;
 import com.hyperbeast.component.menu;
 import com.hyperbeast.form.chaoJDialog;
 import com.hyperbeast.form.dangNhapJDialog;
-import com.hyperbeast.form.khuyenMai;
+import com.hyperbeast.form.quanLyKM;
 import com.hyperbeast.form.quanLySP;
 import com.hyperbeast.form.quanLyBanHang;
 import com.hyperbeast.form.quanLyNV;
@@ -28,7 +28,7 @@ public class main extends javax.swing.JFrame {
 
     JPanel quanlySP = new quanLySP();
     JPanel quanLyBH = new quanLyBanHang();
-    JPanel khuyenMai = new khuyenMai();
+    JPanel khuyenMai = new quanLyKM();
     JPanel nhanVien = new quanLyNV();
     
     public main() {
