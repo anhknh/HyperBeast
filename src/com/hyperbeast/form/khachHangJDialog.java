@@ -11,8 +11,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -55,7 +61,7 @@ public class khachHangJDialog extends javax.swing.JDialog {
         ngayTaoTxt = new com.hyperbeast.swing.TextField();
         trangThaiCB = new com.hyperbeast.swing.Combobox();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        themBtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -70,15 +76,20 @@ public class khachHangJDialog extends javax.swing.JDialog {
 
         khachHangTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã Khách hàng", "Tên khách hàng", "Số điện thoại", "Ngày Tạo", "Ngày cập nhật", "Trạng thái"
+                "Mã Khách hàng", "Tên khách hàng", "Số điện thoại", "Ngày Tạo", "Trạng thái"
             }
         ));
+        khachHangTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                khachHangTblMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(khachHangTbl);
 
         tenKHTxt.setLabelText("Tên Khách Hàng");
@@ -88,22 +99,37 @@ public class khachHangJDialog extends javax.swing.JDialog {
         ngayTaoTxt.setEnabled(false);
         ngayTaoTxt.setLabelText("Ngày tạo");
 
-        trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang hoạt động", "Ngừng hoạt động" }));
+        trangThaiCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hoạt động", "Không hoạt động" }));
         trangThaiCB.setSelectedIndex(-1);
         trangThaiCB.setLabeText("Trạng thái");
 
         jButton1.setBackground(new java.awt.Color(0, 102, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Mới");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 255));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Thêm");
-        jButton2.setEnabled(false);
+        themBtn.setBackground(new java.awt.Color(0, 102, 255));
+        themBtn.setForeground(new java.awt.Color(255, 255, 255));
+        themBtn.setText("Thêm");
+        themBtn.setEnabled(false);
+        themBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themBtnActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 102, 255));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Sửa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(0, 102, 255));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,7 +178,7 @@ public class khachHangJDialog extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)
+                                .addComponent(themBtn)
                                 .addGap(26, 26, 26)
                                 .addComponent(jButton3)))
                         .addContainerGap(12, Short.MAX_VALUE))))
@@ -176,7 +202,7 @@ public class khachHangJDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(themBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -214,6 +240,31 @@ public class khachHangJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void khachHangTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khachHangTblMouseClicked
+        // TODO add your handling code here:
+        getData();
+    }//GEN-LAST:event_khachHangTblMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        clearForm();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void themBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themBtnActionPerformed
+        // TODO add your handling code here:
+        validateKH(1);
+    }//GEN-LAST:event_themBtnActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = khachHangTbl.getSelectedRow();
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn dòng cập nhật");
+            return;
+        }
+        validateKH(2);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     void statusPage() {
         listKH = kHModel.getKhachHang();
         pageNumber = (int) Math.ceil((listKH.size()/5.0));
@@ -223,6 +274,118 @@ public class khachHangJDialog extends javax.swing.JDialog {
     void getPage() {
         pageSelect = (page - 1) * 5;
     }
+    
+    void getData() {
+        int selectedRow = khachHangTbl.getSelectedRow();
+        if(selectedRow < 0) {
+            return;
+        }
+        themBtn.setEnabled(false);
+        tenKHTxt.setText(khachHangTbl.getValueAt(selectedRow, 1) + "");
+        sdtKHTxt.setText(khachHangTbl.getValueAt(selectedRow, 2) + "");
+        ngayTaoTxt.setText(khachHangTbl.getValueAt(selectedRow,3)+"");
+        trangThaiCB.setSelectedItem(khachHangTbl.getValueAt(selectedRow, 4));
+    }
+    
+    void clearForm() {
+        LocalDateTime ldt = LocalDateTime.now();
+        String dateNow = (DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH).format(ldt));
+        ngayTaoTxt.setText(dateNow);
+        tenKHTxt.setText("");
+        sdtKHTxt.setText("");
+        trangThaiCB.setSelectedIndex(0);
+       themBtn.setEnabled(true);
+    }
+    
+    void validateKH(int choice) {
+        String tenKH;
+        String soDienThoai;
+        int trangThai;
+        LocalDateTime ldt = LocalDateTime.now();
+        String dateNow = (DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH).format(ldt));
+        Date now = new Date();
+        Date ngayTao = now ;
+        Date ngayCapNhat = now;
+        tenKH = tenKHTxt.getText();
+        
+        if(tenKH.isEmpty() || tenKH.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên khách hàng");
+            return;
+        }
+        soDienThoai = sdtKHTxt.getText();
+        if(soDienThoai.isEmpty() || soDienThoai.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập số điện thoại");
+            return;
+        }
+        if (soDienThoai.matches("[0-9]")) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại chỉ chứa số");
+            return;
+        }
+        if(trangThaiCB.getSelectedIndex() == 0) {
+            trangThai = 1;
+        } else {
+            trangThai = 0;
+        }
+        if(choice == 1) {
+            insertKH(tenKH, soDienThoai, ngayTao, ngayCapNhat, trangThai);
+            statusPage();
+        } else {
+            int maTTKH;
+            int selectedRow = khachHangTbl.getSelectedRow();
+            maTTKH = (int) khachHangTbl.getValueAt(selectedRow, 0);
+            updateKH(maTTKH, tenKH, soDienThoai, ngayTao, ngayCapNhat, trangThai);
+            statusPage();
+        }
+        
+        
+    }
+    void insertKH (String tenKH, String sDT, Date ngayTao, Date ngayCN, int trangThai) {
+        String query = "insert into THONG_TIN_KH(TenKH, SDT, NgayTao, NgayCN, TrangThai)\n" +
+                        "values (?, ?, ?,?, ?)";
+        try {
+            java.sql.Date  ngayTaoMoi = new java.sql.Date(ngayTao.getTime()); 
+            java.sql.Date  ngayCapNhat = new java.sql.Date(ngayCN.getTime());
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, tenKH);
+            pstmt.setString(2, sDT);
+            pstmt.setDate(3, ngayTaoMoi);
+            pstmt.setDate(4, ngayCapNhat);
+            pstmt.setInt(5, trangThai);
+            pstmt.execute();
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+            statusPage();
+            loadData(pageSelect);
+        } catch (SQLException e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+        }
+    }
+    void updateKH (int maTTKH,String tenKH, String sDT, Date ngayTao, Date ngayCN, int trangThai) {
+        String query = "update THONG_TIN_KH\n" +
+                        "set TenKH = ?, SDT = ?, NgayCN = ?, TrangThai = ?\n" +
+                        "where MaTTKH = ?";
+        try {
+            java.sql.Date  ngayTaoMoi = new java.sql.Date(ngayTao.getTime()); 
+            java.sql.Date  ngayCapNhat = new java.sql.Date(ngayCN.getTime());
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, tenKH);
+            pstmt.setString(2, sDT);
+            pstmt.setDate(3, ngayCapNhat);
+            pstmt.setInt(4, trangThai);
+            pstmt.setInt(5, maTTKH);
+            pstmt.execute();
+            JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+            statusPage();
+            loadData(pageSelect);
+        } catch (SQLException e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(this, "Cập nhật thất bại");
+        }
+    }
+    
+    
     
     void loadData(int pageSelect) {
         DefaultTableModel model = (DefaultTableModel) khachHangTbl.getModel();
@@ -255,6 +418,7 @@ public class khachHangJDialog extends javax.swing.JDialog {
         } catch (SQLException e) {
         }
     }
+    
     
     /**
      * @param args the command line arguments
@@ -300,7 +464,6 @@ public class khachHangJDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -311,6 +474,7 @@ public class khachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel pageLbl;
     private com.hyperbeast.swing.TextField sdtKHTxt;
     private com.hyperbeast.swing.TextField tenKHTxt;
+    private javax.swing.JButton themBtn;
     private com.hyperbeast.swing.Combobox trangThaiCB;
     // End of variables declaration//GEN-END:variables
 }

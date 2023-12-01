@@ -81,6 +81,12 @@ public class quanLyBanHang extends javax.swing.JPanel {
         listTimKiem.add(sp);
         listKH = kHModel.getKhachHang();
         loadLichSuHD();
+        int rowSelected = hoaDonTbl.getSelectedRow();
+        if(rowSelected <= 0) {
+            maGiamGiaTxt.setEnabled(false);
+        } else {
+            maGiamGiaTxt.setEnabled(true);
+        }
     }
 
     /**
@@ -141,12 +147,20 @@ public class quanLyBanHang extends javax.swing.JPanel {
         float giamGia = mucGiam;
         if(donVi.equals("VNĐ")) {
             giamGia = tinhTongTien() - giamGia;
+            if(giamGia <=0) {
+                tongTienLbl2.setText(0 + "");
+                return;
+            }
             String patternTienTe = "###,###,###";
             DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
             String stringTienTe = formatTienTe.format(giamGia);
             tongTienLbl2.setText(stringTienTe);
         } else {
             giamGia = tinhTongTien() * ((100 - mucGiam)/100);
+            if(giamGia <=0) {
+                tongTienLbl2.setText(0 + "");
+                return;
+            }
             String patternTienTe = "###,###,###";
             DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
             String stringTienTe = formatTienTe.format(giamGia);
@@ -326,13 +340,13 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
 
         int tongTien = tinhTongTien();
-        int tienKhachDua;
+        float tienKhachDua;
 
         try {
-            tienKhachDua = Integer.parseInt(tienKhachDuaTxt.getText());
-            int tienThua = tienKhachDua - tongTien;
-            if (tienThua < 0) {
-                tienThuaLbl.setText("");
+            tienKhachDua = Float.parseFloat(tienKhachDuaTxt.getText());
+            float tienThua = tienKhachDua - tongTien;
+            if (tienThua <= 0) {
+                tienThuaLbl.setText("0");
                 return;
             }
             String patternTienTe = "###,###,###";
@@ -613,8 +627,14 @@ public class quanLyBanHang extends javax.swing.JPanel {
                 float giamGia = loadKhuyenMai().getMucGiam();
                 if(loadKhuyenMai().getDonVi().equals("VNĐ")) {
                     giamGia = tinhTongTien() - giamGia;
+                    if(giamGia <= 0) {
+                        giamGia = 0;
+                    }
                 } else {
                     giamGia = tinhTongTien() * ((100 - giamGia)/100);
+                    if(giamGia <= 0) {
+                        giamGia = 0;
+                    }
                 }
                 hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
                 hDModel.insertThanhToan(maHD, maTKKH, hinhThucThanhToan);
@@ -913,8 +933,9 @@ public class quanLyBanHang extends javax.swing.JPanel {
                         .addComponent(choThanhToanRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(daThanhToanRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(daHuyRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(daHuyRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1184,6 +1205,11 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
         tienKhachDuaTxt.setForeground(new java.awt.Color(0, 0, 0));
         tienKhachDuaTxt.setLabelText("Tiền khách đưa");
+        tienKhachDuaTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tienKhachDuaTxtActionPerformed(evt);
+            }
+        });
         tienKhachDuaTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tienKhachDuaTxtKeyReleased(evt);
@@ -1377,15 +1403,15 @@ public class quanLyBanHang extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tongTienLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(panelBorder3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelBorder3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelBorder2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         materialTabbed1.addTab("Hóa đơn", jPanel1);
@@ -1698,6 +1724,11 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void hoaDonTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoaDonTblMouseClicked
         // TODO add your handling code here:
         int rowSelected = hoaDonTbl.getSelectedRow();
+        if(rowSelected <= 0) {
+            maGiamGiaTxt.setEnabled(false);
+        } else {
+            maGiamGiaTxt.setEnabled(true);
+        }
         getDataRowHoaDon(rowSelected);
         int maHD = (int) hoaDonTbl.getValueAt(rowSelected, 0);
         String maHoaDon = "" + hoaDonTbl.getValueAt(rowSelected, 0);
@@ -1755,10 +1786,28 @@ public class quanLyBanHang extends javax.swing.JPanel {
             return;
         }
         if (hinhThucTTCB.getSelectedIndex() == 1) {
-            int tongTien = tinhTongTien();
-            tienKhachDuaTxt.setEnabled(false);
-            tienKhachDuaTxt.setText(tongTien + "");
-            tinhTienThua();
+            if(loadKhuyenMai() == null) {
+                int tongTien = tinhTongTien();
+                tienKhachDuaTxt.setEnabled(false);
+                tienKhachDuaTxt.setText(tongTien + "");
+                tinhTienThua();
+            } else {
+                float giamGia = loadKhuyenMai().getMucGiam();
+                if(loadKhuyenMai().getDonVi().equals("VNĐ")) {
+                    giamGia = tinhTongTien() - giamGia;
+                    if(giamGia <= 0) {
+                        giamGia = 0;
+                    }
+                } else { 
+                    giamGia = tinhTongTien() * ((100 - giamGia)/100);
+                    if(giamGia <= 0) {
+                        giamGia = 0;
+                    }
+                }
+                tienKhachDuaTxt.setEnabled(false);
+                tienKhachDuaTxt.setText(giamGia + "");
+                tinhTienThua();
+            }
         } else {
             tienKhachDuaTxt.setEnabled(true);
         }
@@ -1839,6 +1888,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         new khachHangJDialog(main, true).setVisible(true);
+        listKH = kHModel.getKhachHang();
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void soDienThoaiTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_soDienThoaiTxtKeyReleased
@@ -1868,6 +1918,10 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void maGiamGiaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maGiamGiaTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_maGiamGiaTxtActionPerformed
+
+    private void tienKhachDuaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tienKhachDuaTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tienKhachDuaTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

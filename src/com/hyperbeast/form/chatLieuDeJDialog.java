@@ -105,9 +105,13 @@ public class chatLieuDeJDialog extends javax.swing.JDialog {
 //        }
         if(choice == 1) {
             insertChatLieu();
+            statusPage();
+            loadData(pageSelect);
         } 
         if(choice == 2) {
             updateChatLieu();
+            statusPage();
+            loadData(pageSelect);
         } 
         
          

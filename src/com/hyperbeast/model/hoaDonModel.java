@@ -80,8 +80,9 @@ public class hoaDonModel {
     
     public ArrayList getHoaDonTrangThai (String trangThai) {
         ArrayList<HoaDon> listHoaDon = new ArrayList<>();
-        String query = "select MaHD, HOA_DON.NgayTao,HOA_DON.TrangThai, HoTen from HOA_DON join TAI_KHOAN on TAI_KHOAN.MaTK = HOA_DON. MaTK\n" +
-                        "Where HOA_DON.TrangThai like ? ";
+        String query = "select top 10  MaHD, HOA_DON.NgayTao,HOA_DON.TrangThai, HoTen from HOA_DON join TAI_KHOAN on TAI_KHOAN.MaTK = HOA_DON. MaTK\n" +
+"                       Where HOA_DON.TrangThai like ?\n" +
+"			order by MaHD desc";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);

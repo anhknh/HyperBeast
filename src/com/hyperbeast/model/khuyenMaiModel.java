@@ -59,7 +59,7 @@ public class khuyenMaiModel {
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, tenKhuyenMai);
+            pstmt.setString(1,tenKhuyenMai);
             pstmt.setDate(2,  ngayBD);
             pstmt.setDate(3,  ngayKT);
             pstmt.setFloat(4, mucGiam);
@@ -96,7 +96,7 @@ public class khuyenMaiModel {
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, tenKhuyenMai);
+            pstmt.setString(1,tenKhuyenMai);
             pstmt.setDate(2,  ngayBD);
             pstmt.setDate(3,  ngayKT);
             pstmt.setFloat(4, mucGiam);
