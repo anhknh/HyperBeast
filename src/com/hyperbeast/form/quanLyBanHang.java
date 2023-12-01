@@ -623,6 +623,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
             if(loadKhuyenMai() == null) {
                 hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
                 hDModel.insertThanhToan(maHD, maTKKH, hinhThucThanhToan);
+                soDienThoaiTxt.setText("");
+                tenKHTxt.setText("");
             } else {
                 float giamGia = loadKhuyenMai().getMucGiam();
                 if(loadKhuyenMai().getDonVi().equals("VNĐ")) {
@@ -639,6 +641,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
                 hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
                 hDModel.insertThanhToan(maHD, maTKKH, hinhThucThanhToan);
                 kMModel.insertHDKM(maHD, loadKhuyenMai().getMaKH(), giamGia);
+                soDienThoaiTxt.setText("");
+                tenKHTxt.setText("");
             }
             fillHoaDon();
         }
@@ -1428,7 +1432,15 @@ public class quanLyBanHang extends javax.swing.JPanel {
             new String [] {
                 "Mã CTSP", "Tên sản phẩm", "Màu sắc", "Kích thước", "Chất liệu chính", "Chất liệu đế", "Số lượng", "Đơn giá", "Thành tiền"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(gioHangLSTbl);
 
         chiTietGioHangLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1468,7 +1480,15 @@ public class quanLyBanHang extends javax.swing.JPanel {
             new String [] {
                 "Mã hóa đơn", "Tên người tạo", "Tên khách hàng", "Tổng giá trị", "Khuyến mãi", "Mức giảm", "Sau giảm", "Ngày tạo", "Trạng thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         lichSuHDTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lichSuHDTblMouseClicked(evt);
@@ -1724,7 +1744,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void hoaDonTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoaDonTblMouseClicked
         // TODO add your handling code here:
         int rowSelected = hoaDonTbl.getSelectedRow();
-        if(rowSelected <= 0) {
+        if(rowSelected < 0) {
             maGiamGiaTxt.setEnabled(false);
         } else {
             maGiamGiaTxt.setEnabled(true);
