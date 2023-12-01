@@ -614,17 +614,21 @@ public class quanLyBanHang extends javax.swing.JPanel {
                     }
                 }
             }
-        if(maTKKH == 0) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn khách hàng");
-            return;
-        }
+        
         int choice = JOptionPane.showConfirmDialog(this, mesage, "HyperBeast", JOptionPane.YES_NO_OPTION);
         if (choice == 0) {
             if(loadKhuyenMai() == null) {
+                if(maTKKH == 0) {
+                    hDModel.updateHoaDon2(maHD, ngayCapNhat, trangThai, tongTien);
+                    hDModel.insertThanhToan2(maHD, hinhThucThanhToan);
+                    fillHoaDon();
+                    return;
+                }
                 hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
                 hDModel.insertThanhToan(maHD, maTKKH, hinhThucThanhToan);
                 soDienThoaiTxt.setText("");
                 tenKHTxt.setText("");
+                fillHoaDon();
             } else {
                 float giamGia = loadKhuyenMai().getMucGiam();
                 if(loadKhuyenMai().getDonVi().equals("VNĐ")) {
@@ -638,13 +642,20 @@ public class quanLyBanHang extends javax.swing.JPanel {
                         giamGia = 0;
                     }
                 }
+                if(maTKKH == 0) {
+                    hDModel.updateHoaDon2(maHD, ngayCapNhat, trangThai, tongTien);
+                    hDModel.insertThanhToan2(maHD, hinhThucThanhToan);
+                    kMModel.insertHDKM(maHD, loadKhuyenMai().getMaKH(), giamGia);
+                    fillHoaDon();
+                    return;
+                }
                 hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
                 hDModel.insertThanhToan(maHD, maTKKH, hinhThucThanhToan);
                 kMModel.insertHDKM(maHD, loadKhuyenMai().getMaKH(), giamGia);
                 soDienThoaiTxt.setText("");
                 tenKHTxt.setText("");
+                fillHoaDon();
             }
-            fillHoaDon();
         }
     }
     
@@ -829,6 +840,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
         setForeground(new java.awt.Color(255, 255, 255));
 
+        materialTabbed1.setEnabled(false);
+
         panelBorder3.setBackground(new java.awt.Color(255, 255, 255));
 
         hoaDonTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -871,7 +884,6 @@ public class quanLyBanHang extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(taiCaRD);
-        taiCaRD.setSelected(true);
         taiCaRD.setText("Tất cả");
         taiCaRD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -880,6 +892,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(choThanhToanRD);
+        choThanhToanRD.setSelected(true);
         choThanhToanRD.setText("Chờ thanh toán");
         choThanhToanRD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1697,7 +1710,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                 .addGap(30, 30, 30))
         );
 
-        materialTabbed1.addTab("Lịch sử hóa đơn", jPanel2);
+        materialTabbed1.addTab("", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
