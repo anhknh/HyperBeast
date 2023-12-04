@@ -5,6 +5,7 @@
 package com.hyperbeast.main;
 
 import com.hyperbeast.component.menu;
+import com.hyperbeast.entity.HoaDon;
 import com.hyperbeast.form.QuanLyHoaDon;
 import com.hyperbeast.form.chaoJDialog;
 import com.hyperbeast.form.dangNhapJDialog;
@@ -32,7 +33,7 @@ public class main extends javax.swing.JFrame {
     JPanel khuyenMai = new quanLyKM();
     JPanel nhanVien = new quanLyNV();
     JPanel hoaDon = new QuanLyHoaDon();
-    
+    QuanLyHoaDon hoadon1 = new QuanLyHoaDon();
     public main() {
         initComponents();
         setBackground(new Color(0,0,0,0));
@@ -101,9 +102,9 @@ public class main extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         panelDX = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        dashBoardMain = new javax.swing.JPanel();
         panelKM1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        dashBoardMain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -227,7 +228,7 @@ public class main extends javax.swing.JFrame {
             .addGroup(panelKMLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel8)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         panelTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -306,30 +307,21 @@ public class main extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon("D:\\tmp\\logout.png")); // NOI18N
         jLabel11.setText("Đăng xuất");
 
-        dashBoardMain.setPreferredSize(new java.awt.Dimension(1088, 750));
-        dashBoardMain.setLayout(new javax.swing.BoxLayout(dashBoardMain, javax.swing.BoxLayout.LINE_AXIS));
-
         javax.swing.GroupLayout panelDXLayout = new javax.swing.GroupLayout(panelDX);
         panelDX.setLayout(panelDXLayout);
         panelDXLayout.setHorizontalGroup(
             panelDXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDXLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dashBoardMain, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addGap(57, 57, 57))
         );
         panelDXLayout.setVerticalGroup(
             panelDXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDXLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelDXLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dashBoardMain, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         panelKM1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -395,8 +387,11 @@ public class main extends javax.swing.JFrame {
                 .addComponent(panelTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelDX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addGap(94, 94, 94))
         );
+
+        dashBoardMain.setPreferredSize(new java.awt.Dimension(1088, 750));
+        dashBoardMain.setLayout(new javax.swing.BoxLayout(dashBoardMain, javax.swing.BoxLayout.LINE_AXIS));
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
@@ -404,13 +399,13 @@ public class main extends javax.swing.JFrame {
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1100, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dashBoardMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(dashBoardMain, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 774, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -527,7 +522,6 @@ public class main extends javax.swing.JFrame {
         panelDX.setOpaque(true);
         panelDX.setBackground(new Color(224, 224, 224));
         jLabel11.setForeground(Color.blue);
-        this.dispose();
         XacThuc.user = null;
         login();
     }//GEN-LAST:event_panelDXMouseClicked
@@ -543,6 +537,7 @@ public class main extends javax.swing.JFrame {
         khuyenMai.setVisible(false);
         nhanVien.setVisible(false);
         dashBoardMain.add(hoaDon).setVisible(true);
+        hoadon1.loadLichSuHD();
     }//GEN-LAST:event_panelKM1MouseClicked
 
     /**

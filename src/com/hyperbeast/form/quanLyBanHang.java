@@ -80,7 +80,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
         resetLocSP(1);
         listTimKiem.add(sp);
         listKH = kHModel.getKhachHang();
-        loadLichSuHD();
+        //loadLichSuHD();
         int rowSelected = hoaDonTbl.getSelectedRow();
         if(rowSelected <= 0) {
             maGiamGiaTxt.setEnabled(false);
@@ -173,83 +173,83 @@ public class quanLyBanHang extends javax.swing.JPanel {
     
     
     // Màn lịch sử hóa đơn
-    void loadLichSuHD () {
-        ArrayList<HoaDon> listLSHD = hDModel.getLichSuHoaDon();
-        DefaultTableModel model = new DefaultTableModel();
-        model = (DefaultTableModel) lichSuHDTbl.getModel();
-        model.setRowCount(0);
-        for (HoaDon hd : listLSHD) {
-            Object[] data = {
-                hd.getMaHoaDon(), hd.getTenNhanVien(), hd.getTenKhachHang(), hd.getTongTien(),
-                hd.getTenKhuyenMai(),hd.getMucKhuyenMai() +" "+hd.getDonViKhuyenMai(), hd.getSoTienSauKM(),
-                hd.getNgayTao(), hd.getTrangThai()
-            };
-            model.addRow(data);
-        }
-    }
-    
-    void getCTSPHoaDon() {
-        int selectedRow = lichSuHDTbl.getSelectedRow();
-        DefaultTableModel model = new DefaultTableModel();
-        model = (DefaultTableModel) gioHangLSTbl.getModel();
-        model.setRowCount(0);
-        if(selectedRow < 0) {
-            return;
-        }
-        int maHD = (int) lichSuHDTbl.getValueAt(selectedRow, 0);
-        ArrayList<HoaDonChiTiet> listMaCTSP = hDModel.getHDCT(maHD);
-        ArrayList<SanPhamChiTiet> listSPCT = sPModel.getSPCTAll();
-        for (HoaDonChiTiet hdct : listMaCTSP) {
-            int maCTSP = hdct.getMaCTSP();
-            for (int i = 0; i < listSPCT.size(); i++) {
-                if(maCTSP == listSPCT.get(i).getMaCTSP()) {
-                    Object[] data = {
-                        listSPCT.get(i).getMaCTSP(), listSPCT.get(i).getTenSP(), listSPCT.get(i).getTenMau(),listSPCT.get(i).getKichThuoc(),
-                        listSPCT.get(i).getTenChatLieu(),listSPCT.get(i).getTenChatLieuDe(),hdct.getSoLuong(), hdct.getDonGia(),
-                        hdct.getSoLuong()* hdct.getDonGia()
-                    };
-                    model.addRow(data);
-                }
-            }
-        }
-    }
-    
-    void getRowLSHD(int selectedRow) {
-        int maHD = (int) lichSuHDTbl.getValueAt(selectedRow, 0);
-        ArrayList<HoaDon> listLSHD = hDModel.getLichSuHoaDon();
-        ArrayList<KhachHang> listKH = kHModel.getKhachHangTheoHD(maHD);
-        tenHDTxt.setText("Thông tin chi tiết - Hóa đơn " +maHD);
-        chiTietGioHangLbl.setText("Chi tiết giỏ hàng - Hóa đơn " +maHD);
-        tenNVTxt.setText("" + lichSuHDTbl.getValueAt(selectedRow, 1));
-        ngayTaoLStxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 7));
-        giamGiaTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 4));
-        mucGiamTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 5));
-        sauGiamTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 6));
-        if(lichSuHDTbl.getValueAt(selectedRow, 2) == null) {
-            tenKHTxt.setText("");
-        } else {
-            tenKHTxt.setText(lichSuHDTbl.getValueAt(selectedRow, 2) + "");
-        }
-        for (KhachHang khachHang : listKH) {
-            sdtTxt.setText(khachHang.getSoDienThoai());
-        }
-        if(listKH.size() == 0) {
-            sdtTxt.setText("");
-        }
-        float tienTong = (float) lichSuHDTbl.getValueAt(selectedRow, 3);
-        String patternTienTe = "###,###,###";
-        DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
-        String stringTienTe = formatTienTe.format(tienTong);
-        tongGiaTriTxt.setText(stringTienTe);
-        for (HoaDon hoaDon : listLSHD) {
-            if(hoaDon.getMaHoaDon() == maHD) {
-                hinhThucTTTxt.setText(hoaDon.getHinhThucThanhToan());
-                lyDoHuyTxt.setText(hoaDon.getGhiChu());
-            }
-        }
-    }
-    
-    
+//    void loadLichSuHD () {
+//        ArrayList<HoaDon> listLSHD = hDModel.getLichSuHoaDon();
+//        DefaultTableModel model = new DefaultTableModel();
+//        model = (DefaultTableModel) lichSuHDTbl.getModel();
+//        model.setRowCount(0);
+//        for (HoaDon hd : listLSHD) {
+//            Object[] data = {
+//                hd.getMaHoaDon(), hd.getTenNhanVien(), hd.getTenKhachHang(), hd.getTongTien(),
+//                hd.getTenKhuyenMai(),hd.getMucKhuyenMai() +" "+hd.getDonViKhuyenMai(), hd.getSoTienSauKM(),
+//                hd.getNgayTao(), hd.getTrangThai()
+//            };
+//            model.addRow(data);
+//        }
+//    }
+//    
+//    void getCTSPHoaDon() {
+//        int selectedRow = lichSuHDTbl.getSelectedRow();
+//        DefaultTableModel model = new DefaultTableModel();
+//        model = (DefaultTableModel) gioHangLSTbl.getModel();
+//        model.setRowCount(0);
+//        if(selectedRow < 0) {
+//            return;
+//        }
+//        int maHD = (int) lichSuHDTbl.getValueAt(selectedRow, 0);
+//        ArrayList<HoaDonChiTiet> listMaCTSP = hDModel.getHDCT(maHD);
+//        ArrayList<SanPhamChiTiet> listSPCT = sPModel.getSPCTAll();
+//        for (HoaDonChiTiet hdct : listMaCTSP) {
+//            int maCTSP = hdct.getMaCTSP();
+//            for (int i = 0; i < listSPCT.size(); i++) {
+//                if(maCTSP == listSPCT.get(i).getMaCTSP()) {
+//                    Object[] data = {
+//                        listSPCT.get(i).getMaCTSP(), listSPCT.get(i).getTenSP(), listSPCT.get(i).getTenMau(),listSPCT.get(i).getKichThuoc(),
+//                        listSPCT.get(i).getTenChatLieu(),listSPCT.get(i).getTenChatLieuDe(),hdct.getSoLuong(), hdct.getDonGia(),
+//                        hdct.getSoLuong()* hdct.getDonGia()
+//                    };
+//                    model.addRow(data);
+//                }
+//            }
+//        }
+//    }
+//    
+//    void getRowLSHD(int selectedRow) {
+//        int maHD = (int) lichSuHDTbl.getValueAt(selectedRow, 0);
+//        ArrayList<HoaDon> listLSHD = hDModel.getLichSuHoaDon();
+//        ArrayList<KhachHang> listKH = kHModel.getKhachHangTheoHD(maHD);
+//        tenHDTxt.setText("Thông tin chi tiết - Hóa đơn " +maHD);
+//        chiTietGioHangLbl.setText("Chi tiết giỏ hàng - Hóa đơn " +maHD);
+//        tenNVTxt.setText("" + lichSuHDTbl.getValueAt(selectedRow, 1));
+//        ngayTaoLStxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 7));
+//        giamGiaTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 4));
+//        mucGiamTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 5));
+//        sauGiamTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 6));
+//        if(lichSuHDTbl.getValueAt(selectedRow, 2) == null) {
+//            tenKHTxt.setText("");
+//        } else {
+//            tenKHTxt.setText(lichSuHDTbl.getValueAt(selectedRow, 2) + "");
+//        }
+//        for (KhachHang khachHang : listKH) {
+//            sdtTxt.setText(khachHang.getSoDienThoai());
+//        }
+//        if(listKH.size() == 0) {
+//            sdtTxt.setText("");
+//        }
+//        float tienTong = (float) lichSuHDTbl.getValueAt(selectedRow, 3);
+//        String patternTienTe = "###,###,###";
+//        DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+//        String stringTienTe = formatTienTe.format(tienTong);
+//        tongGiaTriTxt.setText(stringTienTe);
+//        for (HoaDon hoaDon : listLSHD) {
+//            if(hoaDon.getMaHoaDon() == maHD) {
+//                hinhThucTTTxt.setText(hoaDon.getHinhThucThanhToan());
+//                lyDoHuyTxt.setText(hoaDon.getGhiChu());
+//            }
+//        }
+//    }
+//    
+//    
     // Màn bán hàng
     void statusPageSPCT() {
         listSPCTSize = hDModel.getSizeCTSP();
@@ -1751,7 +1751,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         insertHoaDonCho();
-        loadLichSuHD();
+        //loadLichSuHD();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void hoaDonTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoaDonTblMouseClicked
@@ -1849,7 +1849,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void thanhToanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thanhToanBtnActionPerformed
         // TODO add your handling code here:
         updateHoaDon("Đã thanh toán", "Xác nhận thanh toán hóa đơn");
-        loadLichSuHD();
+        //loadLichSuHD();
     }//GEN-LAST:event_thanhToanBtnActionPerformed
 
     private void suaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaBtnActionPerformed
@@ -1861,7 +1861,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void huyHoaDonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyHoaDonBtnActionPerformed
         // TODO add your handling code here:
         huyHoaDon();
-        loadLichSuHD();
+        //loadLichSuHD();
     }//GEN-LAST:event_huyHoaDonBtnActionPerformed
 
     private void daHuyRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daHuyRDActionPerformed
@@ -1935,8 +1935,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
         if(selectedRow < 0) {
             return;
         }
-        getCTSPHoaDon();
-        getRowLSHD(selectedRow);
+        //getCTSPHoaDon();
+        //getRowLSHD(selectedRow);
     }//GEN-LAST:event_lichSuHDTblMouseClicked
 
     private void maGiamGiaTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_maGiamGiaTxtKeyReleased

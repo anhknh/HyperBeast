@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 
 /**
  *
@@ -104,7 +105,7 @@ public class hoaDonModel {
     }
     
     
-    public ArrayList getLichSuHoaDon () {
+    public ArrayList getLichSuHoaDon (int pageSelect) {
         ArrayList<HoaDon> listHoaDon = new ArrayList<>();
         String query = "select HOA_DON.MaHD, HOA_DON.NgayTao, TAI_KHOAN.HoTen, HOA_DON.TongTien, HOA_DON.TrangThai, THONG_TIN_KH.TenKH, THANH_TOAN.HinhThucThanhToan, HOA_DON.GhiChu,\n" +
                         "HOA_DON_KHUYEN_MAI.SoTienConlai, KHUYEN_MAI.TenKhuyenMai, KHUYEN_MAI.MucGiam, KHUYEN_MAI.DonVi from HOA_DON \n" +
@@ -112,10 +113,14 @@ public class hoaDonModel {
                         "left join TAI_KHOAN on HOA_DON.MaTK = TAI_KHOAN.MaTK\n" +
                         "left join THANH_TOAN on HOA_DON.MaHD = THANH_TOAN.MaHD\n" +
                         "left join HOA_DON_KHUYEN_MAI on HOA_DON.MaHD = HOA_DON_KHUYEN_MAI.MaHD\n" +
-                        "left join KHUYEN_MAI on HOA_DON_KHUYEN_MAI.MaKM = KHUYEN_MAI.MaKM";
+                        "left join KHUYEN_MAI on HOA_DON_KHUYEN_MAI.MaKM = KHUYEN_MAI.MaKM\n" +
+                        "order by HOA_DON.MaHD\n" +
+                        "offset ? row\n" +
+                        "fetch next 10 ROWS ONLY";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, pageSelect);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {                
                 HoaDon hoaDon = new HoaDon();
@@ -137,6 +142,68 @@ public class hoaDonModel {
                 hoaDon.setGhiChu(rs.getString("GhiChu"));
                 listHoaDon.add(hoaDon);
             }
+            return listHoaDon;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ArrayList locLSHD (Date batDau, Date ketThuc) {
+        ArrayList<HoaDon> listHoaDon = new ArrayList<>();
+        String query = "select HOA_DON.MaHD, HOA_DON.NgayTao, TAI_KHOAN.HoTen, HOA_DON.TongTien, HOA_DON.TrangThai, THONG_TIN_KH.TenKH, THANH_TOAN.HinhThucThanhToan, HOA_DON.GhiChu,\n" +
+                        "HOA_DON_KHUYEN_MAI.SoTienConlai, KHUYEN_MAI.TenKhuyenMai, KHUYEN_MAI.MucGiam, KHUYEN_MAI.DonVi from HOA_DON \n" +
+                        "left join THONG_TIN_KH on HOA_DON.MaTTKH = THONG_TIN_KH.MaTTKH\n" +
+                        "left join TAI_KHOAN on HOA_DON.MaTK = TAI_KHOAN.MaTK\n" +
+                        "left join THANH_TOAN on HOA_DON.MaHD = THANH_TOAN.MaHD\n" +
+                        "left join HOA_DON_KHUYEN_MAI on HOA_DON.MaHD = HOA_DON_KHUYEN_MAI.MaHD\n" +
+                        "left join KHUYEN_MAI on HOA_DON_KHUYEN_MAI.MaKM = KHUYEN_MAI.MaKM\n" +
+                        "where HOA_DON.NgayTao >= ? and HOA_DON.NgayTao <= ?";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, batDau);
+            pstmt.setDate(2, ketThuc);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.setMaHoaDon(rs.getInt("MaHD"));
+                hoaDon.setNgayTao(rs.getString("NgayTao"));
+                hoaDon.setTenNhanVien(rs.getString("HoTen"));
+                hoaDon.setTrangThai(rs.getString("TrangThai"));
+                hoaDon.setTongTien(rs.getFloat("TongTien"));
+                hoaDon.setTenKhachHang(rs.getString("TenKH"));
+                hoaDon.setHinhThucThanhToan(rs.getString("HinhThucThanhToan"));
+                hoaDon.setTenKhuyenMai(rs.getString("TenKhuyenMai"));
+                hoaDon.setMucKhuyenMai(rs.getFloat("MucGiam"));
+                if(rs.getInt("DonVi") == 0) {
+                    hoaDon.setDonViKhuyenMai("VNĐ");
+                } else {
+                    hoaDon.setDonViKhuyenMai("%");
+                }
+                hoaDon.setSoTienSauKM(rs.getFloat("SoTienConlai"));
+                hoaDon.setGhiChu(rs.getString("GhiChu"));
+                listHoaDon.add(hoaDon);
+            }
+            return listHoaDon;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    public ArrayList getLichSuHoaDonSize () {
+        ArrayList<HoaDon> listHoaDon = new ArrayList<>();
+        String query = "select MaHD from HOA_DON ";
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                HoaDon hd = new HoaDon();
+                hd.setMaHoaDon(rs.getInt("MaHD"));
+                listHoaDon.add(hd);
+            }
+            
             return listHoaDon;
         } catch (SQLException e) {
             System.out.println(e);
