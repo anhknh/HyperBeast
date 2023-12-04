@@ -47,4 +47,32 @@ public class nhanVienModel {
             return null;
         }
     }
+    public ArrayList<nhanVien> getNhanVien2 () {
+        String query = "select * from TAI_KHOAN";
+        ArrayList<nhanVien> listNV = new ArrayList<>();
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {   
+                nhanVien nv = new nhanVien();
+                nv.setMaNV(rs.getInt("MaTK"));
+                nv.setTenDangNhap(rs.getString("TenDangNhap"));
+                nv.setMatKhau(rs.getString("MatKhau"));
+                nv.setHoTen(rs.getString("HoTen"));
+                nv.setGioiTinh(rs.getBoolean("GioiTinh"));
+                nv.setDienThoai(rs.getString("DienThoai"));
+                nv.setEmail(rs.getString("Email"));
+                nv.setDiaChi(rs.getString("DiaChi"));
+                nv.setNgayTao(rs.getString("NgayTao"));
+                nv.setNgayCN(rs.getString("NgayCapNhat"));
+                nv.setTrangThai(rs.getString("TrangThai"));
+                listNV.add(nv);
+            }
+            return listNV;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 }

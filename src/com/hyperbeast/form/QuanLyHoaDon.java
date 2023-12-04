@@ -128,7 +128,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         DefaultTableModel model = new DefaultTableModel();
         model = (DefaultTableModel) gioHangLSTbl.getModel();
         model.setRowCount(0);
-        if(selectedRow < 0) {
+        if(selectedRow < 0) { 
             return;
         }
         int maHD = (int) lichSuHDTbl.getValueAt(selectedRow, 0);

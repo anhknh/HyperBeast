@@ -4,6 +4,11 @@
  */
 package com.hyperbeast.form;
 
+import com.hyperbeast.entity.nhanVien;
+import com.hyperbeast.model.nhanVienModel;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -13,8 +18,23 @@ public class quanLyNV extends javax.swing.JPanel {
     /**
      * Creates new form NhanVienJPanel
      */
+    nhanVienModel nVModel = new nhanVienModel();
     public quanLyNV() {
         initComponents();
+        fillTableNV();
+    }
+    
+    void fillTableNV() {
+        ArrayList<nhanVien> listNV = nVModel.getNhanVien2();
+        DefaultTableModel model = (DefaultTableModel) nhanVienTbl.getModel();
+        model.setRowCount(0);
+        for (nhanVien nv : listNV) {
+            Object[] data = {
+                nv.getMaNV(),nv.getTenDangNhap(), nv.isGioiTinh() ? "Nam" : "Nữ",
+                nv.getEmail(), nv.getDiaChi(),nv.getNgayTao(), nv.getNgayCN(), nv.getTrangThai()
+            };
+            model.addRow(data);
+        }
     }
 
     /**
@@ -50,7 +70,7 @@ public class quanLyNV extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         panelBorder3 = new com.hyperbeast.swing.PanelBorder();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        nhanVienTbl = new javax.swing.JTable();
         textField8 = new com.hyperbeast.swing.TextField();
 
         panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
@@ -205,9 +225,8 @@ public class quanLyNV extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addGroup(panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(textField7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(passwordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))
+                    .addComponent(textField7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passwordField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
         panelBorder2Layout.setVerticalGroup(
@@ -216,7 +235,7 @@ public class quanLyNV extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -226,7 +245,7 @@ public class quanLyNV extends javax.swing.JPanel {
 
         panelBorder3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        nhanVienTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -237,7 +256,7 @@ public class quanLyNV extends javax.swing.JPanel {
                 "Mã nhân viên", "Tên nhân viên", "Giới tính", "Email", "Địa chỉ", "Ngày tạo", "Ngày cập nhật", "Trạng thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(nhanVienTbl);
 
         textField8.setLabelText("Tìm kiếm theo tên");
 
@@ -302,7 +321,7 @@ public class quanLyNV extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable nhanVienTbl;
     private com.hyperbeast.swing.PanelBorder panelBorder1;
     private com.hyperbeast.swing.PanelBorder panelBorder2;
     private com.hyperbeast.swing.PanelBorder panelBorder3;
