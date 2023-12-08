@@ -589,6 +589,10 @@ public class quanLyBanHang extends javax.swing.JPanel {
     }
 
     void updateHoaDon(String trangThai, String mesage) {
+        if(gioHangTbl.getRowCount() <= 0){
+            JOptionPane.showMessageDialog(this, "Thanh toán thất bại: \n Hóa đơn trống");
+            return;
+        }
         LocalDateTime ldt = LocalDateTime.now();
         String dateNow = (DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH).format(ldt));
         String ngayCapNhat = dateNow;
@@ -671,6 +675,10 @@ public class quanLyBanHang extends javax.swing.JPanel {
         if(lyDoHuy == null) {
             return;
         }
+        if(lyDoHuy.isEmpty() || lyDoHuy.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Hủy hóa đơn thất bại:\nLý do hủy không hợp lệ");
+            return;
+        }
         hDModel.updateHuyHoaDon(maHD, "Đã Hủy", lyDoHuy);
         deleteAllGH();
         fillHoaDon();
@@ -680,15 +688,19 @@ public class quanLyBanHang extends javax.swing.JPanel {
         String trangThai = null;
         if (taiCaRD.isSelected()) {
             trangThai = "";
+            taoHoaDonBtn.setEnabled(false);
         }
         if (choThanhToanRD.isSelected()) {
             trangThai = "Chờ thanh toán";
+            taoHoaDonBtn.setEnabled(true);
         }
         if (daThanhToanRD.isSelected()) {
             trangThai = "Đã thanh toán";
+            taoHoaDonBtn.setEnabled(false);
         }
         if (daHuyRD.isSelected()) {
             trangThai = "Đã hủy";
+            taoHoaDonBtn.setEnabled(false);
         }
         ArrayList<HoaDon> listHoaDon = hDModel.getHoaDonTrangThai(trangThai);
         DefaultTableModel model = (DefaultTableModel) hoaDonTbl.getModel();
@@ -760,7 +772,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         hoaDonTbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        taoHoaDonBtn = new javax.swing.JButton();
         taiCaRD = new com.hyperbeast.swing.RadioButtonCustom();
         choThanhToanRD = new com.hyperbeast.swing.RadioButtonCustom();
         daThanhToanRD = new com.hyperbeast.swing.RadioButtonCustom();
@@ -874,12 +886,12 @@ public class quanLyBanHang extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 102, 255));
         jLabel1.setText("Hóa đơn");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tạo hóa đơn");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        taoHoaDonBtn.setBackground(new java.awt.Color(0, 102, 255));
+        taoHoaDonBtn.setForeground(new java.awt.Color(255, 255, 255));
+        taoHoaDonBtn.setText("Tạo hóa đơn");
+        taoHoaDonBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                taoHoaDonBtnActionPerformed(evt);
             }
         });
 
@@ -932,7 +944,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                             .addComponent(choThanhToanRD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                             .addComponent(daThanhToanRD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(daHuyRD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(taoHoaDonBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         panelBorder3Layout.setVerticalGroup(
@@ -943,7 +955,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                 .addGap(4, 4, 4)
                 .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(taoHoaDonBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(taiCaRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1748,11 +1760,15 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void taoHoaDonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taoHoaDonBtnActionPerformed
         // TODO add your handling code here:
+        if(hoaDonTbl.getRowCount() == 10) {
+            JOptionPane.showMessageDialog(this,"Tạo hóa đơn mới thất bại: \nSố Lượng hóa đơn chờ đạt giới hạn");
+            return;
+        }
         insertHoaDonCho();
         //loadLichSuHD();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_taoHoaDonBtnActionPerformed
 
     private void hoaDonTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoaDonTblMouseClicked
         // TODO add your handling code here:
@@ -1972,7 +1988,6 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private javax.swing.JLabel hinhThucTTTxt;
     private javax.swing.JTable hoaDonTbl;
     private javax.swing.JButton huyHoaDonBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -2025,6 +2040,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private com.hyperbeast.swing.TextField soDienThoaiTxt;
     private javax.swing.JButton suaBtn;
     private com.hyperbeast.swing.RadioButtonCustom taiCaRD;
+    private javax.swing.JButton taoHoaDonBtn;
     private javax.swing.JLabel tenGioHnagLbl;
     private javax.swing.JLabel tenHDTxt;
     private javax.swing.JLabel tenKHTxt;

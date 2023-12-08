@@ -6,6 +6,7 @@ package com.hyperbeast.form;
 
 import com.hyperbeast.entity.KhuyenMai;
 import com.hyperbeast.model.khuyenMaiModel;
+import com.hyperbeast.utils.XacThuc;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -112,20 +113,24 @@ public class quanLyKM extends javax.swing.JPanel {
         }
         
         
+        if(vNDRB.isSelected()) {
+            donVi = 0;
+        } else {
+            donVi = 1;
+        }
         try {
             mucGiam = Float.parseFloat(mucGiamGiaTxt.getText());
             if(mucGiam <= 0 ) {
                 JOptionPane.showMessageDialog(this, "Mức giảm phải lớn hơn 0");
                 return;
             }
+            if(donVi == 1 && mucGiam > 100) {
+                JOptionPane.showMessageDialog(this,"Phần trăm giảm phải nhỏ hơn hoặc bằng 100%");
+                return;
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Mức giảm phải nhập số");
             return;
-        }
-        if(vNDRB.isSelected()) {
-            donVi = 0;
-        } else {
-            donVi = 1;
         }
         maApDung = maAPDungTxt.getText();
         if(maApDung.isEmpty() || maApDung.trim().isEmpty()) {
@@ -326,7 +331,7 @@ public class quanLyKM extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(trangThaiCB, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,6 +458,10 @@ public class quanLyKM extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+       if(!XacThuc.isManager().equals("Quản lý")) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không có quyền thao tác");
+            return;
+        }
         clearForm();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -463,11 +472,19 @@ public class quanLyKM extends javax.swing.JPanel {
 
     private void luuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuBtnActionPerformed
         // TODO add your handling code here:
+        if(!XacThuc.isManager().equals("Quản lý")) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không có quyền thao tác");
+            return;
+        }
         validateKhuyenMai(1);
     }//GEN-LAST:event_luuBtnActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        if(!XacThuc.isManager().equals("Quản lý")) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không có quyền thao tác");
+            return;
+        }
         int selectedRow = khuyenMaiTbl.getSelectedRow();
         if(selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "chưa chọn dòng cập nhật");

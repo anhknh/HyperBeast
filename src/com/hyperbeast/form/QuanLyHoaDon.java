@@ -159,7 +159,10 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         ngayTaoLStxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 7));
         giamGiaTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 4));
         mucGiamTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 5));
-        sauGiamTxt.setText("" +lichSuHDTbl.getValueAt(selectedRow, 6));
+        String patternTienTe1 = "###,###,###";
+        DecimalFormat formatTienTe1 = new DecimalFormat(patternTienTe1);
+        String stringTienTe1 = formatTienTe1.format(lichSuHDTbl.getValueAt(selectedRow, 6));
+        sauGiamTxt.setText(stringTienTe1);
         if(lichSuHDTbl.getValueAt(selectedRow, 2) == null) {
             tenKHTxt.setText("");
         } else {

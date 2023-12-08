@@ -485,10 +485,7 @@ public class main extends javax.swing.JFrame {
 
     private void panelKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKMMouseClicked
         // TODO add your handling code here:
-        if(!XacThuc.isManager().equals("Quản lý")) {
-            JOptionPane.showMessageDialog(this, "Tài khoản không có quyền thao tác");
-            return;
-        }
+        
         clearFormat();
         panelKM.setOpaque(true);
         panelKM.setBackground(new Color(224, 224, 224));

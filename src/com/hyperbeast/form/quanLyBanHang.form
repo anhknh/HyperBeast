@@ -109,7 +109,7 @@
                                       <Component id="choThanhToanRD" alignment="1" pref="110" max="32767" attributes="0"/>
                                       <Component id="daThanhToanRD" alignment="1" max="32767" attributes="0"/>
                                       <Component id="daHuyRD" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="taoHoaDonBtn" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -125,7 +125,7 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jButton1" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="taoHoaDonBtn" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="taiCaRD" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -206,7 +206,7 @@
                     <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="taoHoaDonBtn">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="66" red="0" type="rgb"/>
@@ -217,7 +217,7 @@
                     <Property name="text" type="java.lang.String" value="T&#x1ea1;o h&#xf3;a &#x111;&#x1a1;n"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="taoHoaDonBtnActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="com.hyperbeast.swing.RadioButtonCustom" name="taiCaRD">
