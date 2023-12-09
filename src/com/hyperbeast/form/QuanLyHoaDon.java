@@ -179,7 +179,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         if (trangThai.equals("Đã thanh toán")) {
             hoaDonCTTxt.setText(hoaDonCTTxt.getText() + "Tên sản phẩm" + "\t" + "|Số lượng" + "\t" + "|Đơn giá"+"\n");
             for (int i = 0; i < gioHangLSTbl.getRowCount(); i++) {
-                String tenSP = "" + gioHangLSTbl.getValueAt(i, 1);
+                String tenSP = gioHangLSTbl.getValueAt(i, 0)+ "-" + gioHangLSTbl.getValueAt(i, 1);
                 String soLuong = "" + gioHangLSTbl.getValueAt(i, 6);
                 String donGia = "" + gioHangLSTbl.getValueAt(i, 7);
                 hoaDonCTTxt.setText(hoaDonCTTxt.getText()+ tenSP + "\t|" + soLuong + "\t"+ "\t|" + donGia+"\n");
