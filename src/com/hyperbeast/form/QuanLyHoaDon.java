@@ -172,6 +172,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         hoaDonCTTxt.setText("********************************************\n");
         hoaDonCTTxt.setText(hoaDonCTTxt.getText() + "*                HYPERBEAST                *\n");
         hoaDonCTTxt.setText(hoaDonCTTxt.getText() + "********************************************\n");
+        hoaDonCTTxt.setText(hoaDonCTTxt.getText() + "Mã hóa đơn: " + maHD + "\n");
         hoaDonCTTxt.setText(hoaDonCTTxt.getText() + "Tên nhân viên:                    " + tenNhanVien + "\n");
         hoaDonCTTxt.setText(hoaDonCTTxt.getText() + "Tên khách hàng:                   " + tenKhachHang + "\n");
         hoaDonCTTxt.setText(hoaDonCTTxt.getText() + "Ngày tạo:                         " + ngayTao + "\n");
