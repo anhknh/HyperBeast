@@ -113,7 +113,7 @@
         </Component>
         <Component class="com.hyperbeast.swing.TextField" name="tenDangNhapTxt">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Admin123"/>
+            <Property name="text" type="java.lang.String" value="anhknh"/>
             <Property name="labelText" type="java.lang.String" value="T&#xea;n &#x111;&#x103;ng nh&#x1ead;p"/>
           </Properties>
         </Component>

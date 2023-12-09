@@ -24,6 +24,6 @@ public class XacThuc {
     }
     
     public static String isManager() {
-        return  user.getTrangThai();
+        return  user.getChucVU();
     }
 }

@@ -86,10 +86,10 @@ public class danhMucJDialog extends javax.swing.JDialog {
     
     void validateData( int choice) {
         String tenDanhMuc = tenDanhMucTxt.getText();
-         if (tenDanhMuc.isEmpty() || tenDanhMuc.trim().isEmpty()) {
+        if (tenDanhMuc.isEmpty() || tenDanhMuc.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên danh mục hoặc chỉ chứa dấu cách");
             return;
-        } else if (!tenDanhMuc.matches("[a-zA-Z]+")) {
+        } else if (tenDanhMuc.matches("[0-9]+")) {
             JOptionPane.showMessageDialog(this, "Tên danh mục chỉ được chứa chữ cái");
             return;
         }

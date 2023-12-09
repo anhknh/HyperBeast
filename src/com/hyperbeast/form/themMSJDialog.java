@@ -85,21 +85,10 @@ public class themMSJDialog extends javax.swing.JDialog {
          if (tenMau.isEmpty() || tenMau.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên màu hoặc chỉ chứa dấu cách");
             return;
-        }else {
-             try {
-                 int test = Integer.parseInt(tenMau);
-                 JOptionPane.showMessageDialog(this, "chỉ nhập chữ");
-                 return;
-             } catch (Exception e) {
-                 
-             }
-         } 
-         
-//         else if (!tenMau.matches("[a-zA-Z]+")) {
-//            JOptionPane.showMessageDialog(this, "Tên màu chỉ được chứa chữ cái");
-//            return;
-//        }
-//        
+        }else if (tenMau.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Tên màu chỉ được chứa chữ cái");
+            return;
+        }
         if(choice == 1) {
             insertMau();
         } 

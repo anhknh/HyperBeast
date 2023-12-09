@@ -89,20 +89,10 @@ public class chatLieuJDialog extends javax.swing.JDialog {
          if (tenChatLieu.isEmpty() || tenChatLieu.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên chất liệu hoặc chỉ chứa dấu cách");
             return;
-        } else {
-             try {
-                 int test = Integer.parseInt(tenChatLieu);
-                 JOptionPane.showMessageDialog(this, "chỉ nhập chữ");
-                 return;
-             } catch (Exception e) {
-                 
-             }
-         }
-         
-//         else if (!tenChatLieu.matches("[a-zA-Z]+")) {
-//            JOptionPane.showMessageDialog(this, "Tên chất liệu chỉ được chứa chữ cái");
-//            return;
-//        }
+        }else if (tenChatLieu.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Tên chất liệu chỉ được chứa chữ cái");
+            return;
+        }
         
         if(choice == 1) {
             insertChatLieu();

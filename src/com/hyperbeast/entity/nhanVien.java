@@ -9,22 +9,20 @@ package com.hyperbeast.entity;
  * @author Admin
  */
 public class nhanVien {
-    int maNV;
-    String tenDangNhap;
-    String matKhau;
-    String hoTen;
-    boolean gioiTinh;
-    String email;
-    String diaChi;
-    String dienThoai;
-    String ngayTao;
-    String ngayCN;
-    String trangThai;
+    private int maNV;
+    private String tenDangNhap;
+    private String matKhau;
+    private String hoTen;
+    private boolean gioiTinh;
+    private String email;
+    private String diaChi;
+    private String dienThoai;
+    private String ngayTao;
+    private String ngayCN;
+    private String chucVU;
+    private String trangThai;
 
-    public nhanVien() {
-    }
-
-    public nhanVien(int maNV, String tenDangNhap, String matKhau, String hoTen, boolean gioiTinh, String email, String diaChi, String dienThoai, String ngayTao, String ngayCN, String trangThai) {
+    public nhanVien(int maNV, String tenDangNhap, String matKhau, String hoTen, boolean gioiTinh, String email, String diaChi, String dienThoai, String ngayTao, String ngayCN, String chucVU, String trangThai) {
         this.maNV = maNV;
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
@@ -35,11 +33,13 @@ public class nhanVien {
         this.dienThoai = dienThoai;
         this.ngayTao = ngayTao;
         this.ngayCN = ngayCN;
+        this.chucVU = chucVU;
         this.trangThai = trangThai;
     }
 
-    
-    
+    public nhanVien() {
+    }
+
     public int getMaNV() {
         return maNV;
     }
@@ -120,6 +120,14 @@ public class nhanVien {
         this.ngayCN = ngayCN;
     }
 
+    public String getChucVU() {
+        return chucVU;
+    }
+
+    public void setChucVU(String chucVU) {
+        this.chucVU = chucVU;
+    }
+
     public String getTrangThai() {
         return trangThai;
     }
@@ -127,6 +135,6 @@ public class nhanVien {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-    
+
     
 }

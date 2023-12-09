@@ -322,6 +322,10 @@ public class khachHangJDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Số điện thoại chỉ chứa số");
             return;
         }
+        if(!(soDienThoai.length()== 10)) {
+            JOptionPane.showMessageDialog(this, "số điện thoại phải đủ 10 số");
+            return;
+        }
         if(trangThaiCB.getSelectedIndex() == 0) {
             trangThai = 1;
         } else {

@@ -54,6 +54,15 @@ public class main extends javax.swing.JFrame {
         if(XacThuc.isLogin()) {
             System.exit(0);
         }
+        clearFormat();
+        panelSP.setOpaque(true);
+        panelSP.setBackground(new Color(224, 224, 224));
+        jLabel6.setForeground(Color.blue);
+        quanLyBH.setVisible(false);
+        khuyenMai.setVisible(false);
+        nhanVien.setVisible(false);
+        hoaDon.setVisible(false);
+        dashBoardMain.add(quanlySP).setVisible(true);
     }
     
     private int x;

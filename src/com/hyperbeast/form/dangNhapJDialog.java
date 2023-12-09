@@ -63,8 +63,13 @@ public class dangNhapJDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Sai mật khẩu");
                 return;
             } else {
-                XacThuc.user =  nv;
-                this.dispose();
+                if(nv.getTrangThai().equals("Không hoạt động")) {
+                    JOptionPane.showMessageDialog(this, "Tài khoản bị vô hiệu hóa");
+                    return;
+                } else {
+                    XacThuc.user =  nv;
+                    this.dispose();
+                }
             }
         }
     }
@@ -93,7 +98,7 @@ public class dangNhapJDialog extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HyperBeast");
 
-        tenDangNhapTxt.setText("Admin123");
+        tenDangNhapTxt.setText("anhknh");
         tenDangNhapTxt.setLabelText("Tên đăng nhập");
 
         jButton1.setBackground(new java.awt.Color(0, 102, 255));

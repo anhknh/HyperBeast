@@ -114,6 +114,7 @@ public class hoaDonModel {
                         "left join THANH_TOAN on HOA_DON.MaHD = THANH_TOAN.MaHD\n" +
                         "left join HOA_DON_KHUYEN_MAI on HOA_DON.MaHD = HOA_DON_KHUYEN_MAI.MaHD\n" +
                         "left join KHUYEN_MAI on HOA_DON_KHUYEN_MAI.MaKM = KHUYEN_MAI.MaKM\n" +
+                        "where HOA_DON.TrangThai like N'Đã thanh toán' or HOA_DON.TrangThai like N'Đã Hủy'\n" +
                         "order by HOA_DON.MaHD\n" +
                         "offset ? row\n" +
                         "fetch next 10 ROWS ONLY";
@@ -193,7 +194,7 @@ public class hoaDonModel {
     
     public ArrayList getLichSuHoaDonSize () {
         ArrayList<HoaDon> listHoaDon = new ArrayList<>();
-        String query = "select MaHD from HOA_DON ";
+        String query = "select MaHD from HOA_DON where HOA_DON.TrangThai like N'Đã thanh toán' or HOA_DON.TrangThai like N'Đã Hủy'";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
