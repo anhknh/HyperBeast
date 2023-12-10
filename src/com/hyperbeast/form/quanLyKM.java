@@ -85,8 +85,8 @@ public class quanLyKM extends javax.swing.JPanel {
         int donVi;
         int trangThai;
         int maKM;
-        int selectedRow = khuyenMaiTbl.getSelectedRow();
-        maKM = (int) khuyenMaiTbl.getValueAt(selectedRow, 0);
+        
+        ArrayList<KhuyenMai> listKM = kMModel.getKhuyenMai();
         if(tenKhuyenMai.isEmpty() || tenKhuyenMai.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa nhập tên khuyến mãi");
             return;
@@ -149,6 +149,12 @@ public class quanLyKM extends javax.swing.JPanel {
         if(choice == 1) {
             java.sql.Date  ngayBatDau = new java.sql.Date(ngayBD.getTime()); 
             java.sql.Date  ngayKetThuc = new java.sql.Date(ngayKT.getTime()); 
+            for (KhuyenMai km : listKM) {
+                if(km.getTenKhuyenMai().equals(tenKhuyenMai) || km.getMaApDung().equals(maApDung)) {
+                    JOptionPane.showMessageDialog(this, "Khuyến mãi đã tồn tại");
+                    return;
+                }
+            }
             boolean check = kMModel.insertKhuyenMai(tenKhuyenMai, ngayBatDau, ngayKetThuc, mucGiam, maApDung, trangThai, donVi);
             if(!check) {
                 JOptionPane.showMessageDialog(this, "Lưu thất bại");
@@ -160,6 +166,8 @@ public class quanLyKM extends javax.swing.JPanel {
         } else {
             java.sql.Date  ngayBatDau = new java.sql.Date(ngayBD.getTime()); 
             java.sql.Date  ngayKetThuc = new java.sql.Date(ngayKT.getTime()); 
+            int selectedRow = khuyenMaiTbl.getSelectedRow();
+            maKM = (int) khuyenMaiTbl.getValueAt(selectedRow, 0);
             boolean check = kMModel.updateKhuyenMai(maKM, tenKhuyenMai, ngayBatDau, ngayKetThuc, mucGiam, maApDung, trangThai, donVi);
             if(!check) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thất bại");

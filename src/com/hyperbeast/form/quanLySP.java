@@ -273,6 +273,7 @@ public class quanLySP extends javax.swing.JPanel  {
         ngayNhapTxt.setText("" + dateNow);
         ngayCapNhatTxt.setText("" + dateNow);
         danhMucCB.setSelectedIndex(0);
+        trangThaiCB.setSelectedIndex(0);
     }
     
     void clearCTSP() {

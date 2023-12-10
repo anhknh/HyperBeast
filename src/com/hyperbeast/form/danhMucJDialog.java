@@ -105,7 +105,7 @@ public class danhMucJDialog extends javax.swing.JDialog {
     }
     
     void insertDanhMuc() {
-        String query = "INSERT INTO MAU_SAC(TenMau, TrangThai)\n" +
+        String query = "INSERT INTO DANH_MUC(TenDanhMuc, TrangThai)\n" +
                         "VALUES(?,?)";
         int trangThai;
         if(trangThaiCB.getSelectedItem().equals("Hoạt động")) {

@@ -130,6 +130,13 @@ public class quanLyNV extends javax.swing.JPanel {
         }
         
         if(choice == 1) {
+            ArrayList<nhanVien> listnv = nVModel.getNhanVien3();
+            for (nhanVien nv : listnv) {
+                if(nv.getTenDangNhap().equals(tenDangNhap)) {
+                    JOptionPane.showMessageDialog(this, "Tên đăng nhập đã tồn tại");
+                    return;
+                }
+            }
             java.sql.Date  ngayBatDau = new java.sql.Date(ngayTao.getTime()); 
             java.sql.Date  ngayKetThuc = new java.sql.Date(ngayCN.getTime()); 
             nVModel.InsertNV(tenDangNhap, matKhau, hoTen, gioiTinh, sdt, email, diaChi, ngayBatDau, ngayKetThuc, chucVu, trangThai);
