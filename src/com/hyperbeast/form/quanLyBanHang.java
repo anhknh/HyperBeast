@@ -280,6 +280,23 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
     }
     
+    void clearForm() {
+        DefaultTableModel model = (DefaultTableModel) gioHangTbl.getModel();
+        model.setRowCount(0);
+        maHoaDonTxt.setText("");
+        tenNhanVienTxt.setText("");
+        ngayTaoTxt.setText("");
+        soDienThoaiTxt.setText("");
+        tenKhachHangTxt.setText("");
+        tongTienLbl2.setText("");
+        maGiamGiaTxt.setText("");
+        tenKhuyenMaiLbl.setText("");
+        mucKhuyenMaiLbl.setText("");
+        hinhThucTTCB.setSelectedIndex(0);
+        tienKhachDuaTxt.setText("");
+        tienThuaLbl.setText("");
+    }
+    
     void searchSanPhamCT() {
         String tenSanPham = timTenSPTxt.getText();
         if(tenSanPham.isEmpty()) {
@@ -344,8 +361,50 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
         try {
             tienKhachDua = Float.parseFloat(tienKhachDuaTxt.getText());
+            if(loadKhuyenMai() != null){
+                KhuyenMai km = loadKhuyenMai();
+                float giamGia = km.getMucGiam();
+                String donVi = km.getDonVi();
+                if(donVi.equals("VNĐ")) {
+                    giamGia = tinhTongTien() - giamGia;
+                    float tienThua = tienKhachDua - giamGia;
+                    if (tienThua < 0) {
+                        tienThuaLbl.setText("");
+                        return;
+                    }
+                    if (tienThua == 0) {
+                        tienThuaLbl.setText("0");
+                        return;
+                    }
+                    String patternTienTe = "###,###,###";
+                    DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+                    String stringTienTe = formatTienTe.format(tienThua);
+                    tienThuaLbl.setText(stringTienTe + "");
+                    return;
+                } else {
+                    giamGia = tinhTongTien() * ((100 - km.getMucGiam())/100);
+                    float tienThua = tienKhachDua - giamGia;
+                    if (tienThua < 0) {
+                        tienThuaLbl.setText("");
+                        return;
+                    }
+                    if (tienThua == 0) {
+                        tienThuaLbl.setText("0");
+                        return;
+                    }
+                    String patternTienTe = "###,###,###";
+                    DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+                    String stringTienTe = formatTienTe.format(tienThua);
+                    tienThuaLbl.setText(stringTienTe + "");
+                    return;
+                }
+            }
             float tienThua = tienKhachDua - tongTien;
-            if (tienThua <= 0) {
+            if (tienThua < 0) {
+                tienThuaLbl.setText("");
+                return;
+            }
+            if (tienThua == 0) {
                 tienThuaLbl.setText("0");
                 return;
             }
@@ -626,6 +685,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                     hDModel.updateHoaDon2(maHD, ngayCapNhat, trangThai, tongTien);
                     hDModel.insertThanhToan2(maHD, hinhThucThanhToan);
                     fillHoaDon();
+                    clearForm();
                     return;
                 }
                 hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
@@ -633,6 +693,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                 soDienThoaiTxt.setText("");
                 tenKHTxt.setText("");
                 fillHoaDon();
+                clearForm();
             } else {
                 float giamGia = loadKhuyenMai().getMucGiam();
                 if(loadKhuyenMai().getDonVi().equals("VNĐ")) {
@@ -651,6 +712,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                     hDModel.insertThanhToan2(maHD, hinhThucThanhToan);
                     kMModel.insertHDKM(maHD, loadKhuyenMai().getMaKH(), giamGia);
                     fillHoaDon();
+                    clearForm();
                     return;
                 }
                 hDModel.updateHoaDon(maHD, ngayCapNhat, trangThai, maTKKH, tongTien);
@@ -659,6 +721,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                 soDienThoaiTxt.setText("");
                 tenKHTxt.setText("");
                 fillHoaDon();
+                clearForm();
             }
         }
     }
@@ -682,6 +745,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
         hDModel.updateHuyHoaDon(maHD, "Đã Hủy", lyDoHuy);
         deleteAllGH();
         fillHoaDon();
+        clearForm();
     }
 
     void fillHoaDon() {
