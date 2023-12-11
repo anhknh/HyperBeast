@@ -471,7 +471,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
             if (hdct.getMaCTSP() == maCTSP) {
                 int soLuongTrung = hdct.getSoLuong() + soLuongThem;
                 float thanhTien2 = soLuongTrung * donGia;
-                hDModel.updateHDCT(maHD, maCTSP, thanhTien2, soLuongTrung);
+                hDModel.updateHDCT(maHD, maCTSP, donGia, soLuongTrung);
                 fillGioHang(maHD);
                 hDModel.updateCTSP(maCTSP, soLuongCuoi);
                 fillSanPham();
@@ -575,6 +575,11 @@ public class quanLyBanHang extends javax.swing.JPanel {
             soLuongCapNhatSP = tongSoLuongSP - soLuongSua;
             hDModel.updateHDCT(maHD, maCTSP, donGia, soLuongSua);
             hDModel.updateCTSP(maCTSP, soLuongCapNhatSP);
+            int tongTien = tinhTongTien();
+            String patternTienTe = "###,###,###";
+            DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
+            String stringTienTe = formatTienTe.format(tongTien);
+            tongTienLbl2.setText(stringTienTe);
             fillSanPham();
             fillGioHang(maHD);
         } catch (Exception e) {
