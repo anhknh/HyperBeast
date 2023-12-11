@@ -62,8 +62,9 @@ public class quanLyBanHang extends javax.swing.JPanel {
     ArrayList<SanPhamChiTiet> listTimKiem;
     khachHangModel kHModel = new khachHangModel();
     ArrayList<KhachHang> listKH;
-    khuyenMaiModel kMModel =  new khuyenMaiModel();
+    khuyenMaiModel kMModel = new khuyenMaiModel();
     ArrayList<KhuyenMai> listKM = kMModel.getKhuyenMai();
+
     //final JPanel jPanelCamera = new JPanel();
     public quanLyBanHang() {
         initComponents();
@@ -82,7 +83,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
         listKH = kHModel.getKhachHang();
         //loadLichSuHD();
         int rowSelected = hoaDonTbl.getSelectedRow();
-        if(rowSelected <= 0) {
+        if (rowSelected <= 0) {
             maGiamGiaTxt.setEnabled(false);
         } else {
             maGiamGiaTxt.setEnabled(true);
@@ -105,13 +106,11 @@ public class quanLyBanHang extends javax.swing.JPanel {
 //        jPanelCamera.add(webcamPanel);
 //        jPanelCamera.getParent().revalidate();
 //    }
-    
-    
     //Khuyến mãi
     KhuyenMai loadKhuyenMai() {
-        
+
         String maKhuyenMai = maGiamGiaTxt.getText();
-        if(maKhuyenMai == null) {
+        if (maKhuyenMai == null) {
             tenKhuyenMaiLbl.setText("");
             String patternTienTe = "###,###,###";
             DecimalFormat formatTienTe = new DecimalFormat(patternTienTe);
@@ -120,10 +119,10 @@ public class quanLyBanHang extends javax.swing.JPanel {
             return null;
         }
         for (KhuyenMai kM : listKM) {
-            if(kM.getMaApDung().equals(maKhuyenMai)) {
-                if(kM.getTrangThai().equals("Đang hoạt động")) {
+            if (kM.getMaApDung().equals(maKhuyenMai)) {
+                if (kM.getTrangThai().equals("Đang hoạt động")) {
                     tenKhuyenMaiLbl.setText(kM.getTenKhuyenMai());
-                    mucKhuyenMaiLbl.setText(kM.getMucGiam() + " " + kM.getDonVi() );
+                    mucKhuyenMaiLbl.setText(kM.getMucGiam() + " " + kM.getDonVi());
                     tinhKhuyenMai(kM.getDonVi(), kM.getMucGiam());
                     return kM;
                 } else {
@@ -142,12 +141,12 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
         return null;
     }
-    
+
     void tinhKhuyenMai(String donVi, float mucGiam) {
         float giamGia = mucGiam;
-        if(donVi.equals("VNĐ")) {
+        if (donVi.equals("VNĐ")) {
             giamGia = tinhTongTien() - giamGia;
-            if(giamGia <=0) {
+            if (giamGia <= 0) {
                 tongTienLbl2.setText(0 + "");
                 return;
             }
@@ -156,8 +155,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
             String stringTienTe = formatTienTe.format(giamGia);
             tongTienLbl2.setText(stringTienTe);
         } else {
-            giamGia = tinhTongTien() * ((100 - mucGiam)/100);
-            if(giamGia <=0) {
+            giamGia = tinhTongTien() * ((100 - mucGiam) / 100);
+            if (giamGia <= 0) {
                 tongTienLbl2.setText(0 + "");
                 return;
             }
@@ -167,11 +166,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
             tongTienLbl2.setText(stringTienTe);
         }
     }
-    
-    
+
     //Khuyến mãi
-    
-    
     // Màn lịch sử hóa đơn
 //    void loadLichSuHD () {
 //        ArrayList<HoaDon> listLSHD = hDModel.getLichSuHoaDon();
@@ -266,6 +262,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
         ngayTaoTxt.setText(hoaDonTbl.getValueAt(rowSelected, 1) + "");
         tenNhanVienTxt.setText(hoaDonTbl.getValueAt(rowSelected, 2) + "");
     }
+
     void resetLocSP(int choice) {
         chatLieuDCB.setSelectedIndex(-1);
         chatLieuCB.setSelectedIndex(-1);
@@ -274,12 +271,12 @@ public class quanLyBanHang extends javax.swing.JPanel {
         timTenSPTxt.setText("");
         statusPageSPCT();
         fillSanPham();
-        if(choice == 2) {
+        if (choice == 2) {
             statusPageSPCT();
             fillSanPham();
         }
     }
-    
+
     void clearForm() {
         DefaultTableModel model = (DefaultTableModel) gioHangTbl.getModel();
         model.setRowCount(0);
@@ -296,49 +293,49 @@ public class quanLyBanHang extends javax.swing.JPanel {
         tienKhachDuaTxt.setText("");
         tienThuaLbl.setText("");
     }
-    
+
     void searchSanPhamCT() {
         String tenSanPham = timTenSPTxt.getText();
-        if(tenSanPham.isEmpty()) {
+        if (tenSanPham.isEmpty()) {
             tenSanPham = "";
         }
         String tenMau = (String) mauSacCB.getSelectedItem();
-        String kichThuoc =  (String) kichThuocCB.getSelectedItem();
+        String kichThuoc = (String) kichThuocCB.getSelectedItem();
         String tenChatLieu = (String) chatLieuCB.getSelectedItem();
         String tenChatLieuDe = (String) chatLieuDCB.getSelectedItem();
-        if(tenMau == null) {
+        if (tenMau == null) {
             tenMau = "";
         }
-        if(kichThuoc == null) {
+        if (kichThuoc == null) {
             kichThuoc = "";
         }
-        if(tenChatLieu == null) {
+        if (tenChatLieu == null) {
             tenChatLieu = "";
         }
-        if(tenChatLieuDe == null) {
+        if (tenChatLieuDe == null) {
             tenChatLieuDe = "";
         }
-        
+
         listTimKiem = sPModel.searchSanPhamCT(tenSanPham, tenMau, kichThuoc, tenChatLieu, tenChatLieuDe);
-        
+
         DefaultTableModel model = (DefaultTableModel) sanPhamTbl.getModel();
         model.setRowCount(0);
         for (int i = 0; i < listTimKiem.size(); i++) {
-                Object[] data = {
-                         listTimKiem.get(i).getMaCTSP(), listTimKiem.get(i).getTenSP(), listTimKiem.get(i).getSoLuong(), listTimKiem.get(i).getTenMau(), listTimKiem.get(i).getKichThuoc(),
-                         listTimKiem.get(i).getTenChatLieu(), listTimKiem.get(i).getTenChatLieuDe(), listTimKiem.get(i).getDonGia()
-                     };
-                     model.addRow(data);
+            Object[] data = {
+                listTimKiem.get(i).getMaCTSP(), listTimKiem.get(i).getTenSP(), listTimKiem.get(i).getSoLuong(), listTimKiem.get(i).getTenMau(), listTimKiem.get(i).getKichThuoc(),
+                listTimKiem.get(i).getTenChatLieu(), listTimKiem.get(i).getTenChatLieuDe(), listTimKiem.get(i).getDonGia()
+            };
+            model.addRow(data);
         }
     }
-    
+
     void getKhachHang() {
         String sdt = soDienThoaiTxt.getText();
         for (KhachHang khachHang : listKH) {
-            if(!khachHang.getSoDienThoai().equals(sdt)) {
+            if (!khachHang.getSoDienThoai().equals(sdt)) {
                 tenKhachHangTxt.setText("Không tìm thấy khách hàng");
             } else {
-                if(khachHang.getTrangThai() == 1) {
+                if (khachHang.getTrangThai() == 1) {
                     tenKhachHangTxt.setText(khachHang.getTenKH());
                     return;
                 }
@@ -361,11 +358,11 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
         try {
             tienKhachDua = Float.parseFloat(tienKhachDuaTxt.getText());
-            if(loadKhuyenMai() != null){
+            if (loadKhuyenMai() != null) {
                 KhuyenMai km = loadKhuyenMai();
                 float giamGia = km.getMucGiam();
                 String donVi = km.getDonVi();
-                if(donVi.equals("VNĐ")) {
+                if (donVi.equals("VNĐ")) {
                     giamGia = tinhTongTien() - giamGia;
                     float tienThua = tienKhachDua - giamGia;
                     if (tienThua < 0) {
@@ -382,7 +379,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
                     tienThuaLbl.setText(stringTienTe + "");
                     return;
                 } else {
-                    giamGia = tinhTongTien() * ((100 - km.getMucGiam())/100);
+                    giamGia = tinhTongTien() * ((100 - km.getMucGiam()) / 100);
                     float tienThua = tienKhachDua - giamGia;
                     if (tienThua < 0) {
                         tienThuaLbl.setText("");
@@ -529,8 +526,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
         String ngayTao = dateNow;
         String ngayCapNhat = dateNow;
         String trangThai = "Chờ thanh toán";
-        int maTaiKhoan ;
-        if(XacThuc.isLogin()) {
+        int maTaiKhoan;
+        if (XacThuc.isLogin()) {
             JOptionPane.showMessageDialog(this, "Chưa đăng nhập");
             return;
         }
@@ -549,17 +546,13 @@ public class quanLyBanHang extends javax.swing.JPanel {
         int rowSelectedHD = hoaDonTbl.getSelectedRow();
         int rowSelectedGH = gioHangTbl.getSelectedRow();
         int soLuongSua;
-        if (rowSelectedHD < 0) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm trong giỏ");
-            return;
-        }
         if (rowSelectedGH < 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm trong giỏ");
             return;
         }
         int maHD = (int) hoaDonTbl.getValueAt(rowSelectedHD, 0);
         int maCTSP = (int) gioHangTbl.getValueAt(rowSelectedGH, 0);
-        String check = JOptionPane.showInputDialog(this, "Nhập số lượng muốn giảm");
+        String check = JOptionPane.showInputDialog(this, "Nhập số lượng muốn sửa");
         if (check == null) {
             return;
         }
@@ -575,7 +568,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
             int soLuongSPCT = hDModel.getSoLuongCT(maCTSP);
             int tongSoLuongSP = soLuongSPCT + soLuongGH;
             int soLuongCapNhatSP;
-            if(soLuongSua > tongSoLuongSP) {
+            if (soLuongSua > tongSoLuongSP) {
                 JOptionPane.showMessageDialog(this, "Số lượng lớn hơn số sản phẩm hiện có");
                 return;
             }
@@ -648,7 +641,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     }
 
     void updateHoaDon(String trangThai, String mesage) {
-        if(gioHangTbl.getRowCount() <= 0){
+        if (gioHangTbl.getRowCount() <= 0) {
             JOptionPane.showMessageDialog(this, "Thanh toán thất bại: \n Hóa đơn trống");
             return;
         }
@@ -657,7 +650,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
         String ngayCapNhat = dateNow;
         String sdt = soDienThoaiTxt.getText();
         String tienThua = tienThuaLbl.getText();
-        if(tienThua.isEmpty()) {
+        if (tienThua.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chưa đủ tiền thanh toán");
             return;
         }
@@ -670,18 +663,18 @@ public class quanLyBanHang extends javax.swing.JPanel {
         float tongTien = tinhTongTien();
         int maTKKH = 0;
         String hinhThucThanhToan = hinhThucTTCB.getSelectedItem().toString();
-            for (KhachHang khachHang : listKH) {
-                if(khachHang.getTrangThai()== 1) {
-                    if(khachHang.getSoDienThoai().equals(sdt)) {
-                        maTKKH = khachHang.getMaCTKH();
-                    }
+        for (KhachHang khachHang : listKH) {
+            if (khachHang.getTrangThai() == 1) {
+                if (khachHang.getSoDienThoai().equals(sdt)) {
+                    maTKKH = khachHang.getMaCTKH();
                 }
             }
-        
+        }
+
         int choice = JOptionPane.showConfirmDialog(this, mesage, "HyperBeast", JOptionPane.YES_NO_OPTION);
         if (choice == 0) {
-            if(loadKhuyenMai() == null) {
-                if(maTKKH == 0) {
+            if (loadKhuyenMai() == null) {
+                if (maTKKH == 0) {
                     hDModel.updateHoaDon2(maHD, ngayCapNhat, trangThai, tongTien);
                     hDModel.insertThanhToan2(maHD, hinhThucThanhToan);
                     fillHoaDon();
@@ -696,18 +689,18 @@ public class quanLyBanHang extends javax.swing.JPanel {
                 clearForm();
             } else {
                 float giamGia = loadKhuyenMai().getMucGiam();
-                if(loadKhuyenMai().getDonVi().equals("VNĐ")) {
+                if (loadKhuyenMai().getDonVi().equals("VNĐ")) {
                     giamGia = tinhTongTien() - giamGia;
-                    if(giamGia <= 0) {
+                    if (giamGia <= 0) {
                         giamGia = 0;
                     }
                 } else {
-                    giamGia = tinhTongTien() * ((100 - giamGia)/100);
-                    if(giamGia <= 0) {
+                    giamGia = tinhTongTien() * ((100 - giamGia) / 100);
+                    if (giamGia <= 0) {
                         giamGia = 0;
                     }
                 }
-                if(maTKKH == 0) {
+                if (maTKKH == 0) {
                     hDModel.updateHoaDon2(maHD, ngayCapNhat, trangThai, tongTien);
                     hDModel.insertThanhToan2(maHD, hinhThucThanhToan);
                     kMModel.insertHDKM(maHD, loadKhuyenMai().getMaKH(), giamGia);
@@ -725,8 +718,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
             }
         }
     }
-    
-    void huyHoaDon () {
+
+    void huyHoaDon() {
         int rowSelected = hoaDonTbl.getSelectedRow();
         if (rowSelected < 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn thao tác");
@@ -734,11 +727,11 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
         int maHD = (int) hoaDonTbl.getValueAt(rowSelected, 0);
         String lyDoHuy = null;
-        lyDoHuy = JOptionPane.showInputDialog(this,"Nhập lý do hủy");
-        if(lyDoHuy == null) {
+        lyDoHuy = JOptionPane.showInputDialog(this, "Nhập lý do hủy");
+        if (lyDoHuy == null) {
             return;
         }
-        if(lyDoHuy.isEmpty() || lyDoHuy.trim().isEmpty()) {
+        if (lyDoHuy.isEmpty() || lyDoHuy.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Hủy hóa đơn thất bại:\nLý do hủy không hợp lệ");
             return;
         }
@@ -776,8 +769,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
             model.addRow(data);
         }
     }
-    
-    void fillmau () {
+
+    void fillmau() {
         ArrayList<String> listMau = new ArrayList<>();
         listMau = sPModel.getMauSac();
         DefaultComboBoxModel model = (DefaultComboBoxModel) mauSacCB.getModel();
@@ -788,7 +781,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
         mauSacCB.setModel(new javax.swing.DefaultComboBoxModel(mauSac));
     }
-    void fillKichThuoc () {
+
+    void fillKichThuoc() {
         ArrayList<String> listKichTHuoc = new ArrayList<>();
         listKichTHuoc = sPModel.getKichThuoc();
         DefaultComboBoxModel model = (DefaultComboBoxModel) kichThuocCB.getModel();
@@ -799,8 +793,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
         kichThuocCB.setModel(new javax.swing.DefaultComboBoxModel(kichThuoc));
     }
-    
-    void fillChatLieu () {
+
+    void fillChatLieu() {
         ArrayList<String> listChatLieu = new ArrayList<>();
         listChatLieu = sPModel.getChatLieu();
         DefaultComboBoxModel model = (DefaultComboBoxModel) chatLieuCB.getModel();
@@ -811,8 +805,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
         chatLieuCB.setModel(new javax.swing.DefaultComboBoxModel(chatLieu));
     }
-    
-    void fillChatLieuDe () {
+
+    void fillChatLieuDe() {
         ArrayList<String> listChatLieuDe = new ArrayList<>();
         listChatLieuDe = sPModel.getChatLieuDe();
         DefaultComboBoxModel model = (DefaultComboBoxModel) chatLieuDCB.getModel();
@@ -823,7 +817,6 @@ public class quanLyBanHang extends javax.swing.JPanel {
         }
         chatLieuDCB.setModel(new javax.swing.DefaultComboBoxModel(chatLieuDe));
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1811,7 +1804,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
             statusPageSPCT();
             fillSanPham();
         }
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1826,8 +1819,8 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
     private void taoHoaDonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taoHoaDonBtnActionPerformed
         // TODO add your handling code here:
-        if(hoaDonTbl.getRowCount() == 10) {
-            JOptionPane.showMessageDialog(this,"Tạo hóa đơn mới thất bại: \nSố Lượng hóa đơn chờ đạt giới hạn");
+        if (hoaDonTbl.getRowCount() == 10) {
+            JOptionPane.showMessageDialog(this, "Tạo hóa đơn mới thất bại: \nSố Lượng hóa đơn chờ đạt giới hạn");
             return;
         }
         insertHoaDonCho();
@@ -1837,7 +1830,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void hoaDonTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoaDonTblMouseClicked
         // TODO add your handling code here:
         int rowSelected = hoaDonTbl.getSelectedRow();
-        if(rowSelected < 0) {
+        if (rowSelected < 0) {
             maGiamGiaTxt.setEnabled(false);
         } else {
             maGiamGiaTxt.setEnabled(true);
@@ -1873,6 +1866,10 @@ public class quanLyBanHang extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
             int rowSelected = hoaDonTbl.getSelectedRow();
+            if (rowSelected < 0) {
+                JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn thao tác");
+                return;
+            }
             String trangThai = "" + hoaDonTbl.getValueAt(rowSelected, 3);
             if (trangThai.equals("Đã thanh toán")) {
                 return;
@@ -1883,6 +1880,16 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
     private void xoaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaBtnActionPerformed
         // TODO add your handling code here:
+        int rowSelected = hoaDonTbl.getSelectedRow();
+        int rowSelected2 = gioHangTbl.getSelectedRow();
+        if (rowSelected < 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn thao tác");
+            return;
+        }
+        if (rowSelected2 < 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm thao tác");
+            return;
+        }
         deleteGioHang();
     }//GEN-LAST:event_xoaBtnActionPerformed
 
@@ -1899,21 +1906,21 @@ public class quanLyBanHang extends javax.swing.JPanel {
             return;
         }
         if (hinhThucTTCB.getSelectedIndex() == 1) {
-            if(loadKhuyenMai() == null) {
+            if (loadKhuyenMai() == null) {
                 int tongTien = tinhTongTien();
                 tienKhachDuaTxt.setEnabled(false);
                 tienKhachDuaTxt.setText(tongTien + "");
                 tinhTienThua();
             } else {
                 float giamGia = loadKhuyenMai().getMucGiam();
-                if(loadKhuyenMai().getDonVi().equals("VNĐ")) {
+                if (loadKhuyenMai().getDonVi().equals("VNĐ")) {
                     giamGia = tinhTongTien() - giamGia;
-                    if(giamGia <= 0) {
+                    if (giamGia <= 0) {
                         giamGia = 0;
                     }
-                } else { 
-                    giamGia = tinhTongTien() * ((100 - giamGia)/100);
-                    if(giamGia <= 0) {
+                } else {
+                    giamGia = tinhTongTien() * ((100 - giamGia) / 100);
+                    if (giamGia <= 0) {
                         giamGia = 0;
                     }
                 }
@@ -1934,8 +1941,13 @@ public class quanLyBanHang extends javax.swing.JPanel {
 
     private void suaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaBtnActionPerformed
         // TODO add your handling code here:
+        int rowSelected = hoaDonTbl.getSelectedRow();
+        if (rowSelected < 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn hóa đơn thao tác");
+            return;
+        }
         updateGioHang();
-        
+
     }//GEN-LAST:event_suaBtnActionPerformed
 
     private void huyHoaDonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyHoaDonBtnActionPerformed
@@ -1972,7 +1984,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void mauSacCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mauSacCBActionPerformed
         // TODO add your handling code here:
         searchSanPhamCT();
-        if(listTimKiem.size() == 0) {
+        if (listTimKiem.size() == 0) {
             JOptionPane.showMessageDialog(main, "Không tìm thấy sản phẩm");
             return;
         }
@@ -2012,7 +2024,7 @@ public class quanLyBanHang extends javax.swing.JPanel {
     private void lichSuHDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lichSuHDTblMouseClicked
         // TODO add your handling code here:
         int selectedRow = lichSuHDTbl.getSelectedRow();
-        if(selectedRow < 0) {
+        if (selectedRow < 0) {
             return;
         }
         //getCTSPHoaDon();
