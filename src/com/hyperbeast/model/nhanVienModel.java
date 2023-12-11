@@ -136,6 +136,40 @@ public class nhanVienModel {
             return null;
         }
     }
+    public ArrayList<nhanVien> searchNhanVien (String hoTen) {
+        String query = "select * from TAI_KHOAN where HoTen like ?";
+        ArrayList<nhanVien> listNV = new ArrayList<>();
+        try {
+            Connection conn = DBconnect.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%"+ hoTen +"%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {   
+                nhanVien nv = new nhanVien();
+                nv.setMaNV(rs.getInt("MaTK"));
+                nv.setTenDangNhap(rs.getString("TenDangNhap"));
+                nv.setMatKhau(rs.getString("MatKhau"));
+                nv.setHoTen(rs.getString("HoTen"));
+                nv.setGioiTinh(rs.getBoolean("GioiTinh"));
+                nv.setDienThoai(rs.getString("DienThoai"));
+                nv.setEmail(rs.getString("Email"));
+                nv.setDiaChi(rs.getString("DiaChi"));
+                nv.setNgayTao(rs.getString("NgayTao"));
+                nv.setNgayCN(rs.getString("NgayCapNhat"));
+                nv.setChucVU(rs.getString("ChucVu"));
+                if(rs.getInt("TrangThai") == 1){
+                    nv.setTrangThai("Đang hoạt động");
+                } else {
+                    nv.setTrangThai("Không hoạt động");
+                }
+                listNV.add(nv);
+            }
+            return listNV;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
     
     public ArrayList<nhanVien> getNhanVienSize () {
         String query = "select MaTK from TAI_KHOAN";

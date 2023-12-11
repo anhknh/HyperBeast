@@ -381,7 +381,7 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="1017" max="-2" attributes="0"/>
-                          <Component id="textField8" min="-2" pref="461" max="-2" attributes="0"/>
+                          <Component id="hoTenTimTxt" min="-2" pref="461" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
@@ -392,7 +392,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="24" max="32767" attributes="0"/>
-                  <Component id="textField8" min="-2" max="-2" attributes="0"/>
+                  <Component id="hoTenTimTxt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="214" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -494,10 +494,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="com.hyperbeast.swing.TextField" name="textField8">
+        <Component class="com.hyperbeast.swing.TextField" name="hoTenTimTxt">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m theo t&#xea;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="hoTenTimTxtKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>

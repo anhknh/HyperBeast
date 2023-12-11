@@ -170,6 +170,24 @@ public class quanLyNV extends javax.swing.JPanel {
         chucVuCB.setSelectedIndex(0);
         trangThaiCB.setSelectedIndex(0);
     }
+    
+    void searchNV() {
+        String hoTen = hoTenTimTxt.getText();
+        if(hoTen == null) {
+            hoTen = "";
+        }
+        ArrayList<nhanVien> listNV2 = nVModel.searchNhanVien(hoTen);
+        
+        DefaultTableModel model = (DefaultTableModel) nhanVienTbl.getModel();
+        model.setRowCount(0);
+        for (nhanVien nv : listNV2) {
+            Object[] data = {
+                nv.getMaNV(), nv.getHoTen(), nv.isGioiTinh() ? "Nam" : "Nữ", nv.getDienThoai(),
+                nv.getEmail(), nv.getDiaChi(), nv.getNgayTao(), nv.getNgayCN(), nv.getChucVU(), nv.getTrangThai()
+            };
+            model.addRow(data);
+        }
+    }
 
     void getRowData() {
         ArrayList<nhanVien> listNV = nVModel.getNhanVien2(pageSelect);
@@ -248,7 +266,7 @@ public class quanLyNV extends javax.swing.JPanel {
         panelBorder3 = new com.hyperbeast.swing.PanelBorder();
         jScrollPane1 = new javax.swing.JScrollPane();
         nhanVienTbl = new javax.swing.JTable();
-        textField8 = new com.hyperbeast.swing.TextField();
+        hoTenTimTxt = new com.hyperbeast.swing.TextField();
         jButton5 = new javax.swing.JButton();
         pageLbl = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -456,7 +474,12 @@ public class quanLyNV extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(nhanVienTbl);
 
-        textField8.setLabelText("Tìm kiếm theo tên");
+        hoTenTimTxt.setLabelText("Tìm kiếm theo tên");
+        hoTenTimTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                hoTenTimTxtKeyReleased(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(0, 102, 255));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
@@ -494,14 +517,14 @@ public class quanLyNV extends javax.swing.JPanel {
                         .addComponent(jButton4))
                     .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1017, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textField8, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(hoTenTimTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         panelBorder3Layout.setVerticalGroup(
             panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder3Layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(textField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hoTenTimTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -591,12 +614,18 @@ public class quanLyNV extends javax.swing.JPanel {
         validateFrom(2);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void hoTenTimTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hoTenTimTxtKeyReleased
+        // TODO add your handling code here:
+        searchNV();
+    }//GEN-LAST:event_hoTenTimTxtKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private com.hyperbeast.swing.Combobox chucVuCB;
     private com.hyperbeast.swing.TextField diaChiTxt;
     private com.hyperbeast.swing.TextField emailTxt;
+    private com.hyperbeast.swing.TextField hoTenTimTxt;
     private com.hyperbeast.swing.TextField hoTenTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -618,7 +647,6 @@ public class quanLyNV extends javax.swing.JPanel {
     private com.hyperbeast.swing.TextField sdtTxt;
     private javax.swing.JLabel taiKhoanLbl;
     private com.hyperbeast.swing.TextField tenDangNhapTxt;
-    private com.hyperbeast.swing.TextField textField8;
     private javax.swing.JButton themBtn;
     private javax.swing.JLabel thongTinLbl;
     private com.hyperbeast.swing.Combobox trangThaiCB;
