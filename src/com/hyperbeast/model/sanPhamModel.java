@@ -292,14 +292,14 @@ public class sanPhamModel {
 "                               join SIZE on SIZE.MaSize = CHI_TIET_SAN_PHAM.MaSize\n" +
 "				join CHAT_LIEU on CHAT_LIEU.MaCL = CHI_TIET_SAN_PHAM.MaCL\n" +
 "				join CHAT_LIEU_DE_GIAY on CHAT_LIEU_DE_GIAY.MaCLDe = CHI_TIET_SAN_PHAM.MaCLDe\n" +
-"                               Where tenSP like ?\n" +
+"                               Where tenSP = ?\n" +
 "                               order by SAN_PHAM.MaSP\n" +
 "                               offset ? row\n" +
 "                               fetch next 5 ROWS ONLY";
         try {
             Connection conn = DBconnect.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+ tenSanPham +"%");
+            pstmt.setString(1,tenSanPham);
             pstmt.setInt(2, pageSelect);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {                
