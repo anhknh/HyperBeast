@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a8f20365-f39e-4359-a15e-6ab87ae8ade1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.netbeans_automatic_build" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.netbeans_update_resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/component/menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/HoaDon.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/HoaDon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/HoaDonChiTiet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/HoaDonChiTiet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/KhachHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/KhachHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/KhuyenMai.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/KhuyenMai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/SanPham.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/SanPham.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/SanPhamChiTiet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/SanPhamChiTiet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/nhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/entity/nhanVien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/QuanLyHoaDon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$videoLoad.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog$videoLoad.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/anhJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chaoJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$8$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$8$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuDeJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$8$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$8$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/chatLieuJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/dangNhapJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$7$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$7$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/danhMucJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$7$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$7$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/khachHangJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$8$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$8$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/kichThuocJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$19.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$20.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$21.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$21.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$22.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$22.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$23.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$23.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$24.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$25.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$25.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$26.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$26.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$27.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$27.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$28.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$28.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$29.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$29.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$30.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$30.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$31.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$31.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$32.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$32.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$33.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$33.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyBanHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyKM.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLyNV.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$19.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$20.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$21.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$21.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$22.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$22.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$23.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$23.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$24.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$25.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$25.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$26.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$26.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$27.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$27.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$28.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$28.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$29.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$29.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$30.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$30.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$31.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$31.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/quanLySP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$8$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$8$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/form/themMSJDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/main/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/hoaDonModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/hoaDonModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/khachHangModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/khachHangModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/khuyenMaiModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/khuyenMaiModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/nhanVienModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/nhanVienModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/sanPhamModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/model/sanPhamModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$ArrowButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI$ArrowButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox$ComboUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/Combobox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/MaterialTabbed.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI$InvisibleScrollBarButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI$InvisibleScrollBarButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI1$ScrollBarButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI1$ScrollBarButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ModernScrollBarUI1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PanelBorder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PanelBorder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/PasswordField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ProgressBarCustom$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ProgressBarCustom$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ProgressBarCustom.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ProgressBarCustom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/RadioButtonCustom.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/RadioButtonCustom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ScrollBarCustom.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/ScrollBarCustom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextArea.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextAreaScroll$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextAreaScroll$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextAreaScroll.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextAreaScroll.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/swing/TextField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/utils/DBconnect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/utils/DBconnect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hyperbeast/utils/XacThuc.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hyperbeast/utils/XacThuc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/tabbed/MaterialTabbed$MaterialTabbedUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/tabbed/MaterialTabbed$MaterialTabbedUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/tabbed/MaterialTabbed$MaterialTabbedUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/tabbed/MaterialTabbed$MaterialTabbedUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/tabbed/MaterialTabbed.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/tabbed/MaterialTabbed.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hyperbeast/form/quanLyBanHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hyperbeast/form/quanLyBanHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hyperbeast/main/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hyperbeast/main/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hyperbeast/swing/MaterialTabbed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tabbed/MaterialTabbed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hyperbeast/utils/DBconnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hyperbeast/utils/DBconnect.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2dUhcqweeuIJGxjWAl6jg290TTT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/FPT_Polytechnic/PRO1041-du an 1/HyperBeast1&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a8f20365-f39e-4359-a15e-6ab87ae8ade1" name="Changes" comment="" />
+      <created>1710068646745</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710068646745</updated>
+      <workItem from="1710068648002" duration="104000" />
+      <workItem from="1710068757962" duration="128000" />
+      <workItem from="1710069033000" duration="134000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

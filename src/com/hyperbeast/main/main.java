@@ -13,6 +13,7 @@ import com.hyperbeast.form.quanLyKM;
 import com.hyperbeast.form.quanLySP;
 import com.hyperbeast.form.quanLyBanHang;
 import com.hyperbeast.form.quanLyNV;
+import com.hyperbeast.form.quanlyTK;
 import com.hyperbeast.utils.XacThuc;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class main extends javax.swing.JFrame {
     JPanel khuyenMai = new quanLyKM();
     JPanel nhanVien = new quanLyNV();
     JPanel hoaDon = new QuanLyHoaDon();
+    JPanel thongKe = new quanlyTK();
     QuanLyHoaDon hoadon1 = new QuanLyHoaDon();
     public main() {
         initComponents();
@@ -476,6 +478,7 @@ public class main extends javax.swing.JFrame {
         khuyenMai.setVisible(false);
         nhanVien.setVisible(false);
         hoaDon.setVisible(false);
+        thongKe.setVisible(false);
         dashBoardMain.add(quanlySP).setVisible(true);
     }//GEN-LAST:event_panelSPMouseClicked
 
@@ -489,6 +492,7 @@ public class main extends javax.swing.JFrame {
         khuyenMai.setVisible(false);
         nhanVien.setVisible(false);
         hoaDon.setVisible(false);
+        thongKe.setVisible(false);
         dashBoardMain.add(quanLyBH).setVisible(true);
     }//GEN-LAST:event_panelBHMouseClicked
 
@@ -503,6 +507,7 @@ public class main extends javax.swing.JFrame {
         quanLyBH.setVisible(false);
         nhanVien.setVisible(false);
         hoaDon.setVisible(false);
+        thongKe.setVisible(false);
         dashBoardMain.add(khuyenMai).setVisible(true);
     }//GEN-LAST:event_panelKMMouseClicked
 
@@ -512,6 +517,12 @@ public class main extends javax.swing.JFrame {
         panelTK.setOpaque(true);
         panelTK.setBackground(new Color(224, 224, 224));
         jLabel9.setForeground(Color.blue);
+        quanlySP.setVisible(false);
+        quanLyBH.setVisible(false);
+        nhanVien.setVisible(false);
+        hoaDon.setVisible(false);
+        khuyenMai.setVisible(false);
+        dashBoardMain.add(thongKe).setVisible(true);
     }//GEN-LAST:event_panelTKMouseClicked
 
     private void panelNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNVMouseClicked
@@ -528,6 +539,7 @@ public class main extends javax.swing.JFrame {
         quanLyBH.setVisible(false);
         khuyenMai.setVisible(false);
         hoaDon.setVisible(false);
+        thongKe.setVisible(false);
         dashBoardMain.add(nhanVien).setVisible(true);
     }//GEN-LAST:event_panelNVMouseClicked
 
@@ -551,6 +563,7 @@ public class main extends javax.swing.JFrame {
         quanLyBH.setVisible(false);
         khuyenMai.setVisible(false);
         nhanVien.setVisible(false);
+        thongKe.setVisible(false);
         dashBoardMain.add(hoaDon).setVisible(true);
         hoadon1.loadLichSuHD();
     }//GEN-LAST:event_panelKM1MouseClicked

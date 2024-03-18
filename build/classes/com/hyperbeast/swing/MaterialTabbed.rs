@@ -1,3 +1,0 @@
-tabbed.MaterialTabbed$MaterialTabbedUI$1
-tabbed.MaterialTabbed$MaterialTabbedUI
-tabbed.MaterialTabbed

@@ -291,10 +291,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
 
         gioHangLSTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Mã CTSP", "Tên sản phẩm", "Màu sắc", "Kích thước", "Chất liệu chính", "Chất liệu đế", "Số lượng", "Đơn giá", "Thành tiền"

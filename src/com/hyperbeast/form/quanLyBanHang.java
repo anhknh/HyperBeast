@@ -1879,6 +1879,9 @@ public class quanLyBanHang extends javax.swing.JPanel {
             if (trangThai.equals("Đã thanh toán")) {
                 return;
             }
+            if(trangThai.equals("Đã Hủy")){
+                return;
+            }
             addGioHang();
         }
     }//GEN-LAST:event_sanPhamTblMousePressed
