@@ -69,6 +69,59 @@ public class quanLySP extends javax.swing.JPanel  {
         clearLocCTSP(1);
     }
     
+    
+    //DÙNG ĐỂ TEST
+    boolean validateSPTest( int choice, int maSP, String tenSP, String ngayNhap, String ngayCN, int maDanhMuc, String trangThai ) {
+        sanPhamModel  model = new sanPhamModel();
+        ArrayList<SanPham> listSP = model.getSanPham2();
+        LocalDateTime ldt = LocalDateTime.now();
+        String dateNow = (DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH).format(ldt));
+        if(tenSP.isEmpty()) {
+            throw new NullPointerException("tên sản phẩm rỗng");
+        } else {
+            for(SanPham sp : listSP){
+                if(sp.getTenSP().equals(tenSP)) {
+                    throw new IllegalArgumentException("sản phẩm đã tồn tại");
+                }
+            }
+        }
+        ArrayList<String> listDanhMuc = new ArrayList<>();
+        listDanhMuc = spModel.getDanhMuc();
+        for(int i = 1; i <= listDanhMuc.size(); i++) {
+            if(!(maDanhMuc == i)) {
+                throw new NullPointerException("Danh Mục không tồn tại");
+            }
+        }
+        if(trangThai.isEmpty()) {
+            throw new NullPointerException("trạng thái rỗng");
+        }
+        if(choice == 1) {
+            try {
+                model.insertSanPham(tenSP, ngayNhap, ngayCN, trangThai, maDanhMuc);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        if(choice == 2) {
+            try {
+                for(SanPham sp : listSP) {
+                    if(!(sp.getMaSP() == maSP)) {
+                        throw new NullPointerException("sản phẩm không tồn tại");
+                    }
+                }
+                ngayCN = dateNow;
+                model.updateSanPham(maSP, tenSP, ngayNhap, ngayCN, trangThai, maDanhMuc);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        } else {
+            throw new IllegalArgumentException("sai lựa chọn");
+        }
+    }
+    //DÙNG ĐỂ TEST
+    
     void statusPageSP() {
         listSPSize = spModel.getMaSP();
         pageNumberSP = (int) Math.ceil((listSPSize.size()/5.0));
@@ -154,7 +207,6 @@ public class quanLySP extends javax.swing.JPanel  {
         int rowSelected = sanPhamCTTbl.getSelectedRow();
         String maSPcheck = tenSPLbl.getText().substring(0, tenSPLbl.getText().indexOf(" "));
         int maCTSP;
-        
         int maSP = Integer.parseInt(maSPcheck);
         int soLuong = 0;
         float donGia = 0;

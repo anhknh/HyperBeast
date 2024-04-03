@@ -303,7 +303,6 @@ public class khachHangJDialog extends javax.swing.JDialog {
         String soDienThoai;
         int trangThai;
         LocalDateTime ldt = LocalDateTime.now();
-        String dateNow = (DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH).format(ldt));
         Date now = new Date();
         Date ngayTao = now ;
         Date ngayCapNhat = now;
